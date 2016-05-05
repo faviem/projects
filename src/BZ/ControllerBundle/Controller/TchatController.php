@@ -37,7 +37,7 @@ class TchatController extends Controller
             {
                 $em = $this->getDoctrine()->getManager();
                 $messagerecus= $this->getDoctrine()
-                                      ->getManager()->getRepository('BZBlogBundle:Recepteur')
+                                      ->getManager()->getRepository('BZModelBundle:Recepteur')
                                       ->findBy(Array('estdelete'=>false, 'user'=>  $this->getUser()->getId()));
                 foreach ($messagerecus as $i){
                        if($i->getMessage()->getObjet()=='discussion' && $i->getMessage()->getEmetteur()->getUser()->getId()==$id){

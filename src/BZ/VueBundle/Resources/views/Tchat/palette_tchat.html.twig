@@ -23,7 +23,7 @@
                                  {% if rep == 1%}
                                  <li class="left clearfix">
                                     <span class="chat-img pull-left">
-                                        <img src="{% if msg.emetteur.user is not null %}{% if msg.emetteur.user.fileidentite is not null %} {{ asset(msg.emetteur.user.fileidentite.webPath) }} {% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}{% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}" style="height: 32px;width: 32px;" class="img-circle" alt="Photo de l'émetteur"/>
+                                        <img src="{% if msg.emetteur.user is not null %}{% if msg.emetteur.user.fileidentite is not null %} {{ asset(msg.emetteur.user.fileidentite.webPath) }} {% else %} {{ asset('uploads/Identite/user.jpg') }} {% endif %}{% else %} {{ asset('uploads/Identite/user.jpg') }} {% endif %}" style="height: 32px;width: 32px;" class="img-circle" alt="Photo de l'émetteur"/>
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
@@ -50,7 +50,7 @@
                           {% if rep == 1%}
                           <li class="right clearfix">
                             <span class="chat-img pull-right">
-                                  <img src="{% if msg.emetteur.user is not null %}{% if msg.emetteur.user.fileidentite is not null %} {{ asset(msg.emetteur.user.fileidentite.webPath) }} {% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}{% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}" style="height: 32px;width: 32px;" class="img-circle" alt="Photo de l'émetteur"/>
+                                  <img src="{% if msg.emetteur.user is not null %}{% if msg.emetteur.user.fileidentite is not null %} {{ asset(msg.emetteur.user.fileidentite.webPath) }} {% else %} {{ asset('uploads/Identite/user.jpg') }} {% endif %}{% else %} {{ asset('uploads/Identite/user.jpg') }} {% endif %}" style="height: 32px;width: 32px;" class="img-circle" alt="Photo de l'émetteur"/>
                              </span>
                             <div class="chat-body clearfix">
                                 <div class="header">
@@ -76,7 +76,7 @@
                             <button class="btn btn-success btn-sm" id="btn-chat">
                                 Envoyer
                             </button>
-                            <span class='tachat_img hide'><img src="{{ asset('/fileidentites/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> En cours ...</span>
+                            <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> En cours ...</span>
                         </span>
                     </div>
                 </div>
