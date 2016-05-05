@@ -1,0 +1,23 @@
+create_typerequete:
+    pattern:    /create_typerequete
+    defaults: { _controller: BZControllerBundle:Typerequete:create_typerequete }
+    
+read_typerequete:
+    pattern:    /read_typerequete
+    defaults: { _controller: BZControllerBundle:Typerequete:read_typerequete }  
+    
+update_typerequete:
+    pattern:    /update_typerequete/{id}
+    defaults: { _controller: BZControllerBundle:Typerequete:update_typerequete }
+    requirements:
+        id: \d+
+    
+delete_typerequete:
+    pattern:    /delete_typerequete/{id}
+    defaults: { _controller: BZControllerBundle:Typerequete:delete_typerequete }
+    requirements:
+        id: \d+
+        
+print_typerequete:
+    pattern:    /print_typerequete
+    defaults: { _controller: BZControllerBundle:Typerequete:print_typerequete }

@@ -1,0 +1,59 @@
+<div class="panel-body" id="consulterboite">
+    {% for msg in  messages %}
+        <ul class="chat">
+            {% if msg.emetteur.user.id == app.user.id %}
+                {% set rep = 0 %}
+                {% for recep in  msg.recepteurs %}
+                    {% if recep.user.id == id %}
+                        {% set rep = 1 %}
+                    {% endif %}    
+                {% endfor %}
+                {% if rep == 1%}
+                    <li class="left clearfix">
+                        <span class="chat-img pull-left">
+                            <img src="{% if msg.emetteur.user is not null %}{% if msg.emetteur.user.fileidentite is not null %} {{ asset(msg.emetteur.user.fileidentite.webPath) }} {% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}{% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}" style="height: 32px;width: 32px;" class="img-circle" alt="Photo de l'émetteur"/>
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font "> {{ msg.emetteur.user.nomPrenom }} </strong>
+                                <small class="pull-right text-muted label label-default">
+                                    <i class="icon-time"></i>  {{ msg.dateEnvoi | date('d/m/Y') }} à {{ msg.dateEnvoi | date('H:i') }}
+                                </small>
+                            </div>
+                            <br>
+                            <p style="font-size: 11px;">
+                                {{ msg.messageEnvoi }}  
+                            </p>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endif %}
+            {% if msg.emetteur.user.id == id %}
+                {% set rep = 0 %}
+                {% for recep in  msg.recepteurs %}
+                    {% if recep.user.id == app.user.id %}
+                        {% set rep = 1 %}
+                    {% endif %}    
+                {% endfor %}
+                {% if rep == 1%}
+                    <li class="right clearfix">
+                        <span class="chat-img pull-right">
+                            <img src="{% if msg.emetteur.user is not null %}{% if msg.emetteur.user.fileidentite is not null %} {{ asset(msg.emetteur.user.fileidentite.webPath) }} {% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}{% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}" style="height: 32px;width: 32px;" class="img-circle" alt="Photo de l'émetteur"/>
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <small class=" text-muted label label-info">
+                                    <i class="icon-time"></i> {{ msg.dateEnvoi | date('d/m/Y') }} à {{ msg.dateEnvoi | date('H:i') }}</small>
+                                <strong class="pull-right primary-font"> {{ msg.emetteur.user.nomPrenom }}</strong>
+                            </div>
+                            <br>
+                            <p style="font-size: 11px;">
+                                {{ msg.messageEnvoi }} 
+                            </p>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    {% endfor %}
+</div>

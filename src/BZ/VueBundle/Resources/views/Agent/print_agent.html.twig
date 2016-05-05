@@ -1,0 +1,39 @@
+{% extends "BZVueBundle::parent_print.html.twig"%}
+{% block title %} 
+    LISTE DES MEMBRES DE LA DIP
+{% endblock title %}
+{% block content_body %}
+      
+         <table style="width: 100%; border: solid 1px;border-color: black;" cellspacing="0">
+               <thead>
+            <tr>
+                <th style="text-align: right;width: 40%;height: 3%;text-align: center;font-weight: bold;font-size: 8pt;background-color: #85d0e7;color: #000;">
+                    NOM ET PRENOM(S)</th>
+                <th style="text-align: right;width: 15%;height: 3%;text-align: center;font-weight: bold;font-size: 8pt;background-color: #85d0e7;color: #000;">
+                    PROFIL</th>
+                <th style="text-align: right;width: 15%;height: 3%;text-align: center;font-weight: bold;font-size: 8pt;background-color: #85d0e7;color: #000;">
+                    E@MAIL</th>
+                <th style="text-align: right;width: 15%;height: 3%;text-align: center;font-weight: bold;font-size: 8pt;background-color: #85d0e7;color: #000;">
+                    CONTACT(S)</th>
+                <th style="text-align: right;width: 5%;height: 3%;text-align: center;font-weight: bold;font-size: 8pt;background-color: #85d0e7;color: #000;">
+                    ETAT</th>
+                <th style="text-align: right;width: 10%;height: 3%;text-align: center;font-weight: bold;font-size: 8pt;background-color: #85d0e7;color: #000;">
+                    DATE CREE</th>
+            </tr>
+            </thead>
+            <tbody>
+                  {% set nbre=0 %}
+            {% for element in agents %}
+                <tr style="border: solid 1px;border-color: black;padding: 0;background-color: {% if nbre%2==0 %} #ffffff; {% else %} #EEEEEE; {% endif%}">
+                   {% set nbre=nbre+1 %}
+                <td style="border: solid 0.5px;border-color: black;padding: 0;text-align: left;font-size: 9pt;height: 3%;">{{  element.nomprenom }}</td>
+                <td style="border: solid 0.5px;border-color: black;padding: 0;text-align: left;font-size: 9pt;height: 3%;">{{  element.user.profil.libelle }}</td>
+                <td style="border: solid 0.5px;border-color: black;padding: 0;text-align: left;font-size: 9pt;height: 3%;">{{  element.user.email }} </td>
+                <td style="border: solid 0.5px;border-color: black;padding: 0;text-align: left;font-size: 9pt;height: 3%;">{% if element.user.adressecontact is not null %} {{  element.user.adressecontact.telmobile }} {% endif %}</td>
+                <td style="border: solid 0.5px;border-color: black;padding: 0;text-align: left;font-size: 9pt;height: 3%;">{% if element.user.enabled==0 %} Bloqué  {% else %} Actif {% endif %}</td>
+                <td style="border: solid 0.5px;border-color: black;padding: 0;text-align: left;font-size: 9pt;height: 3%;">{{ element.user.lastlogin|date('d-m-Y') }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock content_body %}

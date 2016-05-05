@@ -1,0 +1,11 @@
+enregistre_cloture:
+    pattern:    /enregistre_cloture/{id}
+    defaults: { _controller: BZControllerBundle:Cloture:enregistre_cloture }  
+    requirements:
+        id: \d+ 
+        
+supprimer_cloture:
+    pattern:    /supprimer_cloture/{id}
+    defaults: { _controller: BZControllerBundle:Cloture:supprimer_cloture }  
+    requirements:
+        id: \d+ 

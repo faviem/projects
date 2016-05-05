@@ -1,0 +1,58 @@
+bz_alerte:
+    resource: "@BZControllerBundle/Resources/config/alerte.yml"
+    prefix:   /
+bz_resultat:
+    resource: "@BZControllerBundle/Resources/config/resultat.yml"
+    prefix:   /
+bz_cloture:
+    resource: "@BZControllerBundle/Resources/config/cloture.yml"
+    prefix:   /
+bz_reponse:
+    resource: "@BZControllerBundle/Resources/config/reponse.yml"
+    prefix:   /
+bz_traitement:
+    resource: "@BZControllerBundle/Resources/config/traitement.yml"
+    prefix:   /
+bz_ville:
+    resource: "@BZControllerBundle/Resources/config/ville.yml"
+    prefix:   /
+bz_departement:
+    resource: "@BZControllerBundle/Resources/config/departement.yml"
+    prefix:   /
+bz_typerequete:
+    resource: "@BZControllerBundle/Resources/config/typerequete.yml"
+    prefix:   /
+bz_mention:
+    resource: "@BZControllerBundle/Resources/config/mention.yml"
+    prefix:   /
+bz_structuresoustutelle:
+    resource: "@BZControllerBundle/Resources/config/structuresoustutelle.yml"
+    prefix:   /
+bz_profil:
+    resource: "@BZControllerBundle/Resources/config/profil.yml"
+    prefix:   /
+bz_agent:
+    resource: "@BZControllerBundle/Resources/config/agent.yml"
+    prefix:   /
+bz_directeurtechnique:
+    resource: "@BZControllerBundle/Resources/config/directeurtechnique.yml"
+    prefix:   /
+bz_formulaire:
+    resource: "@BZControllerBundle/Resources/config/formulaire.yml"
+    prefix:   /
+bz_registre:
+    resource: "@BZControllerBundle/Resources/config/registre.yml"
+    prefix:   /
+bz_message:
+    resource: "@BZControllerBundle/Resources/config/message.yml"
+    prefix:   /
+bz_consultation:
+    resource: "@BZControllerBundle/Resources/config/consultation.yml"
+    prefix:   /
+bz_blog_tchat:
+    resource: "@BZControllerBundle/Resources/config/tchat.yml"
+    prefix:   /   
+    
+notifications:
+    pattern:    /notifications
+    defaults: { _controller: BZControllerBundle:Tchat:notifications}

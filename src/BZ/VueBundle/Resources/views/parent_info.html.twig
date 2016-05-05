@@ -1,0 +1,26 @@
+<div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <form  class="ui-draggable"  {% block parentStyle %} style="position: relative; left: 424px; top: 229px;" {% endblock parentStyle %}  action="{% block parentAction %} {% endblock parentAction %}" {% block parentEnctype %}  {{ form_enctype(form) }}  {% endblock parentEnctype %} method="post" >
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {% block parentTitre %} INFORMATION {% endblock parentTitre %}
+                </div>
+                <div class="panel-body">
+                    {% block parentContenu %}
+                        
+                    {% endblock parentContenu %}
+                </div>
+                <div class="panel-footer">
+                    {% block parentBoutons %} 
+                        <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
+                     {% endblock parentBoutons %}
+                </div>
+            </div>
+        </div>
+    </form>
+    {% block parentScript %}
+        <script>
+        $('form').draggable();
+        </script>
+    {% endblock parentScript %}
+</div>

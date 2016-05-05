@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+    <!-- BEGIN HEAD-->
+    <head>
+        <meta charset="UTF-8" />
+        <title>CONNEXION|SRU ...</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!--[if IE]>
+           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+           <![endif]-->
+        <!-- GLOBAL STYLES -->
+        <!-- GLOBAL STYLES -->
+        <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/theme.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/MoneAdmin.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/Font-Awesome/css/font-awesome.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/login.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/magic/magic.css')}}" />
+        <!--END GLOBAL STYLES -->
+
+        <!-- PAGE LEVEL STYLES -->
+        <link href="{{ asset('assets/css/layout2.css')}}" rel="stylesheet" />
+        <link href="{{ asset('assets/plugins/flot/examples/examples.css')}}" rel="stylesheet" />
+        <link href="{{ asset('assets/plugins/timeline/timeline.css')}}" rel="stylesheet" />
+
+        <link href="{{ asset('assets/css/jquery-ui.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/uniform/themes/default/css/uniform.default.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/chosen/chosen.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/colorpicker/css/colorpicker.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/tagsinput/jquery.tagsinput.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker-bs3.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/datepicker/css/datepicker.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/timepicker/css/bootstrap-timepicker.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/switch/static/stylesheets/bootstrap-switch.css')}}" />
+        <!-- END PAGE LEVEL  STYLES -->
+        <!-- HTML5 shim and Respond.js')}} IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="{{ asset('assets/js/html5shiv.js')}}"></script>
+          <script src="{{ asset('assets/js/respond.min.js')}}"></script>
+        <![endif]-->
+    </head>
+    <!-- END  HEAD-->
+    <!-- BEGIN BODY-->
+    <body>
+        <!-- PAGE CONTENT --> 
+        <div class="container" style="margin-top: 60px;">
+            <div class="">
+                <div id="login" class="tab-pane active ">
+                    <form action="{{ path('bz_user_register') }}" {{ form_enctype(form) }} method="POST" class="form-signin">
+                       <p class="text-muted text-center " style="color: black;padding: 5px;background-repeat: repeat-x;border-bottom: 1px solid #D4D4D4;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.067);background-image: linear-gradient(to bottom, #FFF 0%, #F2F2F2 100%);">
+                            <i class="icon  icon-user "> </i> <span style="text-shadow: 0.5px 1px 0.5px blue;font-size: 16px;"> Inscrivez-vous !!!</span>
+                        </p>
+                        <p style="color: black;padding: 10px;margin-top: -10px;background-color: white;background-repeat: repeat-x;border-bottom: 1px solid red; box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.067);">
+                         {{ form_widget(form.username) }}
+                         {{ form_widget(form.email) }}
+                         {{ form_widget(form.plainPassword) }}
+                        </p>
+                        <p class="text-muted text-center " style="height: 40px;background-color: #D4D4D4;background-repeat: repeat-x;border-bottom: 1px solid #D4D4D4;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.067);" >
+                        <button class="btn btn-success btn-circle btn-sm" type="submit" style="float: right;margin-right: 5px;"><i class="icon-check"></i></button>
+                         <a type="button" href="{{ path("pub_acceuil") }}" class="btn btn-default btn-circle btn-sm" style="float: right;margin-right: 5px;"><i class="icon-home"></i>
+                        </a>
+                        <span  style="font-weight: bold;text-shadow: 0.5px 1px 0.5px white;color: black"></span>
+                        </p>
+                        {{ form_rest(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--END PAGE CONTENT --> 
+        <!-- GLOBAL SCRIPTS -->
+        <script src="{{ asset('assets/plugins/jquery-2.0.3.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('assets/js/login.js')}}"></script>
+        <!-- END GLOBAL SCRIPTS -->
+
+        <!-- PAGE LEVEL SCRIPT-->
+        <script src="{{ asset('assets/js/jquery-ui.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/uniform/jquery.uniform.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/inputlimiter/jquery.inputlimiter.1.3.1.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/chosen/chosen.jquery.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/colorpicker/js/bootstrap-colorpicker.js')}}"></script>
+        <script src="{{ asset('assets/plugins/tagsinput/jquery.tagsinput.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/validVal/js/jquery.validVal.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
+        <script src="{{ asset('assets/plugins/daterangepicker/moment.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/datepicker/js/bootstrap-datepicker.js')}}"></script>
+        <script src="{{ asset('assets/plugins/timepicker/js/bootstrap-timepicker.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/switch/static/js/bootstrap-switch.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/jquery.dualListbox-1.3/jquery.dualListBox-1.3.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/autosize/jquery.autosize.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/jasny/js/bootstrap-inputmask.js')}}"></script>
+        <script src="{{ asset('assets/js/formsInit.js')}}"></script>
+        <script>
+            $(function() {
+                formInit();
+            });
+        </script>
+        <!-- END  SCRIPTS -->
+    </body>
+    <!-- END BODY-->
+
+</html>
+

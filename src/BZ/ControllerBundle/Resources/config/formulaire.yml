@@ -1,0 +1,38 @@
+enregistre_requete:
+    pattern:    /enregistre_requete
+    defaults: { _controller: BZControllerBundle:Formulaire:enregistre_requete }
+    
+requetes_attentes:
+    pattern:    /requetes_attentes
+    defaults: { _controller: BZControllerBundle:Formulaire:requetes_attentes } 
+    
+analyser_requete:
+    pattern:    /analyser_requete/{id}
+    defaults: { _controller: BZControllerBundle:Formulaire:analyser_requete }  
+    requirements:
+        id: \d+   
+        
+annuler_vulnerable:
+    pattern:    /annuler_vulnerable/{id}
+    defaults: { _controller: BZControllerBundle:Formulaire:annuler_vulnerable }  
+    requirements:
+        id: \d+   
+        
+avorter_requete:
+    pattern:    /avorter_requete/{id}
+    defaults: { _controller: BZControllerBundle:Formulaire:avorter_requete }  
+    requirements:
+        id: \d+          
+        
+annuler_avortee:
+    pattern:    /annuler_avortee/{id}
+    defaults: { _controller: BZControllerBundle:Formulaire:annuler_avortee }  
+    requirements:
+        id: \d+   
+        
+fiche_recepisseadmin:
+    pattern:    /fiche_recepisseadmin/{id}
+    defaults: { _controller: BZControllerBundle:Formulaire:fiche_recepisseadmin }  
+    requirements:
+        id: \d+  
+    

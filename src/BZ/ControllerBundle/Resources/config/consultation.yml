@@ -1,0 +1,31 @@
+statistiques_requetes:
+    pattern:    /statistiques_requetes
+    defaults: { _controller: BZControllerBundle:Consultation:statistiques_requetes } 
+    
+repertoire_usager:
+    pattern:    /repertoire_usager
+    defaults: { _controller: BZControllerBundle:Consultation:repertoire_usager } 
+    
+contact_particulier:
+    pattern:    /contact_particulier/{id}
+    defaults: { _controller: BZControllerBundle:Consultation:contact_particulier }  
+    requirements:
+        id: \d+ 
+        
+contact_structure:
+    pattern:    /contact_structure/{id}
+    defaults: { _controller: BZControllerBundle:Consultation:contact_structure }  
+    requirements:
+        id: \d+ 
+    
+requete_categorie:
+    pattern:    /requete_categorie/{id}
+    defaults: { _controller: BZControllerBundle:Consultation:requete_categorie } 
+    
+requete_structure:
+    pattern:    /requete_structure/{id}
+    defaults: { _controller: BZControllerBundle:Consultation:requete_structure } 
+    
+consulter_requete:
+    pattern:    /consulter_requete/{id}
+    defaults: { _controller: BZControllerBundle:Consultation:consulter_requete } 

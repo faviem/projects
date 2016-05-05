@@ -1,0 +1,23 @@
+{% extends "BZVueBundle::parent_info.html.twig"%}
+
+{% block parentAction %} 
+    {{ path('detail_emetteur',{'id': id})}}
+{% endblock parentAction %}
+
+{% block parentEnctype %}  
+{% endblock parentEnctype %}
+
+{% block parentTitre %} <i class="icon icon-envelope"> </i> DETAIL DU MESSAGE{% endblock parentTitre %}
+{% block parentStyle %} style="position: relative; left: 500px; top: 199px;" {% endblock parentStyle %}
+{% block parentContenu %}
+    <div style="color: black;font-size: 12px;" class="well">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        
+        Date d'envoi : <strong>{{  element.message.dateEnvoi|date('d-m-Y') }} à {{  element.message.dateEnvoi|date('H:i') }}</strong><br/>
+        Objet : <strong>{{  element.message.objet }}</strong><br/>
+        Pièce Jointe : {% if element.message.filerequete is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( element.message.filerequete.dowloadPath) }}" target="_blank"><strong> {{ element.message.filerequete.nameFile }} </strong></a>{% endif %}<br/>
+        Recepteur(s) : <strong>{% for recept in  element.message.recepteurs %}{{  recept.nomPrenom }} ; {% endfor %}</strong><br/>
+        Texte du message : <br/><span style="margin-left: 10px;"> {{ element.message.messageEnvoi }} </span><br/>
+    </div>
+    
+{% endblock parentContenu %}

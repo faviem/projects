@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+
+        <!-- Set the viewport width to device width for mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>SysGRU</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/sysfavicon.jpg')}}" />
+        <!-- Included Bootstrap CSS Files -->
+        <link rel="stylesheet" href="{{ asset('/plateforme/js/bootstrap/css/bootstrap.min.css')}}"/>
+        <!-- <link rel="stylesheet" href="{{ asset('/plateforme/js/bootstrap/css/bootstrap-responsive.min.css')}}" />
+        Includes FontAwesome -->
+        <link rel="stylesheet" href="{{ asset('/plateforme/css/font-awesome/css/font-awesome.min.css')}}"/>
+
+        <!-- Font Include -->
+        <link rel="stylesheet" href="{{ asset('/plateforme/css/fonts/vincent/stylesheet.css')}}"/>
+
+        <!-- Included Bootstrap Customization CSS Files -->	
+        <link rel="stylesheet" href="{{ asset('/plateforme/css/bootstrap-extension.css')}}"/>
+
+        <!-- Website CSS Theme Css -->	
+        <link rel="stylesheet" href="{{ asset('/plateforme/css/stylesheet.css')}}"/>
+
+        <link rel="stylesheet" href="{{ asset('assets/plugins/chosen/chosen.min.css')}}" />
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#"><span class="logo">G</span></a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li {%if menu==1%}  class="active"  {% endif %}>
+                                    <a href="{{ path("page_accueil") }}" style="font-size: 17px;">ESPACE DE DEPOT DE REQUETES</a>
+                                </li>
+                                <li {%if menu==2%}  class="active"  {% endif %}>
+                                    <a href="{{ path("repertoire_requete") }}" style="font-size: 17px;">REPERTOIRE DES REQUETES</a>
+                                </li>
+                                <li class="dropdown" {%if menu==3%}  class="active"  {% endif %}>
+                                    <a href="{{ path("statistiques") }}" style="font-size: 17px;">STATISTIQUES </a>
+                                 </li>
+                                <li>
+                                    <a href="{{ path("fos_user_security_login") }}" style="font-size: 17px;">ESPACE MEMBRE</a>
+                                </li>
+                                <li {%if menu==4%}  class="active"  {% endif %}>
+                                    <a href="{{ path("apropos") }}" style="font-size: 17px;">A PROPOS ?</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content"  >
+
+            <!-- Pay Off -->
+            <div class="row center vspace30">
+                <div class="col-md-12">
+                    <h2><span><img src="{{ asset('images/1.jpg')}}" style="height: 40px;width: 40px;"alt=""> BIENVENUE DANS SysGRU <img style="height: 40px;width: 40px;" src="{{ asset('images/logo.png')}}" alt=""></span></h2>
+                    <p style="color: #000000;text-shadow: 0.3px 0.2px 0.2px #000;"><span style="font-size: 19px;text-shadow: 1px 1px 1px #000;color: #0000AA;">Système de Gestion des Requêtes des Usagers/clients </span><br/> Plate-forme du Service des Relation avec les Usagers (SRU) de la Direction de l'Informatique et du Pré-archivage (DIP) <br/> du Ministère de l'Energie, des Recherches Pétrolières et Minières et du Développement des Energies Renouvelables (MERPMDER)</p>
+                </div>
+            </div>
+            <!-- /Pay Off -->
+
+            <div class="content" >
+                <div class="container theme">
+                    <!-- FAQ -->
+                    <div class="row vspace30">
+                        <div class="col-md-7">
+                            <div class="panel-group" id="faq">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="text-decoration: none;">
+                                                 <span style="font-size: 13px;color: #002200;"> A Propos ? </span> 
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <p style="font-size: 16px;text-align: center;text-shadow: 2px 1px 2px #5500AA;color: black;">SERVICE DES RELATIONS AVEC LES USAGERS (SRU)</p>
+                                             <p style="font-size: 10px;text-align: center;color: black;">Arrêté interministériel, N°002/MRAI/PM_CCAGEPPPDDS/MEF/MDGLAAT/MTFP/MCRI/DC/SGM/SA,</p>
+                                             <p style="font-size: 10px;text-align: center;margin-top: -2%;color: black;">portant Attributions, Organisation et Fonctionnement du Service des Relations avec les Usagers</p>
+                                               <p style="font-size: 13px;text-align: center;font-weight: bold;color: black;">Le Service des Relations avec les Usagers (SRU) a pour mission de faciliter les relations entre les directions techniques et les usagers/clients pour un service public plus efficace et plus efficient.</p>
+                                             
+                                               
+                                               <p style="font-size: 12px;text-align: left;text-shadow: 1px 1px 1px #5500AA;color: black;"> Le Service des Relations avec les Usagers (SRU) est chargé : </p>
+                                             
+                                             <p style="font-size: 12px;text-align: left; color: black;">
+                                                 <i class="icon-arrow-right"> </i>  d'accueillir, de renseigner et d'orienter les usagers/clients du Ministère ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                                 <i class="icon-arrow-right"> </i> de mettre à la disposition des usagers/clients, les documents et les formulaires utiles à leurs requêtes ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                                <i class="icon-arrow-right"> </i>  de contribuer à l'organisation, au besoin, de campagne de prestation de service mobile ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                               <i class="icon-arrow-right"> </i>   de tenir une statistique permanente des usagers/clients et des services fournis ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                               <i class="icon-arrow-right"> </i>   d'émettre des avis et de faire des recommandations sur toute question relevant de sa compétence, dans le cadre de l'amélioration continue de la qualité des prestations aux usagers/clients et autres contribuables ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    d'apporter des solutions aux préoccupations des usagers/clients ne nécessitant pas de recherches particulières ou de recours aux services techniques ou aux supérieures hiérarchiques ;</p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    de collecter et de fournir aux usagers, des informations sur le traitement de leurs dossiers ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    de faciliter, en cas de besoin, les relations entre les Directeurs techniques et les usagers/clients pour un service public plus efficace et plus efficient ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    d'enregistrer et d'examiner, avec les directions compétentes, les plaintes et suggestions des usagers ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    de préserver l'image de marque du Ministère en offrant aux usagers/clients le meilleur service possible ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    de produire un rapport mensuel sur les plaintes et suggestions des usagers/clients du Munistère de l'Energie, des Recherches Pétrolières et Minières et du Développement des Energies Renouvelables et formuler des propositions en vue de l'amélioration des prestations des différentes structures du Ministère ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    de mettre à la disposition du public une ligne verte pour poursuivre leurs préoccupations ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    d'assurer la collecte des informations à diffuser sur le site Web du Ministère et de l'Intranet ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-arrow-right"> </i>    d'organiser périodiquement des journées portes ouvertes aux usagers/clients du Ministère ;
+                                             </p>
+                                             
+                                             <p style="font-size: 12px;text-align: center;color: black;"> Le Service des Relations avec les Usagers (SRU) comprend deux Divisions : </p>
+                                          <p style="font-size: 12px;text-align: center;text-shadow: 1px 1px 1px #5500AA;color: black;"> la Division Accueil, Renseignement et Prestations de Service en Ligne (DARPSL), chargé : </p>
+                                             
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class=" icon-fighter-jet"> </i>  d'accueillir et d'orienter les usagers/clients de Munistère ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class=" icon-fighter-jet"> </i>  de fournier des renseignements aux usagers clients ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class=" icon-fighter-jet"> </i>  d'enregistrer les requêtes des usagers/clients contre la délivrance de récépissé ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class=" icon-fighter-jet"> </i>  de mettre en place une banque de données des usagers/clients de l'administration publique ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class=" icon-fighter-jet"> </i>  d'assurer le service en ligne ;
+                                             </p>
+                                             
+                                          <p style="font-size: 12px;text-align: center;text-shadow: 1px 1px 1px #5500AA;color: black;"> la Division des Relations avec les Structures Techniques (DRST), chargé : </p>
+                                             
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-double-angle-right"> </i>  de veiller au respect des délais de traitement des requêtes des usagers/clients ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                             <i class="icon-double-angle-right"> </i>   d'étudier les plaintes et les requêtes des usagers/clients ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-double-angle-right"> </i>  d'assurer la liaison entre les Directions Techniques et les usagers/clients ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-double-angle-right"> </i>  d'enregistrer et d'examiner, avec les Directeurs, les plaintes et suggestions des usagers ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-double-angle-right"> </i>  de réaliser des enquêtes de satisfaction des usagers ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;color: black;">
+                                              <i class="icon-double-angle-right"> </i>  d'élaborer le rapport semestriel et annuel sur les plaintes et suggestions des usagers/clients et formuler des propositions en vue de l'améliorations des prestations des différentes structures du Ministère ;
+                                             </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <h3><i class="icon-phone"></i>&nbsp;Contact Info</h3>
+                            <address class="well">
+                                <p><i class="icon-map-marker"></i>&nbsp;Avenu Jean Paul II 04 BP 1412 - Cotonou - Bénin <br/> Numéro IFU 4200901839118</p>
+                                <p><i class="icon-phone"></i>&nbsp;Phone: (229) 21 31 29 07 / 21 31 29 24 / 21 31 29 38</p>
+                                <p><i class="icon-print"></i>&nbsp;Fax: (229) 21 31 35 46</p>
+                                <p><i class="icon-envelope"></i>&nbsp;Email: spmmeh@internet.bj</p>
+                                <p><i class="icon-globe"></i>&nbsp;Web: http://www.mydomain.com</p>
+                            </address>
+                        </div>
+                    </div>
+
+                    <!-- /FAQ -->
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+        <footer id="footer">
+            <div id="post-footer">
+                <div class="container">		
+                    <div class="row center">
+                        <div class="col-md-12">
+                            <div class="vspace10">
+                                <a href="#"><img src="{{ asset('plateforme/img/socials/png/32x32/facebook.png')}}" alt="" /></a>
+                                <a href="#"><img src="{{ asset('plateforme/img/socials/png/32x32/twitter.png')}}" alt="" /></a>
+                                <a href="#"><img src="{{ asset('plateforme/img/socials/png/32x32/linkedin.png')}}" alt="" /></a>
+                                <a href="#"><img src="{{ asset('plateforme/img/socials/png/32x32/google+.png')}}" alt="" /></a>
+                                <a href="#"><img src="{{ asset('plateforme/img/socials/png/32x32/youtube.png')}}" alt="" /></a>
+                                <br /><br />
+                                <p>&copy; Copyright faviem 2015</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <a class="scrolltotop" href="#"></a>
+
+        <script src="{{ asset('/plateforme/js/jquery-1.8.3.min.js')}}"type="text/javascript"></script>
+        <script src="{{ asset('/plateforme/js/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('/plateforme/js/script.js')}}"></script>
+
+        <script src="{{ asset('assets/plugins/chosen/chosen.jquery.min.js')}}"></script>
+        <script>
+            // $(".chzn-select").chosen();
+
+        </script>
+
+    </body>
+</html>

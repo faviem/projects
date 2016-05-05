@@ -1,0 +1,18 @@
+consulter_boite:
+    pattern:    /consulter_boite/{id}
+    defaults: { _controller: BZControllerBundle:Tchat:consulter_boite}
+    requirements:
+        id: \d+
+        
+consulter_boiteautre:
+    pattern:    /consulter_boiteautre/{id}
+    defaults: { _controller: BZControllerBundle:Tchat:consulter_boiteautre}
+    requirements:
+        id: \d+
+        
+envoyer_msg:
+    pattern:    /envoyer_msg/{id}
+    defaults: { _controller: BZControllerBundle:Tchat:envoyer_msg}
+    requirements:
+        id: \d+
+    

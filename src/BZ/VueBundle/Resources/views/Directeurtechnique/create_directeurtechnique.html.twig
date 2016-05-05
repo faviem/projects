@@ -1,0 +1,20 @@
+{% extends "BZVueBundle::parent_create.html.twig"%}
+{% block parentAction %} 
+ {{ path('create_directeurtechnique')}}
+{% endblock parentAction %}
+{% block parentContenu %}
+    <span>{{profil.libelle}}</span>
+            {{ parent() }}
+            
+{% endblock parentContenu %}
+{% block parentScript %}
+<script>
+         $('form').draggable();
+      $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({
+        allow_single_deselect: true
+     });
+       
+    $('form input.date').datepicker();
+</script>
+{% endblock parentScript %}

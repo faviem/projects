@@ -1,0 +1,83 @@
+{% extends "BZUserBundle::layout.html.twig"%}
+
+{% block content_body %}
+<div class="col-lg-12" style="margin-top: 1%;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span style="text-shadow: 0px 0.5px 0.5px blue;font-size: 13px;"> LES  MEMBRES CONNECTES </span> 
+          </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                    <thead>
+                            <tr role="row">
+                                <th class="sorting_desc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 13px;text-align: center;">
+                                    Actions
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                     Nom et Prenom(s)
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                     e@mail
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                     Contact(s)
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                     Structure de provenance
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                     
+                                </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                          {% set nbre = 0 %}
+                            {% for element in  membres %}
+                            {% if element.isconnect =="1" and element.id != app.user.id %}
+                            <tr class="gradeA {% if nbre%2==0 %} odd {% else %} even{% endif%}">
+                                {% set nbre = nbre+1 %}
+                                <td class="" style="font-size: 12px;text-align: center;"><a href="{{ path('consulter_boite',{'id': element.id}) }}" title="Discutter" class="btn btn-info btn-xs btn-rect createVille" data-toggle="modal" data-target="#myModalu" style="font-size: 11px;"><i class="icon-comments-alt"> </i> </a>
+                                </td>
+                                <td class="" style="font-size: 12px;">{{  element.nomprenom }} </td>
+                                <td class="" style="font-size: 12px;">{{  element.email }} </td>
+                                <td class="" style="font-size: 12px;">{% if element.adressecontact is not null %} {{  element.adressecontact.telmobile }} {% endif %}</td>
+                                <td class="" style="font-size: 12px;">{% if element.directeurtechnique is not null %} {% if element.directeurtechnique.structuresoustutelle is not null %} {{  element.directeurtechnique.structuresoustutelle.nom }} {% else %} Inconnue {% endif %} {% else %}  DIP {% endif %}</td>
+                                <td class="" style="text-align: center;"><a href="#" class="btn btn-success btn-xs btn-circle"></a></td>
+                            </tr>
+                           {% endif %}
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id='frm_createVille'>
+    
+</div>
+{% endblock content_body %}
+{% block javascript %} 
+    <script>
+       // Notifications();      
+        $('.createVille').click(function(event){
+            var buton= $(this);
+            $('#frm_createVille').html('');
+            $.ajax({
+                   type: 'GET',
+                   url: buton.attr('href'),
+                   cache: false,
+                   success: function(data) {
+                       $('#frm_createVille').html(data);
+                      // $('#frm_createVille').dialog();
+                   },
+                   error: function() {alert('coupé');} });
+               //we dont what the browser to submit the form
+               event.preventDefault();
+        });
+     
+    </script>
+{% endblock javascript %}

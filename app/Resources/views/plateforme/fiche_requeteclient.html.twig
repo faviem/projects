@@ -1,0 +1,316 @@
+<style type="text/css">
+<!--
+table.morpion
+{
+    border:        dashed 1px #444444;
+}
+
+table.morpion td
+{
+    font-size:    15pt;
+    font-weight:  bold;
+    border:       solid 1px #000000;
+    padding:      1px;
+    text-align:   center;
+    width:        25px;
+}
+
+table.morpion td.j1 { color: #0A0; }
+table.morpion td.j2 { color: #A00; }
+
+-->
+</style>
+<page backtop="-10mm" backbottom="-10mm" backleft="0mm" backright="0mm">
+    
+     <table align="center" style="border-radius: 6mm; border-top: solid 3mm #000077; border-right: solid 2mm #007700; border-bottom: solid 1mm #770000;    border-left: solid 2mm #007777; " >
+         <tr>
+             <td style="width: 20mm; height: 20mm; text-align: center; "> <img style="width: 22mm; height: 18mm; text-align: left; " src="./images/1.jpg" alt="REPUBLIQUE DU BENIN" ></td>
+             <td style="width: 100mm; height: 20mm; text-align: center; ">
+                 <span style="font-size: 8pt;"> REPUBLIQUE DU BENIN </span> <br>
+                 <span style="font-size: 5.65pt;">Ministère de l'Energie, des Recherches Pétrolières, des Mines et du Développement des Energies Renouvelables (MERPMDER)</span><br>
+                <span style="font-size: 10pt;"> Direction de l'Informatique et de la Pré-Archivage (DIP)</span><br>
+                <span style="font-size: 9pt;">Service des Relations avec les Usagers (SRU)</span><br>
+                 </td>
+             <td style="width: 20mm; height: 20mm; text-align: center; "> <img style="width: 22mm; height: 18mm; text-align: right; " src="./images/logo.png" alt="MINISTERE DE L'ENERGIE DES RECHERCHES PETROLIERES ET MINIERES DES MINES ET DU DEVELOPPEMENT DES ENERGIES RENOUVELABLES" > </td>
+         </tr>
+     </table>
+    
+      <table align="center"  >
+         <tr>
+            <td style="width: 100mm; height: 8mm; text-align: center; font-size: 9pt; color: #000055;font-weight: bold;">
+                 FICHE DE TRAITEMENT DE REQUÊTES</td>
+           </tr>
+     </table>
+    
+      <table align="left"  >
+         <tr>
+            <td style="width: 100mm; height: 8mm; text-align: center; font-size: 8pt; color: #770000;font-weight: bold;">
+                 EXPRESSION DE REQUÊTES</td>
+           </tr>
+     </table>
+    
+    <table align="center" style="background: #dff0d8; border-radius: 3mm; border-top: solid 1mm #000077; border-right: solid 0.5mm #000077; border-bottom: solid 1mm #000077;    border-left: solid 0.5mm #000077; ">
+        <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+         <tr>
+             <br><br> 
+             <td style="width: 100mm; text-align: left; font-size: 10pt;color: RGB(255, 0, 0);font-weight: bold;" colspan="4"> IDENTITE </td>
+         <br><br> 
+         </tr>
+         <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+         <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+            {% if element.typeusagerclient == 'Personne physique' %}
+         <tr>
+             <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">Nom et Prénom(s) : </td>
+             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1"> {{  element.particulier.prenom }}   {{  element.particulier.nom }}  </td>
+          
+              <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1">Contact(s) : </td>
+             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">  {{  element.particulier.usagerclient.adressecontact.telmobile }}  </td>
+          </tr>
+         <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+           <tr>
+             <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">E@mail : </td>
+             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">   {{  element.particulier.usagerclient.adressecontact.email }}  </td>
+          
+              <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1">Département : </td>
+             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">    {{  element.particulier.usagerclient.adressecontact.departement.nomdepartement }}  </td>
+          </tr>
+          <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+          <tr>
+             <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">Ville de résidence :  </td>
+             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1"> {{  element.particulier.usagerclient.adressecontact.ville.nomville }} </td>
+          
+              <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1"> Profession : </td>
+             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">   {{  element.particulier.profession }}  </td>
+          </tr>
+           {% else %}
+           <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+          <tr>
+             <td style="width: 40mm; text-align: left; font-size: 10pt;" colspan="1">Structure : </td>
+             <td style="width: 90mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="3">{{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</td>
+          </tr>
+          <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+          <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+           <tr>
+             <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">E@mail :</td>
+             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">  {{  element.societeentreprise.usagerclient.adressecontact.email }}  </td>
+          
+              <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1">Contact(s) : </td>
+             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">  {{  element.societeentreprise.usagerclient.adressecontact.telmobile }}  </td>
+          </tr>
+          <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+          <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+          <tr>
+             <td style="width: 40mm; text-align: left; font-size: 10pt;" colspan="1"> Domaine d'activité : </td>
+             <td style="width: 90mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="3">  {{  element.societeentreprise.domaineactivite }}  </td>
+          </tr>     
+          <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+          <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+          <tr>
+             <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">Ville de résidence :  </td>
+             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">   {{  element.societeentreprise.usagerclient.adressecontact.ville.nomville }} </td>
+          
+                <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1">Département : </td>
+             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">     {{  element.societeentreprise.usagerclient.adressecontact.departement.nomdepartement }}  </td>
+          </tr>     
+          <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+            {% endif %}
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+            <tr>
+             <td style="width: 100mm; text-align: left; font-size: 10pt;color: RGB(255, 0, 0);font-weight: bold;" colspan="4"> REQUÊTE EXPRIMEE </td>
+          </tr>
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+           <tr>
+             <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">Date d'émission : </td>
+             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">     {{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }} </td>
+          
+             <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1">Catégorie de requête :  </td>
+             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">  {{  element.typeRequete.libelle }}</td>
+          </tr> 
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+             <td style="width: 37mm; text-align: left; font-size: 10pt;" colspan="1"> Structure Destinataire :</td>
+             <td style="width: 90mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="3"> {{  element.StructureSoustutelle.nom }} </td>
+          </tr> 
+           <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+             <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">  Mode de Saisine :</td>
+             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">
+                 {% if element.modesaisine is not null %}{{  element.modesaisine.libelle }}{% else %} Aucun {% endif %} 
+                </td>
+                <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1">  Pièce Jointe :</td>
+             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">   {% if element.filerequete is null %}  Aucune{% else %} {{ element.filerequete.nameFile }} {% endif %} </td>
+          </tr> 
+           <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+           <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+           <tr>
+             <td style="width: 40mm; text-align: left; font-size: 10pt;" colspan="1"> Message de la Requête : </td>
+             <td style="width: 90mm; text-align: left; font-size: 8pt;" colspan="3">
+                  {{ element.commentaireUsagerclient }}
+             </td>
+          </tr> 
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+           <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+       </table>   
+             
+       <table align="left" style="" >
+         <tr>
+            <td style="width: 100mm; height: 8mm; text-align: center; font-size: 8pt; color: #770000;font-weight: bold;">
+                 RELEVE DES TRAITEMENTS</td>
+           </tr>
+       </table>
+             
+       <table align="left">
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+           <tr>
+             <td style="" colspan="4">  </td>
+          </tr>
+          {% set nbretraitement = 0 %}
+             {% for traitement in  element.traitementrequetes  %}
+                        {% if traitement.estdelete == 0 %} 
+                            {% set nbretraitement =nbretraitement +1 %}
+           <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+             <td style="width: 100%; text-align: left; font-size: 8pt;color: #113300;" colspan="4">Traitement N° {{ nbretraitement }} du   {{  traitement.dateLancement|date('d-m-Y') }} à {{  traitement.dateLancement|date('H:i') }} </td>
+           </tr>
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+            <tr>
+                <td style="width: 100%; text-align: left; font-size: 8pt;" colspan="4"> Adressé au responsable technique : <span style="font-weight: bold;"> {{ traitement.directeurtechnique.nomPrenom }} </span></td>
+          </tr>
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+             <td style="width: 100%; text-align: left; font-size: 8pt;" colspan="4">Message de recommandation à lui addressé par la S R U : <br>  <span style="font-size: 7pt;margin-left: 25%;"> {{ traitement.commentaireLancement }} <br>  </span></td>
+          </tr>
+          {% set nbreresultat = 0 %}
+          {% if  traitement.resultattraitementrequetes   is not null %}
+                <tr>
+                    <td style="width: 120mm; text-align: left; font-size: 10pt;" colspan="4">  
+                        <table align="left"  style="border-top: solid 0.15mm; border-right: solid 0.15mm; border-bottom: solid 0.15mm;    border-left: solid 0.15mm;" >
+                            <tr>
+                                <td style="width: 100mm; height: 8mm; text-align: left; font-size: 6pt; color: #000033;font-weight: bold;" colspan="4">
+                                    RESULTATS DU TRAITEMENT N° {{ nbretraitement }} DU RESPONSABLE TECHNIQUE</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 10mm; text-align: left; font-size: 8pt;color: #113300;" colspan="1">N° </td>
+                                <td style="width: 35mm; text-align: left; font-size: 8pt;font-weight: bold;color: #113300;" colspan="1"> Date</td>
+                                <td style="width: 35mm; text-align: left; font-size: 8pt;font-weight: bold;color: #113300;" colspan="1"> PJ </td>
+                                <td style="width: 55mm; text-align: left; font-size: 8pt;font-weight: bold;color: #113300;" colspan="1">  Commentaires</td>
+                            </tr>
+                            {% for resultat in  traitement.resultattraitementrequetes  %}
+                                {% if resultat.estdelete == 0 %} 
+                                    {% set nbreresultat = nbreresultat+1 %}
+                                    <tr>
+                                        <td style="width: 10mm; text-align: left; font-size: 8pt;" colspan="1">{{ nbreresultat }} </td>
+                                        <td style="width: 35mm; text-align: left; font-size: 8pt;" colspan="1">   {{ resultat.dateResultat|date('d-m-Y') }} à {{  resultat.dateResultat|date('H:i') }} </td>
+                                        <td style="width: 35mm; text-align: left; font-size: 8pt;" colspan="1"> {% if resultat.fileretraitement is not null %} {{ resultat.fileretraitement.nameFile }}  {% else %} Aucune {% endif %}</td>
+                                        <td style="width: 55mm; text-align: left; font-size: 8pt;" colspan="1">   {{ resultat.commentaireResultat }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="" colspan="4" >  </td>
+                                    </tr>
+                                {% endif %}
+                              {% endfor %}
+                        </table>
+                    </td>
+                </tr> 
+          {% endif %}
+          {% if nbreresultat == 0 %} 
+           <tr>
+             <td style="width: 120mm; text-align: left; font-size: 8pt;color: #C82829;" colspan="4">En attente de résultat ... </td>
+           </tr>
+          {% endif %}
+          {% if  nbretraitement == 0 %}
+          <tr>
+             <td style="width: 120mm; text-align: left; font-size: 8pt;color: #C82829;" colspan="4"> Traitement en cours d'initiation ... </td>
+           </tr>      
+          {% endif %}
+          
+          {% if traitement.reponsetraitementrequete is not null %}
+           <tr>
+               <td style="width: 100%; text-align: left; font-size: 8pt;" colspan="4">Réponse de l'usager/client reçue le :  <span style="font-weight: bold;">   {{  traitement.reponsetraitementrequete.dateReponse|date('d-m-Y') }} à {{  traitement.reponsetraitementrequete.dateReponse|date('H:i') }} </span>   
+               Appréciation laissée : <span style="font-weight: bold;">  {{  traitement.reponsetraitementrequete.mention.libelle }} </span> <br>
+               </td>
+           </tr>   
+           <tr>
+              <td style="width: 100%; text-align: left; font-size: 8pt;" colspan="4">Commentaire de l'usager/client dudit traitement :  <br><br><span style=" font-size: 7pt;"> {{ traitement.reponsetraitementrequete.commentaireReponse }} </span></td>
+          </tr>   
+          {%  else %}
+             <tr>
+               <td style="width: 120mm; text-align: left; font-size: 8pt;color: #C82829;" colspan="4"> En attente de réponse de l'usager/client ... </td>
+             </tr>
+          {% endif %}
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+              <td style="" colspan="4" >  </td>
+          </tr>
+          <tr>
+              <td style="" colspan="4" > - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - -  - - - -  - - - - - - - -  -  </td>
+          </tr>
+       {% endif %}
+  {% endfor %}      
+     </table> 
+ 
+</page>

@@ -1,0 +1,37 @@
+{% extends "BZVueBundle::parent_info.html.twig"%}
+{% block parentAction %} 
+#
+{% endblock parentAction %}
+{% block parentEnctype %}  
+   
+{% endblock parentEnctype %} 
+ {% block parentTitre %} <i class="icon icon-phone"></i> IDENTITE {% endblock parentTitre %}
+{% block parentContenu %}
+    <p style="font-size: 12px;">
+       <span> Nom et Prénom(s) : </span> <strong>{{ element.prenom }} {{ element.nom }}   </strong><br/><br/>
+         <span style="color: blue"> Adresses : </span><br/>
+       {%if element.user.adressecontact is null %}
+           <strong> Aucune</strong>
+            {% else%}
+           <span> Ville : </span><strong>{%if element.user.adressecontact .ville is null %} pas définie {%else %} {{ element.user.adressecontact.ville.nomville }} {%endif %} </strong><br/>
+           <span> Département : </span><strong>{%if element.user.adressecontact .departement is null %} pas définie {%else %} {{ element.user.adressecontact.departement.nomdepartement }} {%endif %} </strong><br/>
+           <span> Localité : </span><strong>{%if element.user.adressecontact .localite is null %} pas définie {%else %} {{ element.user.adressecontact.localite }} {%endif %} </strong><br/>
+           <span> Contact(s) : </span><strong>{%if element.user.adressecontact .telmobile is null %} pas définie {%else %} {{ element.user.adressecontact.telmobile }} {%endif %} </strong><br/>
+           <span> e@mail : </span><strong>{%if element.user.email is null %} pas définie {%else %} {{ element.user.email }} {%endif %} </strong><br/>
+       {% endif%}<br/>
+        <span  style="color: blue"> Identité du compte : </span><br/>
+       {%if element.user.adressecontact is null %}
+           <strong> Aucune</strong>
+            {% else%}
+           <span> Login : </span><strong>{{ element.user.username }} </strong><br/>
+           <span> Profil : </span><strong>{%if element.user.profil is null %} pas définie {%else %} {{ element.user.profil.libelle }}   {%endif %}</strong><br/>
+           <span> Etat du compte : </span><strong>   {% if element.user.enabled==0 %} Inactif {%else %} Actif  {%endif %}</strong><br/>
+           <span> Dernière date de connexion : </span> le <strong>  {{ element.user.lastlogin|date('d-m-Y') }}   </strong> à <strong>  {{ element.user.lastlogin|date('H:i') }}   </strong><br/>
+          {% endif%}
+    </p>
+{% endblock parentContenu %}
+{% block parentScript %}
+    {{ parent() }}
+<script>
+</script>
+{% endblock parentScript %}

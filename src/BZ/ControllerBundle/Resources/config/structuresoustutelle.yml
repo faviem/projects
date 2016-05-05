@@ -1,0 +1,23 @@
+create_structuresoustutelle:
+    pattern:    /create_structuresoustutelle
+    defaults: { _controller: BZControllerBundle:Structuresoustutelle:create_structuresoustutelle }
+    
+read_structuresoustutelle:
+    pattern:    /read_structuresoustutelle
+    defaults: { _controller: BZControllerBundle:Structuresoustutelle:read_structuresoustutelle }  
+    
+update_structuresoustutelle:
+    pattern:    /update_structuresoustutelle/{id}
+    defaults: { _controller: BZControllerBundle:Structuresoustutelle:update_structuresoustutelle }
+    requirements:
+        id: \d+
+    
+delete_structuresoustutelle:
+    pattern:    /delete_structuresoustutelle/{id}
+    defaults: { _controller: BZControllerBundle:Structuresoustutelle:delete_structuresoustutelle }
+    requirements:
+        id: \d+
+        
+print_structuresoustutelle:
+    pattern:    /print_structuresoustutelle
+    defaults: { _controller: BZControllerBundle:Structuresoustutelle:print_structuresoustutelle }

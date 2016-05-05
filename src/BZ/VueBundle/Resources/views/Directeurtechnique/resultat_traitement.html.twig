@@ -1,0 +1,142 @@
+{% extends "BZUserBundle::layout.html.twig"%}
+
+{% block content_title %} <h6 style="text-align: center;text-shadow: 0px 0.5px 0.5px blue;font-size: 13px;"> GESTIONNAIRE DU TRAITEMENT DE LA REQUETE </h6>{% endblock content_title %}
+
+{% block content_body %}
+<form  class="ui-draggable"   style="position: relative; left: 100px; top: 0px;" action="#" method="post" >
+        <div class="col-lg-9">
+            <div class="panel panel-success">
+                <div class="panel-heading" style="text-align: center;font-size: 13px;color: black;">
+                    <span > GESTIONNAIRE DU TRAITEMENT DE LA REQUETE</span>
+                      <a type="button" class="btn btn-default btn-xs btn-line " href="{{ path('read_traitement') }}" id="retour" onclick="location.reload();" style="float: right;" > <i class="icon-remove"></i></a>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div style="color: black;font-size: 12px;" class="well">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Expéditeur :   
+                                {% if element.requete.typeusagerclient == 'Personne physique' %}
+                                    <strong> {{  element.requete.particulier.prenom }}   {{  element.requete.particulier.nom }}   </strong><br/>
+                                    Contact(s) : <strong>  {{  element.requete.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
+                        E@mail : <strong>  {{  element.requete.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
+                         Profession : <strong>  {{  element.requete.particulier.profession }} </strong>  
+                                {% else %}
+                                   <strong> {{  element.requete.societeentreprise.nom }} ( {{  element.requete.societeentreprise.raisonsociale }} )</strong><br/>
+                                   Contact(s) :  <strong>{{  element.requete.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
+                        E@mail :  <strong>{{  element.requete.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
+                        Domaine d'activité :  <strong>{{  element.requete.societeentreprise.domaineactivite }} </strong>
+                                {% endif %}<br/>
+                            
+                                <hr/>
+                            Date d'émission : <strong>{{  element.requete.dateEmise|date('d-m-Y') }} à {{  element.requete.dateEmise|date('H:i') }}</strong><br/>
+                           Catégorie de requête : <strong>{{  element.requete.typeRequete.libelle }}</strong><br/>
+                            Pièce Jointe : {% if element.requete.filerequete is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( element.requete.filerequete.dowloadPath) }}" target="_blank"><strong> {{ element.requete.filerequete.nameFile }} </strong></a>{% endif %}<br/>
+                            Message de l'usager/client : <br/><span style="margin-left: 10px;"> {{  element.requete.commentaireUsagerclient }}</span><br/>
+                        </div>
+                        
+                    </div>
+                      
+                            <div class="box">
+                                <span>
+                                    <span class="icons"><i class="icon-share-alt "></i> <span style="font-size: 12px;color: black;">Traitement 
+                                         Adressé à : <strong style="margin-left: 5px;margin-right: 5px;"> {{ element.directeurtechnique.nomPrenom }} </strong>
+                                    Le : 
+                                    <span class="tooltip-demo" style="font-size: 12px;">  
+                                        <a  style="text-align: center;text-decoration: none;" href="#1"  data-container="body" data-toggle="popover" data-placement="top" 
+                                            data-content="
+                                            Message : {{ element.commentaireLancement }} 
+                                            ">
+                                            <strong>{{  element.dateLancement|date('d-m-Y') }} à {{  element.dateLancement|date('H:i') }}</strong>
+                                        </a>
+                                    </span>
+                                        </span></span>
+                                    <span class="toolbar" style="float: right;">
+                                       <a class="btn btn-primary btn-xs btn-rect" data-toggle="collapse" data-target="#div1"><i class="icon-arrow-down"></i></a>
+                                    </span>
+                                </span>
+                                <div class="body collapse in" id="div1" style="font-size: 12px;">
+                                    <i class="icon-envelope-alt"> </i> Message de la SRU : <br/><span style="margin-left: 10px;color: #0089db;"> {{  element.commentaireLancement }}</span><br/><br/>
+                                   
+                                    <span style="color: #000055;">LES RESULTATS PRODUITS DE VOS INVESTIGATIONS </span>
+                                    <a style="float: right;" class="btn btn-success btn-xs btn-rect createformulaire"  href="{{ path('ajouter_resultattraitement',{'id': element.id}) }}" data-toggle="modal" data-target="#myModalu"  title="Nouveau Résultat du traitement" ><i class="icon-plus"></i></a>
+                                    <hr/>
+                                   
+                                    {% set nbreresultat = 0 %}
+                                    <div class="table-responsive"  style="margin-top: -5px;">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>N°</th>
+                                                    <th>Date</th>
+                                                    <th>PJ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for resultat in  element.resultattraitementrequetes  %}
+                                                    {% if resultat.estdelete == 0 %} 
+                                                        {% set nbreresultat = nbreresultat+1 %}
+                                                        <tr>
+                                                            <td><a class="btn btn-danger btn-xs btn-rect createformulaire"  href="{{ path('supprimer_resultattraitement',{'id': resultat.id, 'nbre': nbreresultat}) }}" data-toggle="modal" data-target="#myModalu"   title="Supprimer le résultat"><i class="icon-remove"></i></a></td>
+                                                            <td>{{ nbreresultat }}</td>
+                                                            <td style="font-size: 11px;">
+                                                                <span class="tooltip-demo" style="font-size: 11px;color: black;">  
+                                                                    <a  style="text-align: center;text-decoration: none;" href="#{{ nbreresultat }}"  data-container="body" data-toggle="popover" data-placement="top" 
+                                                                        data-content="
+                                                                        Message résultat : {{ resultat.commentaireResultat }} 
+                                                                        ">
+                                                                        <strong>{{ resultat.dateResultat|date('d-m-Y') }} à {{  resultat.dateResultat|date('H:i') }}</strong>
+                                                                    </a>
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 11px;">
+                                                                 {% if resultat.fileretraitement is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( resultat.fileretraitement.dowloadPath) }}" target="_blank"><strong> {{ resultat.fileretraitement.nameFile }} </strong></a>{% endif %}<br/>
+                                                            </td>
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                            {% if nbreresultat == 0 %} 
+                                        <div><strong style="color: red;font-size: 9px;text-align: center;">Aucun résultat n'est rendu disponible !!!</strong></div>
+                                    {% endif %} 
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                </div>
+                <div class="panel-footer">
+                    {% block parentBoutons %} 
+                    {% endblock parentBoutons %}
+                </div>
+            </div>
+        </div>
+    </form>
+<div id='afficheformulaire'>
+
+    </div>
+{% endblock content_body %}
+{% block javascript %} 
+    <script>
+        // $('form').draggable();
+        // Notifications();      
+        $('.createformulaire').click(function (event) {
+            var buton = $(this);
+            $('#afficheformulaire').html('');
+            $.ajax({
+                type: 'GET',
+                url: buton.attr('href'),
+                cache: false,
+                success: function (data) {
+                    $('#afficheformulaire').html(data);
+                    // $('#frm_createVille').dialog();
+                },
+                error: function () {
+                    alert('requête échouée');
+                }});
+            //we dont what the browser to submit the form
+            event.preventDefault();
+        });
+
+    </script>
+{% endblock javascript %}

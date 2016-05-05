@@ -1,0 +1,11 @@
+{% extends "BZVueBundle::parent_delete.html.twig"%}
+{% block parentAction %} 
+    {{ path('supprimer_resultat',{'id': id, 'nbre': nbre})}}
+{% endblock parentAction %}
+{% block parentEnctype %}  
+
+{% endblock parentEnctype %}
+{% block parentStyle %} style="position: relative; left: 500px; top: 329px;" {% endblock parentStyle %}
+{% block parentContenu %}
+    <p>Confirmez - vous la suppression du résultat  <strong>N° {{ nbre }} </strong> ?</p>
+{% endblock parentContenu %}

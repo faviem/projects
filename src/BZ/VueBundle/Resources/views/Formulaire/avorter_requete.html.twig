@@ -1,0 +1,33 @@
+{% extends "BZVueBundle::parent_delete.html.twig"%}
+{% block parentAction %} 
+    {{ path('avorter_requete',{'id': id})}}
+{% endblock parentAction %}
+{% block parentEnctype %}  
+
+{% endblock parentEnctype %}
+{% block parentTitre %} ANNULATION DE REQUETE {% endblock parentTitre %}
+{% block parentContenu %}
+    <div style="color: black;font-size: 12px;" class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Expéditeur :   <strong>
+            {% if element.typeusagerclient == 'Personne physique' %}
+                {{  element.particulier.prenom }}   {{  element.particulier.nom }}   
+            {% else %}
+                {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )
+            {% endif %}</strong><br/>
+        Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
+        Structure Destinataire : <strong>{{  element.StructureSoustutelle.nom }}</strong><br/>
+        Catégorie de requête : <strong>{{  element.typeRequete.libelle }}</strong><br/>
+        Pièce Jointe : {% if element.filerequete is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( element.filerequete.dowloadPath) }}" target="_blank"><strong> {{ element.filerequete.nameFile }} </strong></a>{% endif %}<br/>
+
+    </div>
+    <div>                
+        <label for="message">Exprimer le motif de l'annulation</label>
+        <textarea id="message" name="message" class="form-control" required="true"></textarea>
+    </div>
+{% endblock parentContenu %}
+{% block parentBoutons %} 
+    <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
+    <button type="submit" class="btn btn-danger btn-xs btn-line" >Annuler la requête</button>
+    <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Annulation ...</span>
+{% endblock parentBoutons %}

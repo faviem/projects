@@ -1,0 +1,17 @@
+enregistre_reponse:
+    pattern:    /enregistre_reponse/{id}
+    defaults: { _controller: BZControllerBundle:Reponse:enregistre_reponse }  
+    requirements:
+        id: \d+ 
+        
+supprimer_reponse:
+    pattern:    /supprimer_reponse/{id}
+    defaults: { _controller: BZControllerBundle:Reponse:supprimer_reponse }  
+    requirements:
+        id: \d+ 
+        
+modifier_reponse:
+    pattern:    /modifier_reponse/{id}
+    defaults: { _controller: BZControllerBundle:Reponse:modifier_reponse }  
+    requirements:
+        id: \d+ 

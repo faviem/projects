@@ -1,0 +1,15 @@
+{% extends "BZVueBundle::parent_create.html.twig"%}
+{% block parentAction %} 
+ {{ path('create_agent')}}
+{% endblock parentAction %}
+{% block parentContenu %}
+            {{ parent() }}
+            
+{% endblock parentContenu %}
+{% block parentScript %}
+<script>
+         $('form').draggable();
+      $(".chzn-select").chosen();
+    $('form input.date').datepicker();
+</script>
+{% endblock parentScript %}

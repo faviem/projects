@@ -1,0 +1,27 @@
+messages_ecrire:
+    pattern:    /messages_ecrire
+    defaults: { _controller: BZControllerBundle:Message:messages_ecrire }
+supprime_emetteur:
+    pattern:    /supprime_emetteur/{id}
+    defaults: { _controller: BZControllerBundle:Message:supprime_emetteur }
+supprime_recepteur:
+    pattern:    /supprime_recepteur/{id}
+    defaults: { _controller: BZControllerBundle:Message:supprime_recepteur }
+detail_emetteur:
+    pattern:    /detail_emetteur/{id}
+    defaults: { _controller: BZControllerBundle:Message:detail_emetteur }
+detail_recepteur:
+    pattern:    /detail_recepteur/{id}
+    defaults: { _controller: BZControllerBundle:Message:detail_recepteur }
+repondre_recepteur:
+    pattern:    /repondre_recepteur/{id}
+    defaults: { _controller: BZControllerBundle:Message:repondre_recepteur }
+    
+messages_recu:
+    pattern:    /messages_recu
+    defaults: { _controller: BZControllerBundle:Message:messages_recu }
+    
+messages_envoye:
+    pattern:    /messages_envoye
+    defaults: { _controller: BZControllerBundle:Message:messages_envoye }
+    

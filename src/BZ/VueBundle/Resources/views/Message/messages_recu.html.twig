@@ -1,0 +1,100 @@
+{% extends "BZUserBundle::layout.html.twig"%}
+{% block content_title %} 
+    <h6 style="text-align: center;text-shadow: 0px 0.5px 0.5px blue;">  BOÎTE DE MESSAGERIE </h6>
+{% endblock content_title %}
+{% block content_body %}
+    <div class="col-lg-12" style="margin-top: 1%;">
+        <div class="panel panel-default">
+            
+            <div class="panel-body">
+                <span style="font-size: 12px;"> BOÎTE DE RECEPTION DE MESSAGES</span> 
+                <a href="{{ path('messages_ecrire') }}" style="float: right;margin-right: 5px;color: black;" class="btn btn-default  btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu" > <i class="icon   icon-edit-sign"></i> Ecrire </a>                
+                <a href="{{ path('messages_envoye') }}" style="float: right;margin-right: 5px;color: black;" class="btn btn-success  btn-xs btn-rect" > <i class="icon   icon-upload"> </i> Boîte d'envoi <i class="icon   icon-envelope-alt"> </i> </a>                
+                <a href="{{ path('messages_recu') }}" style="float: right;margin-right: 5px;color: black;" class="btn btn-primary  btn-xs btn-rect" > <i class="icon   icon-download"> </i>  Boîte de reception <i class="icon   icon-envelope-alt"></i></a>                
+                <hr/>
+                <div class="table-responsive">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                        <table style="color: black;" class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_desc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 13px;text-align: center;">
+                                        #
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                        Date Reçue
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                        Emetteur
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                        Lu ?
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                        Objet
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                        P J
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% set nbre = 0 %}
+                                {% for element in  messages %}
+                                     <tr class="gradeA {% if nbre%2==0 %} odd {% else %} even{% endif%}">
+                                        {% set nbre = nbre+1 %}
+                                        <td class="sorting_1" style="text-align: center;">
+                                            <a href="{{ path('supprime_recepteur',{'id': element.id}) }}" title="Supprimer le message" class="btn btn-danger btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu" style="font-size: 11px;"><i class="icon icon-remove"> </i> </a>
+                                            <a href="{{ path('detail_recepteur',{'id': element.id}) }}" title="Voir plus de détail" class="btn btn-default btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu" style="font-size: 11px;"><i class="icon icon-align-center"> </i> </a>
+                                            <a href="{{ path('repondre_recepteur',{'id': element.id}) }}" title="Répondre au message" class="btn btn-info btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu" style="font-size: 11px;"><i class="icon icon-share"> </i> </a>
+                                          </td>
+                                        <td class="" style="font-size: 12px;">{{  element.message.dateEnvoi|date('d-m-Y') }} à {{  element.message.dateEnvoi|date('H:i') }}  </td>
+                                        <td class="" style="font-size: 12px;">{{  element.message.emetteur.user.nomPrenom }} </td>
+                                        <td class="" style="font-size: 12px;text-align: center;">
+                                               {%if element.estLu==1 %}
+                                                    <div class="checkbox"><label><div class="checker disabled"><span class="checked"><input class="uniform" value="option3" checked="checked" disabled="disabled" type="checkbox"></span></div> </label></div>
+                                                    {% else %}
+                                                   <div class="checkbox"><label><div class="checker disabled"><span><input class="uniform" value="option2" disabled="disabled" type="checkbox"></span></div> </label></div>
+                                                   {% endif %}
+                                        </td>
+                                        <td class="" style="font-size: 12px;">{{  element.message.objet }} </td>
+                                        <td class="" style="font-size: 12px;">
+                                            {% if element.message.filerequete is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( element.message.filerequete.dowloadPath) }}" target="_blank"><strong> {{ element.message.filerequete.nameFile }} </strong></a>{% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id='afficheformulaire'>
+
+    </div>
+{% endblock content_body %}
+{% block javascript %} 
+    <script>
+        // Notifications();      
+        $('.createformulaire').click(function (event) {
+            var buton = $(this);
+            $('#afficheformulaire').html('');
+            $.ajax({
+                type: 'GET',
+                url: buton.attr('href'),
+                cache: false,
+                success: function (data) {
+                    $('#afficheformulaire').html(data);
+                    // $('#frm_createVille').dialog();
+                },
+                error: function () {
+                    alert('requête échouée');
+                }});
+            //we dont what the browser to submit the form
+            event.preventDefault();
+        });
+
+    </script>
+{% endblock javascript %}

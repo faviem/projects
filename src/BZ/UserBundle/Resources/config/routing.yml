@@ -1,0 +1,36 @@
+#routes pour notification    
+notification:
+    path:     /notification
+    defaults: { _controller: "BZUserBundle:User:notification" }
+    
+contenu_user:
+    path:     /contenu_user
+    defaults: { _controller: "BZUserBundle:User:contenu_user" }
+
+bz_user_changepassword:
+    path:     /bz_user_changepassword
+    defaults: { _controller: "BZUserBundle:ChangePassword:changePassword" }
+    
+bz_user_connecter:
+    path:     /bz_user_connecter
+    defaults: { _controller: "BZUserBundle:User:bz_user_connecter" }
+    
+bz_user_deck:
+    path:     /bz_user_deck
+    defaults: { _controller: "BZUserBundle:User:deconnecter" }
+    
+bz_user_profil:
+    path:     /bz_user_profil/{id}
+    defaults: { _controller: "BZUserBundle:User:bz_user_profil" }
+
+bz_user_lock:
+    path:     /bz_user_lock/{id}
+    defaults: { _controller: "BZUserBundle:User:bz_user_lock" }
+    
+bz_user_unlock:
+    path:     /bz_user_unlock/{id}
+    defaults: { _controller: "BZUserBundle:User:bz_user_unlock" }
+    
+voir_groupe:
+    pattern:    /voir_groupe
+    defaults: { _controller: BZUserBundle:User:voir_groupe }

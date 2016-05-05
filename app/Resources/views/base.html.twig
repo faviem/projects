@@ -1,0 +1,619 @@
+<!-- BEGIN HEAD-->
+<head>
+    <meta charset="UTF-8" />
+    <title>MERPMDER-DIP-SRU BENIN</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!--[if IE]>
+       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+       <![endif]-->
+    <!-- GLOBAL STYLES -->
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/MoneAdmin.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/Font-Awesome/css/font-awesome.css')}}" />
+    <!--END GLOBAL STYLES -->
+    <!-- PAGE LEVEL STYLES -->
+    <link href="{{ asset('assets/css/layout2.css')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/flot/examples/examples.css')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/timeline/timeline.css')}}" rel="stylesheet" />    
+    <link href="{{ asset('assets/css/jquery-ui.css')}}" rel="stylesheet" />
+    <link href="{{ asset('jquery-ui-1.11.4/jquery-ui.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/uniform/themes/default/css/uniform.default.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/chosen/chosen.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/colorpicker/css/colorpicker.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/tagsinput/jquery.tagsinput.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker-bs3.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datepicker/css/datepicker.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/timepicker/css/bootstrap-timepicker.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/switch/static/stylesheets/bootstrap-switch.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/plugins/dataTables/dataTables.bootstrap.css')}}" />
+    <!-- END PAGE LEVEL  STYLES -->
+    <!-- HTML5 shim and Respond.js')}} IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{{ asset('assets/js/html5shiv.js')}}"></script>
+      <script src="{{ asset('assets/js/respond.min.js')}}"></script>
+    <![endif]-->
+    {% block stylesheet %} {% endblock stylesheet %}
+</head>
+<!-- END  HEAD-->
+<!-- BEGIN BODY-->
+<body class="padTop53 " >
+    <!-- MAIN WRAPPER -->
+    <div id="wrap">
+        <!-- HEADER SECTION -->
+        <div id="top">
+            <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
+                <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
+                    <i class="icon-align-justify"></i>
+                </a>
+                <!-- LOGO SECTION -->
+                <header class="navbar-header" style="">
+                    <img src="{{ asset('/images/1.jpg')}}" alt="" title="Gestion automatisée des archives" style="height: 3.5%;width: 4.5%;float: left;margin-right: 5%;" >      
+                    <a href="{{ path('pub_acceuil') }}" class="navbar-brand" style="color: #001F3F;"> MERPMDER-DIP-SRU </a>
+                    <img src="{{ asset('/images/logo.png')}}" alt="" title="Gestion automatisée des couriers" style="height: 3.5%;width:4.5%;margin-left: 5%;" >       
+                </header>
+                <!-- END LOGO SECTION -->
+                <ul class="nav navbar-top-links navbar-right">
+                    <!-- SUGGESTIONS SECTION -->
+                    <li class="chat-panel dropdown">
+                        <a class=""  href="{{ path('public_plainte',{'partie': 1}) }}" title="voir les plaintes déposées">
+                            <span class="label label-info" id="nbreplainte">0</span>   <i class="icon-bell "></i>&nbsp; 
+                        </a>
+                    </li>
+                    <!--END MESSAGES SECTION -->
+                    <!--PLAINTES SECTION -->
+                    <li class="chat-panel dropdown">
+                        <a class=""  href="{{ path('public_suggestion',{'partie': 1}) }}" title="voir les suggestions déposées">
+                            <span class="label label-success" id="nbresuggestion">0</span>   <i class="icon-comments "></i>&nbsp; 
+                        </a>
+                    </li>
+                    <!-- END ALERTS SECTION -->
+                    <!--ADMIN SETTINGS SECTIONS -->
+                    <li class="dropdown">
+                        <a href="{{ path('fos_user_security_login') }}" >
+                            <i class="icon-user-md "></i> <span style="font-size: 10px;">***  Espace réservée aux membres ***</span>
+                        </a>
+                    </li>
+                    <!--END ADMIN SETTINGS -->
+                </ul>
+            </nav>
+        </div>
+        <!-- END HEADER SECTION -->
+        <!-- MENU SECTION -->
+        <!--PAGE CONTENT -->
+        <div >
+
+            <div class="inner" style="min-height:1200px;">
+                <br/>
+                <div class="row" >
+                    <!--BOITES DES PLAINTES ET DES SUGGESTIONS-->
+                    {% block content_body %}
+                        <div class="col-lg-12" style="border-right-color: white;">
+                            <div class="panel panel-default">
+                                
+                                <div class="panel-body" style="padding-left: 10%;padding-right: 10%;">
+                                    {% if num==2 or num==3%}
+                                    {% set num=1%}
+                                        <div class="alert alert-success alert-dismissable" >
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                   <span style="font-weight: bold;">RECEPTION DE SUGGESTION SUCCESSFULL</span> <br/>
+                                                    Votre suggestion dépôsée a été bien reçue. Votre code récépicé est :  <strong>{{coderecepice}} </strong>. Tout nos remerciements à vous !!!
+                                                </div>
+                                        {% endif %}
+                                        {% if num==4 or num==5%}
+                                             {% set num=1%}
+                                                <div class="alert alert-success alert-dismissable" >
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                   <span style="font-weight: bold;">RECEPTION DE PLAINTE SUCCESSFULL</span> <br/>
+                                                    Votre plainte dépôsée a été bien reçue. Votre code récépicé est :  <strong>{{coderecepice}} </strong>. Elle seras traitée avec diligeance et dans les délais bref. Tout nos remerciements à vous !!!
+                                                </div>
+                                         {% endif %}
+                                    <ul class="nav nav-tabs" class="panel-body" >
+                                        <li class="active" style="font-size: 11px;"><a href="#home" data-toggle="tab">
+                                              <i class="icon-chevron-right  "> </i>  Structures et Entreprises 
+                                              <i class="icon-comments"> </i> </a>
+                                        </li>
+                                        <li  style="font-size: 11px;"><a href="#profile" data-toggle="tab">
+                                                <i class="icon-chevron-right  "> </i>     Usagers 
+                                                <i class="icon-comments"> </i></a>
+                                        </li>
+                                        <li  style="font-size: 11px;"><a href="#messages" data-toggle="tab">  
+                                                <i class="icon-chevron-right  "> </i>  Structures et Entreprises 
+                                                <i class="icon-bell "> </i> </a>
+                                        </li>
+                                        <li  style="font-size: 11px;">
+                                            <a href="#settings" data-toggle="tab">
+                                                <i class="icon-chevron-right  "> </i> Usagers 
+                                                <i class="icon-bell "> </i></a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content" style="max-height: 780px;">
+                                        <div class="tab-pane fade in active" id="home" style="padding-left: 10%;padding-right: 10%;">
+                                            <span style="font-size: 12px;color: #000077;">Espace de Dépôt de Suggestion des Entreprises et Structures</span>
+                                            <hr/>
+                                            <form  action="{{ path('pub_acceuil', {'num': 2}) }}" method="post" {{ form_enctype(formsuggestionsociete) }} >
+                                                <div class="form-group">   
+                                                    {{ form_widget(formsuggestionsociete) }}
+                                                </div >
+                                                <button type="submit" class="btn btn-sm  btn-default btn-round btn-line" style="margin-left: 35%;">
+                                                    <i  class="icon-paste">  </i>    Déposer  <i  class="icon-circle-arrow-right">  </i> </button>
+                                                <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Enregistrement ...</span>
+
+                                                {{ form_rest(formsuggestionsociete) }}
+
+                                            </form> 
+                                        </div>
+                                        <div class="tab-pane fade  active" id="profile" style="padding-left: 10%;padding-right: 10%;">
+                                            <span style="font-size: 12px;color: #000077;">Espace de Dépôt de Suggestion des Usagers (Particuliers)</span>
+                                            <hr/>
+                                            <form  action="{{ path('pub_acceuil', {'num': 3}) }}" method="post" {{ form_enctype(formsuggestionclient) }} >
+                                                <div class="form-group">   
+                                                    {{ form_widget(formsuggestionclient) }}
+                                                </div >
+                                                <button type="submit" class="btn btn-sm  btn-default  btn-round btn-line" style="margin-left: 35%;">
+                                                    <i  class="icon-paste">  </i>    Déposer  <i  class="icon-circle-arrow-right">  </i> </button>
+                                                <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Enregistrement ...</span>
+
+                                                {{ form_rest(formsuggestionclient) }}
+                                        </form>
+                                        </div>
+                                        <div class="tab-pane fade  active" id="messages" style="padding-left: 10%;padding-right: 10%;">
+                                            <span style="font-size: 12px;color: #000077;">Espace de Dépôt de Plainte des Entreprises et Structures</span>
+                                            <hr/>
+                                            <form  action="{{ path('pub_acceuil', {'num': 4}) }}" method="post" {{ form_enctype(formplaintesociete) }} >
+                                                <div class="form-group">   
+                                                    {{ form_widget(formplaintesociete) }}
+                                                </div >
+                                                <button type="submit" class="btn btn-sm  btn-default  btn-round btn-line" style="margin-left: 35%;">
+                                                    <i  class="icon-paste">  </i>    Déposer  <i  class="icon-circle-arrow-right">  </i> </button>
+                                                <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Enregistrement ...</span>
+                                                     {{ form_rest(formplaintesociete) }}
+
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade  active" id="settings" style="padding-left: 10%;padding-right: 10%;">
+                                             <span style="font-size: 12px;color: #000077;">Espace de Dépôt de Plainte des Usagers (Particuliers)</span>
+                                            <hr/>
+                                            <form  action="{{ path('pub_acceuil', {'num': 5}) }}" method="post" {{ form_enctype(formplainteclient) }} >
+                                                <div class="form-group">   
+                                                    {{ form_widget(formplainteclient) }}
+                                                </div >
+                                                <button type="submit" class="btn btn-sm  btn-default  btn-round btn-line" style="margin-left: 35%;">
+                                                    <i  class="icon-paste">  </i>    Déposer  <i  class="icon-circle-arrow-right">  </i> </button>
+                                                <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Enregistrement ...</span>
+
+                                                {{ form_rest(formplainteclient) }}
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                                
+                                </div>
+                                <!--DEBUT DES FORMULAIRES DE PLAINTE -->
+                            </div>
+                        </div>
+                    </div>
+             {% endblock content_body %}      
+                  <div class="col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <span class="panel-title" style="font-size: 12px;font-weight: bold;">
+                            <i class="icon-align-right"></i> Statistique des Plaintes et Suggestions
+                           </span>
+                    </div>
+                        <div class="panel-body">
+                            <div class="box info">
+                                <header style="max-height: 5.5%;">
+                                    <div class="icons"><i class="icon-building"></i></div>
+                                    <h5 style="font-size: 11.5px;">Point des suggestions</h5>
+                                    <div class="toolbar" style="max-height: 5.5%;">
+                                        <button class="btn btn-default btn-sm btn-circle btn-grad" data-toggle="collapse" data-target="#div12"> <i class="icon-arrow-down icon-arrow-up"></i> </button>
+                                    </div>
+                                </header>
+                                <div class="body in" id="div12" style="height: auto;">
+                                            
+                                            <div class="table-responsive">
+                                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                                                        <thead>
+                                                            <tr role="row">
+                                                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 11px;text-align: center;">
+                                                                    Directions/Structures
+                                                                </th>
+                                                                <th class="" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 11px;text-align: center;">
+                                                                    Nbre Reçu
+                                                                </th>
+                                                                <th class="" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 11px;text-align: center;">
+                                                                    Nbre Traité
+                                                                </th>
+                                                                <th class="" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 11px;text-align: center;">
+                                                                    Nbre En cours
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% set nbresuggestion = 0 %}
+                                                            {% set nbresuggestiontraite = 0 %}
+                                                            {% for vil in structures %}
+                                                                <tr class="gradeA">
+                                                                    <td class="" style="font-size: 12px;">{{ vil.nomsociete }}</td>
+                                                                    {% set nbrerecu = 0 %}
+                                                                    {% set nbretraite = 0 %}
+                                                                     {% for traitement in vil.depotsuggestions %}
+                                                                        
+                                                                         {% if traitement.estvulnerable==0 %}
+                                                                              {% set nbrerecu = nbrerecu+1 %}
+                                                                              {% if traitement.estlu==1 %}
+                                                                                  {% set nbretraite = nbretraite+1 %}
+                                                                              {% endif%}
+                                                                         {% endif%}
+                                                                        
+                                                                      {% endfor %}
+                                                                      <td class="" style="text-align: center;font-size: 12px;">{{ nbrerecu }}
+                                                                      </td>
+                                                                      <td class="" style="text-align: center;font-size: 12px;">{{ nbretraite }}
+                                                                      </td>
+                                                                      <td class="" style="text-align: center;font-size: 12px;">{{ nbrerecu-nbretraite }}
+                                                                      </td>
+                                                                </tr>
+                                                                 {% set nbresuggestion = nbresuggestion+nbrerecu  %}
+                                                                 {% set nbresuggestiontraite = nbresuggestiontraite+nbretraite  %}
+                                                            {% endfor %}
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr role="row">
+                                                                <td style="text-align: center;font-size: 12px;font-weight: bold;">TOTAL
+                                                                </td>
+                                                                <td style="text-align: center;font-size: 12px;font-weight: bold;">{{ nbresuggestion }}
+                                                                </td>
+                                                                <td style="text-align: center;font-size: 12px;font-weight: bold;">{{ nbresuggestiontraite }}
+                                                                </td>
+                                                                <td style="text-align: center;font-size: 12px;font-weight: bold;">{{ nbresuggestion - nbresuggestiontraite}}
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="box success">
+                                <header style="max-height: 5.5%;">
+                                    <div class="icons"><i class="icon-building"></i></div>
+                                    <h5 style="font-size: 11.5px;">Point des Plaintes</h5>
+                                    <div class="toolbar" style="max-height: 5.5%;">
+                                        <button class="btn btn-default btn-small btn-circle btn-grad" data-toggle="collapse" data-target="#div13"> <i class="icon-arrow-down icon-arrow-up"></i> </button>
+                                    </div>
+                                </header>
+                                <div class="body in" id="div13" style="height: auto;">
+                                    
+                                           <div class="table-responsive">
+                                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example1" aria-describedby="dataTables-example_info">
+                                                        <thead>
+                                                            <tr role="row">
+                                                                <th class="sorting" tabindex="0" aria-controls="dataTables-example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 11px;text-align: center;">
+                                                                    Directions/Structures
+                                                                </th>
+                                                                <th class="" tabindex="0" aria-controls="dataTables-example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 11px;text-align: center;">
+                                                                    Nbre Reçu
+                                                                </th>
+                                                                <th class="" tabindex="0" aria-controls="dataTables-example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 11px;text-align: center;">
+                                                                    Nbre Traité
+                                                                </th>
+                                                                <th class="" tabindex="0" aria-controls="dataTables-example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 11px;text-align: center;">
+                                                                    Nbre En cours
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% set nbreplainte = 0 %}
+                                                            {% set nbretraiteplainte = 0 %}
+                                                            {% for vil in structures %}
+                                                                <tr class="gradeA">
+                                                                    <td class="" style="font-size: 12px;">{{ vil.nomsociete }}</td>
+                                                                    {% set nbretraite = 0 %}
+                                                                    {% set nbrerecu = 0 %}
+                                                                    
+                                                                     {% for traitement in vil.depotplaintes %}
+                                                                        
+                                                                         {% if traitement.estvulnerable==0 %}
+                                                                              {% set nbrerecu = nbrerecu+1 %}
+                                                                              {% if traitement.estrepondu==1 %}
+                                                                                  {% set nbretraite = nbretraite+1 %}
+                                                                              {% endif%}
+                                                                         {% endif%}
+                                                                        
+                                                                      {% endfor %}
+                                                                      <td class="" style="text-align: center;font-size: 12px;">{{ nbrerecu }}
+                                                                      </td>
+                                                                      <td class="" style="text-align: center;font-size: 12px;">{{ nbretraite }}
+                                                                      </td>
+                                                                      <td class="" style="text-align: center;font-size: 12px;">{{ nbrerecu-nbretraite }}
+                                                                      </td>
+                                                                </tr>
+                                                                
+                                                              {% set nbretraiteplainte = nbretraiteplainte+nbretraite %}
+                                                              {% set nbreplainte = nbreplainte+nbrerecu %}
+                                                            {% endfor %}
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr role="row">
+                                                                <td style="text-align: center;font-size: 12px;font-weight: bold;">TOTAL
+                                                                </td>
+                                                                <td style="text-align: center;font-size: 12px;font-weight: bold;">{{ nbreplainte }}
+                                                                </td>
+                                                                <td style="text-align: center;font-size: 12px;font-weight: bold;">{{ nbretraiteplainte }}
+                                                                </td>
+                                                                <td style="text-align: center;font-size: 12px;font-weight: bold;">{{ nbreplainte - nbretraiteplainte}}
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="panel-footer">
+                        <span style="font-size: 8.5px;font-weight: bold;">Sur {{nbresuggestion+nbreplainte}} plaintes et suggestions reçues du grand publique, nous en avons traité {{ nbretraiteplainte+nbresuggestiontraite }} et {{nbresuggestion+nbreplainte-nbretraiteplainte-nbresuggestiontraite}} sont en cours de traitement ...</span>
+                    </div>
+                </div>
+                </div>
+         
+                <!--FIN DES BOITES
+                <div class="col-lg-6">
+                    <div class="panel panel-info" id="infonbreconnecte">
+
+                    </div>
+                </div>-->
+                <!--A PROPOS -->
+                <div class="col-lg-6">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <i  class="icon-question-sign">  </i>  A Propos
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-warning">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" style="font-size: 12px;">Notre Identité et Nos Adresses</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse " style="height: 0px;">
+                                        <div class="panel-body">
+                                            <p style="font-size: 12px;text-align: center;text-shadow: 1px 2px 2px #00e765;">REPUBLIQUE DU BENIN</p>
+                                            <p style="font-size: 7px;text-align: center;margin-top: -1%;font-weight: bold;">Fraternité - Justice - Travail</p>
+                                            <p style="font-size: 12px;text-align: center;text-shadow: 1px 2px 2px #EEEE00;">MINISTERE DE L'ENRGIE, DES RECHERCHES PETROLIERES ET MINIERES ET DU DEVELOPPEMENT DES ENERGIES RENOULABLES</p>
+                                            <p style="font-size: 13px;text-align: center;text-shadow: 1px 1px 1px #C82829;">Direction de l'Informatique et du Pré Archivage</p>
+                                            <p style="font-size: 12px;text-align: center;font-weight: bold;">Service des Relations avec les Usagers</p><br/>
+                                            <span style="font-size: 9px;text-align: center;">Avenu Jean Paul II 04 BP 1412 - Cotonou - Bénin </span><br/>
+                                            <span style="font-size: 9px;text-align: center;">Numéro IFU 4200901839118</span><br/>
+                                            <span style="font-size: 9px;text-align: center;">Tél. : (229) 21 31 29 07 / 21 31 29 24 / 21 31 29 38</span><br/>
+                                            <span style="font-size: 9px;text-align: center;">Fax. : (229) 21 31 35 46</span><br/>
+                                            <span style="font-size: 9px;text-align: center;">Email : spmmeh@internet.bj</span><br/>
+                                            <span style="font-size: 9px;text-align: center;float: right;margin-top: -3%;">Energie et Eau pour tout et pour tous !</span><br/>
+                               </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="" style="font-size: 12px;">Texte et Attributions Juridiques</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
+                                        <div class="panel-body">
+                                                <p style="font-size: 19px;text-align: center;;text-shadow: 2px 1px 2px #5500AA;">SERVICE DES RELATIONS AVEC LES USAGERS (SRU)</p>
+                                             <p style="font-size: 10px;text-align: center;">Arrêté interministériel, N°002/MRAI/PM_CCAGEPPPDDS/MEF/MDGLAAT/MTFP/MCRI/DC/SGM/SA,</p>
+                                             <p style="font-size: 10px;text-align: center;margin-top: -2%;">portant Attributions, Organisation et Fonctionnement du Service des Relations avec les Usagers</p>
+                                               <p style="font-size: 13px;text-align: center;font-weight: bold;">Le Service des Relations avec les Usagers (SRU) a pour mission de faciliter les relations entre les directions techniques et les usagers/clients pour un service public plus efficace et plus efficient.</p>
+                                             
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" style="font-size: 12px;">Nos Missions</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                             <p style="font-size: 12px;text-align: left;text-shadow: 1px 1px 1px #5500AA;"> Le Service des Relations avec les Usagers (SRU) est chargé : </p>
+                                             
+                                             <p style="font-size: 12px;text-align: left;color: #000066;">
+                                                 <i class="icon-arrow-right"> </i>  d'accueillir, de renseigner et d'orienter les usagers/clients du Ministère ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;">
+                                                 <i class="icon-arrow-right"> </i> de mettre à la disposition des usagers/clients, les documents et les formulaires utiles à leurs requêtes ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: #000066;">
+                                                <i class="icon-arrow-right"> </i>  de contribuer à l'organisation, au besoin, de campagne de prestation de service mobile ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;">
+                                               <i class="icon-arrow-right"> </i>   de tenir une statistique permanente des usagers/clients et des services fournis ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: #000066;">
+                                               <i class="icon-arrow-right"> </i>   d'émettre des avis et de faire des recommandations sur toute question relevant de sa compétence, dans le cadre de l'amélioration continue de la qualité des prestations aux usagers/clients et autres contribuables ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-arrow-right"> </i>    d'apporter des solutions aux préoccupations des usagers/clients ne nécessitant pas de recherches particulières ou de recours aux services techniques ou aux supérieures hiérarchiques ;</p>
+                                             <p style="font-size: 12px;text-align: left;color: #000066;">
+                                              <i class="icon-arrow-right"> </i>    de collecter et de fournir aux usagers, des informations sur le traitement de leurs dossiers ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-arrow-right"> </i>    de faciliter, en cas de besoin, les relations entre les Directeurs techniques et les usagers/clients pour un service public plus efficace et plus efficient ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: #000066;">
+                                              <i class="icon-arrow-right"> </i>    d'enregistrer et d'examiner, avec les directions compétentes, les plaintes et suggestions des usagers ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-arrow-right"> </i>    de préserver l'image de marque du Ministère en offrant aux usagers/clients le meilleur service possible ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: #000066;">
+                                              <i class="icon-arrow-right"> </i>    de produire un rapport mensuel sur les plaintes et suggestions des usagers/clients du Munistère de l'Energie, des Recherches Pétrolières et Minières et du Développement des Energies Renouvelables et formuler des propositions en vue de l'amélioration des prestations des différentes structures du Ministère ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-arrow-right"> </i>    de mettre à la disposition du public une ligne verte pour poursuivre leurs préoccupations ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;color: #000066;">
+                                              <i class="icon-arrow-right"> </i>    d'assurer la collecte des informations à diffuser sur le site Web du Ministère et de l'Intranet ;
+                                             </p>
+                                             <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-arrow-right"> </i>    d'organiser périodiquement des journées portes ouvertes aux usagers/clients du Ministère ;
+                                             </p>
+                                             
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFoor" class="collapsed" style="font-size: 12px;">Organisation et Objectifs</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFoor" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                          <p style="font-size: 12px;text-align: center;color: #000066;"> Le Service des Relations avec les Usagers (SRU) comprend deux Divisions : </p>
+                                          <p style="font-size: 12px;text-align: center;text-shadow: 1px 1px 1px #5500AA;"> la Division Accueil, Renseignement et Prestations de Service en Ligne (DARPSL), chargé : </p>
+                                             
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class=" icon-fighter-jet"> </i>  d'accueillir et d'orienter les usagers/clients de Munistère ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class=" icon-fighter-jet"> </i>  de fournier des renseignements aux usagers clients ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class=" icon-fighter-jet"> </i>  d'enregistrer les requêtes des usagers/clients contre la délivrance de récépissé ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class=" icon-fighter-jet"> </i>  de mettre en place une banque de données des usagers/clients de l'administration publique ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class=" icon-fighter-jet"> </i>  d'assurer le service en ligne ;
+                                             </p>
+                                             
+                                          <p style="font-size: 12px;text-align: center;text-shadow: 1px 1px 1px #5500AA;"> la Division des Relations avec les Structures Techniques (DRST), chargé : </p>
+                                             
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-double-angle-right"> </i>  de veiller au respect des délais de traitement des requêtes des usagers/clients ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                             <i class="icon-double-angle-right"> </i>   d'étudier les plaintes et les requêtes des usagers/clients ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-double-angle-right"> </i>  d'assurer la liaison entre les Directions Techniques et les usagers/clients ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-double-angle-right"> </i>  d'enregistrer et d'examiner, avec les Directeurs, les plaintes et suggestions des usagers ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-double-angle-right"> </i>  de réaliser des enquêtes de satisfaction des usagers ;
+                                             </p>
+                                          <p style="font-size: 12px;text-align: left;">
+                                              <i class="icon-double-angle-right"> </i>  d'élaborer le rapport semestriel et annuel sur les plaintes et suggestions des usagers/clients et formuler des propositions en vue de l'améliorations des prestations des différentes structures du Ministère ;
+                                             </p>
+                                             
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--FIN PROPOS -->
+            </div>
+
+        </div>
+    </div>
+    <!--END PAGE CONTENT -->
+    <!-- RIGHT STRIP  SECTION -->
+
+    <!-- END RIGHT STRIP  SECTION -->
+</div>
+<!--END MAIN WRAPPER -->
+<!-- FOOTER -->
+<div id="footer">
+    <p>&copy;  Emile V. FADONOUGBO &nbsp;2015 &nbsp;</p>
+</div>
+<!--END FOOTER -->
+<input type="number" class="hide" name="menu_num" value="{% if menu_num is defined %}{{ menu_num }}{% else %}5{% endif %}" id="menu_num"/>
+<!-- GLOBAL SCRIPTS -->
+<script src="{{ asset('assets/plugins/jquery-2.0.3.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js')}}"></script>
+<!-- END GLOBAL SCRIPTS -->
+<!-- PAGE LEVEL SCRIPT-->
+<script src="{{ asset('assets/js/jquery-ui.min.js')}}"></script>
+<script src="{{ asset('jquery-ui-1.11.4/jquery-ui.js')}}"></script>
+<script src="{{ asset('jquery-ui-1.11.4/jquery.ui.datepicker-fr.js')}}"></script>
+<script src="{{ asset('assets/plugins/dataTables/jquery.dataTables.js')}}"></script>
+<script src="{{ asset('assets/plugins/dataTables/dataTables.bootstrap.js')}}"></script>
+<script src="{{ asset('assets/plugins/uniform/jquery.uniform.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/inputlimiter/jquery.inputlimiter.1.3.1.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/chosen/chosen.jquery.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/colorpicker/js/bootstrap-colorpicker.js')}}"></script>
+<script src="{{ asset('assets/plugins/tagsinput/jquery.tagsinput.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/validVal/js/jquery.validVal.min.js')}}"></script>
+
+<script src="{{ asset('assets/plugins/switch/static/js/bootstrap-switch.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/jquery.dualListbox-1.3/jquery.dualListBox-1.3.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/autosize/jquery.autosize.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/jasny/js/bootstrap-inputmask.js')}}"></script>
+<script src="{{ asset('assets/js/formsInit.js')}}"></script>
+<script src="{{ asset('assets/js/notifications.js')}}"></script>
+
+<script>
+    $("#dataTables-example1").DataTable();
+    $(function () {
+        formInit();
+        Notifications();
+        function nbresms()
+        {
+          //  $.ajax({
+            //    type: 'POST',
+            //    url: '{{ path('contenu_autreuser') }}',
+           //     cache: false,
+          //      success: function (data) {
+            //        $('#infonbreconnecte').html(data);},
+           //     error: function () {
+                   // alert('coupé');
+               // }});
+            $.ajax({
+                type: 'POST',
+                url: '{{ path('nbre_plaintesuggestion') }}',
+                cache: false,
+                success: function (data) {
+                    $('#nbreplainte').html(data.nbreplainte);
+                    $('#nbresuggestion').html(data.nbresuggestion);},
+                error: function () {
+               //     alert('coupé');
+                }});
+        }
+        nbresms();
+        setInterval(nbresms, 20000);
+    });
+    $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({
+        allow_single_deselect: true
+    });
+    $("div").children('label').css('font-size','12px');
+    $("div").children('label').css('margin-top','1%');
+
+</script>
+<!-- END  SCRIPTS -->
+{% block javascript %} {% endblock javascript %}
+</body>
+<!-- END BODY-->
+</html>

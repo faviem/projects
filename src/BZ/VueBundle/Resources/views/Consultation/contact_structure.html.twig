@@ -1,0 +1,23 @@
+{% extends "BZVueBundle::parent_info.html.twig"%}
+{% block parentAction %} 
+    #
+{% endblock parentAction %}
+{% block parentEnctype %}  
+{% endblock parentEnctype %}
+{% block parentTitre %}<i class="icon icon-phone"> </i> IDENTITE DU CONTACT {% endblock parentTitre %}
+{% block parentContenu %}
+    <div style="color: black;font-size: 12px;">
+        Date Prise de contact :   <strong> {{  element.usagerclient.datePriseContact|date('d-m-Y') }} à {{  element.usagerclient.datePriseContact|date('H:i') }} </strong><br/>
+        Nom structure :   <strong> {{  element.nom }}  ( {{  element.raisonsociale }} ) </strong><br/>
+                     Contact(s) : <strong>  {{  element.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
+        E@mail : <strong>  {{  element.usagerclient.adressecontact.email }} </strong><br/>                                               
+                        Département :  <strong> {{  element.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
+                        Ville de résidence :  <strong> {{  element.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
+                        Profession : <strong>  {{  element.domaineactivite }} </strong> <br/>  
+                        Autres : <br/>  <strong style="margin-left: 10px;"> {% if  element.usagerclient.adressecontact.details is not null %} {{  element.usagerclient.adressecontact.details }} {% else %} Néant {% endif %}</strong> 
+     </div>
+{% endblock parentContenu %}
+{% block parentBoutons %} 
+    <a type="button" class="btn btn-default btn-xs btn-line " href="{{ path("repertoire_usager",{'type': 2}) }}" ><i class="icon icon-arrow-left"> </i> Retour</a>
+{% endblock parentBoutons %}
+

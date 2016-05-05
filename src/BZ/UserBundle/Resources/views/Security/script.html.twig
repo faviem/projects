@@ -1,0 +1,60 @@
+{# empty Twig template #}
+ <script>
+     //pour les notification
+$.ajax({
+    type: "POST", url: "{{ path ('notification') }}",cache: false,data: null,
+    success: function(data)
+    {
+        var msg = data.sms;
+        var us = data.user;
+        var cour = data.courier;
+        $('.nbre1_sms').children('li [class="header"]').text('Vous avez ' + msg + ' messages');
+        $('.nbre_sms').text(msg);
+        $('.nbre_courier').text(cour);
+        $('.nbre1_user').children('li [class="header"]').html('<i class="fa fa-users text-aqua"> </i> ' + us + ' membres connectés');
+        $('.nbre_user').text(us);
+        
+        if (msg === 0)
+        {$('.nbre_sms').addClass('hide');$('.nbre1_sms').addClass('hide');}
+        else
+        {$('.nbre_sms').removeClass('hide');$('.nbre1_sms').removeClass('hide');}
+        
+        if (cour === 0)
+        {$('.nbre_courier').addClass('hide');}
+        else
+        {$('.nbre_courier').removeClass('hide');}
+        
+        if (us === 0)
+        {$('.nbre_user').addClass('hide');$('.nbre1_user').addClass('hide');}
+        else
+        {$('.nbre_user').removeClass('hide');$('.nbre1_user').removeClass('hide');}
+       }
+});
+//pour afficher la lise des utilisateurs
+$('.allusers').click(function(){
+    $.ajax({type: "POST", url: "{{ path ('bz_user_connecte') }}",cache: false,data: null,success: function(data){$('.row').html(data);}});});
+
+//affichier le contenus des notifications pour user
+$('.nt_voir_user').click(function(){$.ajax({type: "POST",url: "{{ path ('contenu_user') }}",cache: false,data: null,success: function(data){$('.nbre1_user').children('li').children('div [class="slimScrollDiv"]').children('ul [class="menu"]').html(data);}});});
+//affichier le contenus des notifications pour sms
+$('.nt_voir_sms').click(function(){ $.ajax({type: "POST",url: "{{ path ('contenu_sms') }}",cache: false,data: null, success: function(data){ $('.nbre1_sms').children('li').children('div [class="slimScrollDiv"]').children('ul [class="menu"]').html(data);}});});
+function notification()
+{
+    $.ajax({
+    type: "POST",url: "{{ path ('notification') }}",cache: false,data: null,success: function(data)
+    {var msg = data.sms;var us = data.user;
+        $('.nbre1_sms').children('li [class="header"]').text('Vous avez ' + msg + ' messages');$('.nbre_sms').text(msg);  
+        $('.nbre1_user').children('li [class="header"]').html('<i class="fa fa-users text-aqua"> </i> ' + us + ' membres connectés');
+        $('.nbre_user').text(us);
+        if (msg === 0)
+        {$('.nbre_sms').addClass('hide');$('.nbre1_sms').addClass('hide');}
+        else {$('.nbre_sms').removeClass('hide');$('.nbre1_sms').removeClass('hide');}
+        if (us === 0)
+        {$('.nbre_user').addClass('hide');$('.nbre1_user').addClass('hide');}
+        else
+        { $('.nbre_user').removeClass('hide');$('.nbre1_user').removeClass('hide');}
+        }});
+}
+setInterval(notification, 100000);
+
+ </script>

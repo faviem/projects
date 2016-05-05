@@ -1,0 +1,36 @@
+{% extends "BZVueBundle::parent_create.html.twig"%}
+{% block parentAction %} 
+    {{ path('messages_ecrire')}}
+{% endblock parentAction %}
+{% block parentStyle %} style="position: relative; left: 500px; top: 129px;" {% endblock parentStyle %}
+
+{% block parentTitre %} <i class="icon icon-envelope-alt"> </i>  ENVOIE DE MESSAGE {% endblock parentTitre %}
+{% block parentContenu %}
+    
+    <div style="font-size: 12px;">   
+        <div>                
+            <label for="bz_modelbundle_message_recepteurs" class="required">A (destinataires)</label>
+            <select id="bz_modelbundle_message_recepteurs" name="bz_users[]" required="required" class="form-control chzn-select" multiple="multiple" style="display: block;">
+                 {% for element in  users %}
+                     {% if element.id  != app.user.id %}
+                          <option value="{{ element.id }}">{{ element.nomPrenom }}</option>
+                     {% endif %}
+                 {% endfor %}
+            </select>
+         </div>
+          {{ form_widget(form) }}
+          {{ form_rest(form) }}
+    </div>
+{% endblock parentContenu %}
+{% block parentBoutons %} 
+    <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
+    <button type="submit" class="btn btn-success btn-xs btn-line" >Envoyer </button>
+    <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Enregistrement en cours ...</span>
+    {% endblock parentBoutons %}
+    {% block parentScript %}
+    <script>
+         $(".chzn-select").chosen();
+        $('form').draggable();
+       
+    </script>
+{% endblock parentScript %}

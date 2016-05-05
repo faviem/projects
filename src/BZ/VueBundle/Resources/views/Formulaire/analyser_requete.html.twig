@@ -1,0 +1,69 @@
+{% extends "BZVueBundle::parent_info.html.twig"%}
+{% block parentAction %} 
+    #
+{% endblock parentAction %}
+{% block parentEnctype %}  
+
+{% endblock parentEnctype %}
+{% block parentTitre %} ANALYSE DE REQUETE {% endblock parentTitre %}
+{% block parentContenu %}
+    <div style="color: black;font-size: 12px;" class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Expéditeur :   
+            {% if element.typeusagerclient == 'Personne physique' %}
+                <strong> {{  element.particulier.prenom }}   {{  element.particulier.nom }}   </strong><br/>
+                {% if element.particulier.usagerclient is not null %}
+               Contact(s) : <strong>  {{  element.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
+                        E@mail : <strong>  {{  element.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
+                        Département :  <strong> {{  element.particulier.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
+                        Ville de résidence :  <strong> {{  element.particulier.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
+                        Profession : <strong>  {{  element.particulier.profession }} </strong>  
+                          {% endif %}
+                 {% else %}
+                      <strong>  {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</strong><br/>
+                        Contact(s) :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
+                        E@mail :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
+                        Département : <strong> {{  element.societeentreprise.usagerclient.adressecontact.departement.nomdepartement }}</strong><br/>                                                  
+                        Ville de résidence :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.ville.nomville }}</strong><br/>                                                   
+                        Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
+            {% endif %}<hr/>
+        Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
+        Structure Destinataire : <strong>{{  element.StructureSoustutelle.nom }}</strong><br/>
+        Catégorie de requête : <strong>{{  element.typeRequete.libelle }}</strong><br/>
+        Mode de Saisine :  {% if element.modesaisine is not null %}<strong>{{  element.modesaisine.libelle }}</strong>{% else %} Aucun {% endif %}<br/>
+        Pièce Jointe : {% if element.filerequete is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( element.filerequete.dowloadPath) }}" target="_blank"><strong> {{ element.filerequete.nameFile }} </strong></a>{% endif %}<br/>
+        </div>
+        <p style="font-size: 12px;">
+        Message de la Requête : <br/>
+        <strong style="margin-left: 5px;"> {{ element.commentaireUsagerclient }} </strong><br/>
+        </p>
+{% endblock parentContenu %}
+{% block parentBoutons %} 
+    <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
+    <a type="button" class="btn btn-success btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Déclarer fondée</a>
+    <a type="button" class="btn btn-danger btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Déclarer non fondée</a>
+    <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Déclaration en cours ...</span>
+{% endblock parentBoutons %}
+   {% block parentScript %}
+        <script>
+        $('form').draggable();
+         $('.envoichoix').click(function (event) {
+            var buton = $(this);
+             $('.tachat_img').removeClass('hide');
+            $.ajax({
+                type: 'POST',
+                url: buton.attr('href'),
+                cache: false,
+                success: function () {
+                      $('.tachat_img').addClass('hide');
+                    location.reload();
+                },
+                error: function () {
+                    alert('requête échouée');
+                }});
+            //we dont what the browser to submit the form
+            event.preventDefault();
+        });
+
+        </script>
+    {% endblock parentScript %}

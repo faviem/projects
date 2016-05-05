@@ -1,0 +1,35 @@
+create_agent:
+    pattern:    /create_agent
+    defaults: { _controller: BZControllerBundle:Agent:create_agent }
+    
+read_agent:
+    pattern:    /read_agent
+    defaults: { _controller: BZControllerBundle:Agent:read_agent }  
+    
+update_agent:
+    pattern:    /update_agent/{id}
+    defaults: { _controller: BZControllerBundle:Agent:update_agent }
+    requirements:
+        id: \d+
+    
+delete_agent:
+    pattern:    /delete_agent/{id}
+    defaults: { _controller: BZControllerBundle:Agent:delete_agent }
+    requirements:
+        id: \d+
+        
+edit_agent:
+    pattern:    /edit_agent/{id}
+    defaults: { _controller: BZControllerBundle:Agent:edit_agent }
+    requirements:
+        id: \d+
+        
+compte_agent:
+    pattern:    /compte_agent
+    defaults: { _controller: BZControllerBundle:Agent:compte_agent }
+    requirements:
+        id: \d+
+        
+print_agent:
+    pattern:    /print_agent
+    defaults: { _controller: BZControllerBundle:Agent:print_agent }

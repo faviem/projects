@@ -1,0 +1,67 @@
+<div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <form  class="ui-draggable"   style="position: relative; left: 400px; top: 95px;" action="{{ path('supprime_reponsetraitement',{'id': id}) }}" method="post" >
+        <div class="col-lg-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    {% block parentTitre %} SUPPRESSION DE  REPONSE  {% endblock parentTitre %}
+                </div>
+                <div class="panel-body">
+                        <div style="color: black;font-size: 12px;" class="well">
+                              <p>Confirmez - vous la suppression de la réponse de l'usager/client  au traitement  <strong>N° {{ nbre }} </strong> ?</p>
+                </div>
+               
+        </div>
+                 <div class="panel-footer">
+                    {% block parentBoutons %} 
+                        <a type="button" class="btn btn-default btn-xs btn-line createformulaire" href="{{ path('retour_requete',{'id': idrequete}) }}" data-toggle="modal" data-target="#myModalu"><i class="icon icon-arrow-left"> </i> Retour</a>
+                        <button type="submit" class="btn btn-danger btn-xs btn-line" >Supprimer</button>
+                        <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Suppression en cours ...</span>
+                        {% endblock parentBoutons %}
+                </div>
+                </div>
+                </div>
+    </form>
+    {% block parentScript %}
+        <script>
+            $('form').draggable();
+            $("form").submit(function (event) {
+                var $this = $(this);
+                $('.tachat_img').removeClass('hide');
+                $.ajax({
+                    type: $this.attr('method'),
+                    url: $this.attr('action'),
+                    cache: false,
+                    data: $this.serialize(),
+                    success: function (data) {
+                        $('.tachat_img').addClass('hide');
+                        $('#afficheformulaire').html(data);
+                        // location.reload();
+                    },
+                    error: function () {
+                        // $('.tachat_img').removeClass('hide');
+                    }
+                });
+                //we dont what the browser to submit the form
+                event.preventDefault();
+            });
+            
+             $('.createformulaire').click(function (event) {
+            var buton = $(this);
+           // $('#afficheformulaire').html('');
+            $.ajax({
+                type: 'GET',
+                url: buton.attr('href'),
+                cache: false,
+                success: function (data) {
+                    $('#afficheformulaire').html(data);
+                    // $('#frm_createVille').dialog();
+                },
+                error: function () {
+                    alert('requête échouée');
+                }});
+            //we dont what the browser to submit the form
+            event.preventDefault();
+        });
+        </script>
+    {% endblock parentScript %}
+</div>

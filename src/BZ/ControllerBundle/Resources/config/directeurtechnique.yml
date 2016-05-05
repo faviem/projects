@@ -1,0 +1,49 @@
+create_directeurtechnique:
+    pattern:    /create_directeurtechnique
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:create_directeurtechnique }
+read_directeurtechnique:
+    pattern:    /read_directeurtechnique
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:read_directeurtechnique }  
+update_directeurtechnique:
+    pattern:    /update_directeurtechnique/{id}
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:update_directeurtechnique }
+    requirements:
+        id: \d+
+delete_directeurtechnique:
+    pattern:    /delete_directeurtechnique/{id}
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:delete_directeurtechnique }
+    requirements:
+        id: \d+
+edit_directeurtechnique:
+    pattern:    /edit_directeurtechnique/{id}
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:edit_directeurtechnique }
+    requirements:
+        id: \d+
+compte_directeurtechnique:
+    pattern:    /compte_directeurtechnique
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:compte_directeurtechnique }
+    requirements:
+        id: \d+
+print_directeurtechnique:
+    pattern:    /print_directeurtechnique
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:print_directeurtechnique }
+ 
+read_traitement:
+    pattern:    /read_traitement
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:read_traitement } 
+    
+voir_traitement:
+    pattern:    /voir_traitement/{id}
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:voir_traitement } 
+    
+resultat_traitement:
+    pattern:    /resultat_traitement/{id}
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:resultat_traitement } 
+    
+ajouter_resultattraitement:
+    pattern:    /ajouter_resultattraitement/{id}
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:ajouter_resultattraitement } 
+    
+supprimer_resultattraitement:
+    pattern:    /supprimer_resultattraitement/{id}
+    defaults: { _controller: BZControllerBundle:Directeurtechnique:supprimer_resultattraitement } 

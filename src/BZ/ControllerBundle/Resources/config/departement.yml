@@ -1,0 +1,23 @@
+create_departement:
+    pattern:    /create_departement
+    defaults: { _controller: BZControllerBundle:Departement:create_departement }
+    
+read_departement:
+    pattern:    /read_departement
+    defaults: { _controller: BZControllerBundle:Departement:read_departement }  
+    
+update_departement:
+    pattern:    /update_departement/{id}
+    defaults: { _controller: BZControllerBundle:Departement:update_departement }
+    requirements:
+        id: \d+
+    
+delete_departement:
+    pattern:    /delete_departement/{id}
+    defaults: { _controller: BZControllerBundle:Departement:delete_departement }
+    requirements:
+        id: \d+
+        
+print_departement:
+    pattern:    /print_departement
+    defaults: { _controller: BZControllerBundle:Departement:print_departement }

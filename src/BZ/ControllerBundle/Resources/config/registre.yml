@@ -1,0 +1,24 @@
+requetes_fondees:
+    pattern:    /requetes_fondees
+    defaults: { _controller: BZControllerBundle:Registre:requetes_fondees }  
+    
+requetes_nonfondees:
+    pattern:    /requetes_nonfondees
+    defaults: { _controller: BZControllerBundle:Registre:requetes_nonfondees }  
+    
+requetes_avortees:
+    pattern:    /requetes_avortees
+    defaults: { _controller: BZControllerBundle:Registre:requetes_avortees }  
+    
+declarer_nonfondee:
+    pattern:    /declarer_nonfondee/{id}
+    defaults: { _controller: BZControllerBundle:Registre:declarer_nonfondee }  
+    requirements:
+        id: \d+ 
+        
+declarer_fondee:
+    pattern:    /declarer_fondee/{id}
+    defaults: { _controller: BZControllerBundle:Registre:declarer_fondee }  
+    requirements:
+        id: \d+ 
+        

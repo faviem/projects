@@ -1,0 +1,15 @@
+{% extends "BZVueBundle::parent_update.html.twig"%}
+{% block parentAction %} 
+ {{ path('update_structuresoustutelle',{'id': id})}}
+{% endblock parentAction %}
+{% block parentScript %}
+    {{ parent() }}
+<script>
+      $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({
+        allow_single_deselect: true
+     });
+       
+    $('form input.date').datepicker();
+</script>
+{% endblock parentScript %}

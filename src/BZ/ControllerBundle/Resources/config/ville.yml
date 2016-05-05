@@ -1,0 +1,23 @@
+create_ville:
+    pattern:    /create_ville
+    defaults: { _controller: BZControllerBundle:Ville:create_ville }
+    
+read_ville:
+    pattern:    /read_ville
+    defaults: { _controller: BZControllerBundle:Ville:read_ville }  
+    
+update_ville:
+    pattern:    /update_ville/{id}
+    defaults: { _controller: BZControllerBundle:Ville:update_ville }
+    requirements:
+        id: \d+
+    
+delete_ville:
+    pattern:    /delete_ville/{id}
+    defaults: { _controller: BZControllerBundle:Ville:delete_ville }
+    requirements:
+        id: \d+
+        
+print_ville:
+    pattern:    /print_ville
+    defaults: { _controller: BZControllerBundle:Ville:print_ville }

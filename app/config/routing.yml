@@ -1,0 +1,78 @@
+#routes non authentifiées
+page_accueil:
+    path:     /
+    defaults: { _controller: "BZControllerBundle:Default:index" }
+    
+apropos:
+    path:     /apropos
+    defaults: { _controller: "BZControllerBundle:Default:apropos" }
+    
+statistiques:
+    path:     /statistiques
+    defaults: { _controller: "BZControllerBundle:Default:statistiques" }
+
+repertoire_requete:
+    path:     /repertoire_requete
+    defaults: { _controller: "BZControllerBundle:Default:repertoire_requete" }
+    
+authentifier_requete:
+    path:     /authentifier_requete/{id}
+    defaults: { _controller: "BZControllerBundle:Default:authentifier_requete" }
+    
+retour_requete:
+    path:     /retour_requete/{id}
+    defaults: { _controller: "BZControllerBundle:Default:retour_requete" }
+    
+avorter_requeteclient:
+    pattern:    /avorter_requeteclient/{id}
+    defaults: { _controller: BZControllerBundle:Default:avorter_requeteclient }  
+    requirements:
+        id: \d+   
+        
+fiche_requeteclient:
+    pattern:    /fiche_requeteclient/{id}
+    defaults: { _controller: BZControllerBundle:Default:fiche_requeteclient }  
+    requirements:
+        id: \d+   
+        
+fiche_recepisse:
+    pattern:    /fiche_recepisse/{id}
+    defaults: { _controller: BZControllerBundle:Default:fiche_recepisse }  
+    requirements:
+        id: \d+   
+    
+enregistre_reponsetraitement:
+    path:     /enregistre_reponsetraitement/{id}
+    defaults: { _controller: "BZControllerBundle:Default:enregistre_reponsetraitement" }
+    
+modifie_reponsetraitement:
+    path:     /modifie_reponsetraitement/{id}
+    defaults: { _controller: "BZControllerBundle:Default:modifie_reponsetraitement" }
+    
+supprime_reponsetraitement:
+    path:     /supprime_reponsetraitement/{id}
+    defaults: { _controller: "BZControllerBundle:Default:supprime_reponsetraitement" }
+    
+
+#routes authentifiées
+bz_controller:
+    resource: "@BZControllerBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+bz_user:
+    resource: "@BZUserBundle/Resources/config/routing.yml"
+    prefix:   /bz_user
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix:   /bz_user
+    
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix:   /
+#
+#    
+#fos_user_registration_register:
+#    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+#    prefix: /register
+#    

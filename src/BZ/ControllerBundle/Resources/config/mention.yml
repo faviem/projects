@@ -1,0 +1,23 @@
+create_mention:
+    pattern:    /create_mention
+    defaults: { _controller: BZControllerBundle:Mention:create_mention }
+    
+read_mention:
+    pattern:    /read_mention
+    defaults: { _controller: BZControllerBundle:Mention:read_mention }  
+    
+update_mention:
+    pattern:    /update_mention/{id}
+    defaults: { _controller: BZControllerBundle:Mention:update_mention }
+    requirements:
+        id: \d+
+    
+delete_mention:
+    pattern:    /delete_mention/{id}
+    defaults: { _controller: BZControllerBundle:Mention:delete_mention }
+    requirements:
+        id: \d+
+        
+print_mention:
+    pattern:    /print_mention
+    defaults: { _controller: BZControllerBundle:Mention:print_mention }

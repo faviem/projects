@@ -1,0 +1,49 @@
+<div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+<form  class="ui-draggable" {% block parentStyle %} style="position: relative; left: 434px; top: 229px;" {% endblock parentStyle %}  action="{% block parentAction %} {% endblock parentAction %}" {% block parentEnctype %}  {{ form_enctype(form) }}  {% endblock parentEnctype %} method="post"  >
+<div class="col-lg-4">
+    <div class="panel panel-success">
+        <div class="panel-heading" style="font-size: 12px;">
+             {% block parentTitre %}  ENREGISTREMENT {% endblock parentTitre %}
+        </div>
+        <div class="panel-body">
+          {% block parentContenu %}
+                {{ form_widget(form) }}
+                {{ form_rest(form) }}
+           {% endblock parentContenu %}
+        </div>
+        <div class="panel-footer ">
+         {% block parentBoutons %} 
+            <a type="button" class="btn btn-default btn-xs btn-line" href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
+                  <button type="submit" class="btn btn-success btn-xs btn-line" >Enregistrer</button>
+                  <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Enregistrement ...</span>
+        {% endblock parentBoutons %}
+        </div>
+    </div>
+</div>
+
+</form>
+{% block parentScript %}
+<script>
+     $('form').draggable();
+     $("form").submit(function(event) {
+            var $this = $(this);
+             $('.tachat_img').removeClass('hide');
+             $.ajax({
+                   type: $this.attr('method'),
+                   url: $this.attr('action'),
+                   cache: false,
+                   data: $this.serialize(),
+                   success: function() {
+                     $('.tachat_img').addClass('hide');
+                    // location.reload();
+                   },
+                   error: function() {
+                      // $('.tachat_img').removeClass('hide');
+                   }
+               });
+               //we dont what the browser to submit the form
+               event.preventDefault();
+           });
+</script>
+{% endblock parentScript %}
+</div>

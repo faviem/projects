@@ -1,0 +1,67 @@
+<div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <form  class="ui-draggable"   style="position: relative; left: 424px; top: 229px;" action="{{ path('authentifier_requete',{'id': id}) }}" method="post" >
+        <div class="col-lg-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    {% block parentTitre %} AUTHENTIFICATION DE LA REQUETE {% endblock parentTitre %}
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div style="color: black;font-size: 12px;" class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Expéditeur :   <strong>
+                                {% if element.typeusagerclient == 'Personne physique' %}
+                                    {{  element.particulier.prenom }}   {{  element.particulier.nom }}   
+                                {% else %}
+                                    {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )
+                                {% endif %}</strong><br/>
+                            Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
+                            Structure Destinataire : <strong>{{  element.StructureSoustutelle.nom }}</strong><br/>
+                           </div>
+
+                        <div style="font-size: 12px;" class="alert alert-danger {% if code =='' %} hide{% endif %}">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong>Erreur !!! </strong>   Le code d'authentification entré est erroné.
+                        </div>
+
+                        <label for="CodeRecepisse" > Code de Récépissé </label>
+                        <input id="CodeRecepisse" value="{{ code }}" name="CodeRecepisse" type="password" placeholder="*** Entrer le code de Récépissé ici ***"  required="true" class="form-control">
+
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    {% block parentBoutons %} 
+                        <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
+                        <button type="submit" class="btn btn-danger btn-xs btn-line" >Accéder au détails</button>
+                        <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Authentification en cours ...</span>
+                        {% endblock parentBoutons %}
+                </div>
+            </div>
+        </div>
+    </form>
+    {% block parentScript %}
+        <script>
+            $('form').draggable();
+            $("form").submit(function (event) {
+                var $this = $(this);
+                $('.tachat_img').removeClass('hide');
+                $.ajax({
+                    type: $this.attr('method'),
+                    url: $this.attr('action'),
+                    cache: false,
+                    data: $this.serialize(),
+                    success: function (data) {
+                        $('.tachat_img').addClass('hide');
+                        $('#afficheformulaire').html(data);
+                        // location.reload();
+                    },
+                    error: function () {
+                        // $('.tachat_img').removeClass('hide');
+                    }
+                });
+                //we dont what the browser to submit the form
+                event.preventDefault();
+            });
+        </script>
+    {% endblock parentScript %}
+</div>

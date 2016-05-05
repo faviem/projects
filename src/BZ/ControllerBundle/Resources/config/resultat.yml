@@ -1,0 +1,11 @@
+enregistre_resultat:
+    pattern:    /enregistre_resultat/{id}
+    defaults: { _controller: BZControllerBundle:Resultat:enregistre_resultat }  
+    requirements:
+        id: \d+ 
+        
+supprimer_resultat:
+    pattern:    /supprimer_resultat/{id}
+    defaults: { _controller: BZControllerBundle:Resultat:supprimer_resultat }  
+    requirements:
+        id: \d+ 

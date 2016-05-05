@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+    <!-- BEGIN HEAD-->
+    <head>
+        <meta charset="UTF-8" />
+        <title>SysGRU</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/sysfavicon.jpg')}}" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!--[if IE]>
+           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+           <![endif]-->
+        <!-- GLOBAL STYLES -->
+        <!-- GLOBAL STYLES -->
+        <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/theme.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/MoneAdmin.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/Font-Awesome/css/font-awesome.css')}}" />
+        <!--END GLOBAL STYLES -->
+        <!-- PAGE LEVEL STYLES -->
+        <link href="{{ asset('assets/plugins/flot/examples/examples.css')}}" rel="stylesheet" />
+        <link href="{{ asset('assets/plugins/timeline/timeline.css')}}" rel="stylesheet" />    
+        <link href="{{ asset('assets/css/jquery-ui.css')}}" rel="stylesheet" />
+        <link href="{{ asset('jquery-ui-1.11.4/jquery-ui.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/uniform/themes/default/css/uniform.default.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/chosen/chosen.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/colorpicker/css/colorpicker.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/tagsinput/jquery.tagsinput.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker-bs3.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/datepicker/css/datepicker.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/timepicker/css/bootstrap-timepicker.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/switch/static/stylesheets/bootstrap-switch.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/dataTables/dataTables.bootstrap.css')}}" />
+
+        <link href="{{ asset('assets/plugins/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css')}}" rel="stylesheet" />
+
+        <!-- END PAGE LEVEL  STYLES -->
+        <!-- HTML5 shim and Respond.js')}} IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="{{ asset('assets/js/html5shiv.js')}}"></script>
+          <script src="{{ asset('assets/js/respond.min.js')}}"></script>
+        <![endif]-->
+        {% block stylesheet %} {% endblock stylesheet %}
+    </head>
+    <!-- END  HEAD-->
+    <!-- BEGIN BODY-->
+    <body class="padTop53">
+        <!-- MAIN WRAPPER -->
+        <div id="wrap" style="background-color: #d2d6de;">
+            <!-- HEADER SECTION -->
+            <div id="top">
+                <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
+                    <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
+                        <i class="icon-align-justify"></i>
+                    </a>
+                    <!-- LOGO SECTION -->
+                    <header class="navbar-header" style="">
+                        <img src="{{ asset('/images/1.jpg')}}" alt="" title="République du Bénin" style="height: 4%;width: 5%;float: left;margin-right: 5%;" >      
+                        <a href="{{ path('page_accueil') }}" class="navbar-brand" style="color: #001F3F;"> MEEH-DIP-SRU </a>
+                        <img src="{{ asset('/images/logo.png')}}" alt="" title="MERPMDER" style="height: 4%;width:5%;margin-left: 5%;" >       
+                    </header>
+                    <!-- END LOGO SECTION -->
+                    <ul class="nav navbar-top-links navbar-right">
+                        <!-- SUGGESTIONS SECTION -->
+                        {% if  app.user.type !="DIP" %}
+                        <li class="chat-panel dropdown">
+                            <a class=""  href="{{ path('read_traitement') }}" title="voir les plaintes non encore étudiées">
+                                <span class="label label-info" id="nbreplainte">0</span>   <i class="icon-comments "></i>&nbsp; 
+                            </a>
+                        </li>
+                        {% endif %}
+                        <!--END MESSAGES SECTION -->
+                        <!-- BEGIN MESSAGES -->
+                        <li class="chat-panel dropdown">
+                            <a class="" href="{{ path('messages_recu') }}" title="voir les nouveaux messages">
+                                <span class="label label-success" id="nbremsg">0</span>   <i class="icon-envelope-alt"></i>&nbsp; 
+                            </a>
+                        </li>
+                        <!-- END messages SECTION -->
+                        <!--ADMIN SETTINGS SECTIONS -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                               <span class="label label-danger" id="nbreusers">0</span>  &nbsp; Bienvenu {{ app.user.NomPrenom }} <i class="icon-chevron-down " > </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="{% if  app.user.type=="DIP" %}{{ path('compte_agent') }}{% else%}{% if app.user.type=="DRTS" %} {{ path('compte_directeurtechnique') }} {%else%}#{% endif %}{%endif %}"><i class="icon-user"></i> Mon Compte </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('bz_user_changepassword') }}"><i class="icon-key "></i> Réinitialiser Mot de Passe </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('bz_user_deck') }}"><i class="icon-signout"></i> Déconnecter </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a class="btn btn-info" href="{{ path('voir_groupe') }}"><i class=" icon-group"> </i> Membres connectés
+                                     </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--END ADMIN SETTINGS -->
+                    </ul>
+
+                </nav>
+            </div>
+            <!-- END HEADER SECTION -->
+            <!-- MENU SECTION -->
+            <div id="left">  
+
+                <ul id="menu" class="collapse">
+                    <li class="panel">
+                        <a href="#" style="text-align: center;">
+                            <span style="font-size: 7px;" class="login-box-msg">***Système de Gestion des Requêtes des Usagers ***</span> SysGRU
+                        </a>                   
+                    </li>
+                     {% if  app.user.type =="DIP" %}
+                    <li class="panel">
+                        <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#parametre" style="font-size: 13.6px;" >
+                            <i class="icon icon-wrench "></i> Paramètres
+                            <span class="pull-right">
+                                <i class="icon-angle-left"></i>
+                            </span>
+                        </a>
+                        <ul class="collapse" id="parametre" >
+                            <li ><a href="{{ path("read_alerte") }}" style=""><i class="icon-angle-right"></i> Alertes de requête  </a></li>
+                            <li ><a href="{{ path("read_ville") }}" style=""><i class="icon-angle-right"></i> Liste des Villes  </a></li>
+                            <li ><a href="{{ path("read_departement") }}" style=""><i class="icon-angle-right"></i> Liste des Départements  </a></li>
+                            <li ><a href="{{ path("read_structuresoustutelle") }}" style=""><i class="icon-angle-right"></i> Liste des Structures sous-tutelles  </a></li>
+                            <li ><a href="{{ path("read_typerequete") }}" style=""><i class="icon-angle-right"></i> Liste des Types de requête  </a></li>
+                            <li ><a href="{{ path("read_mention") }}" style=""><i class="icon-angle-right"></i> Liste des Mentions d'appréciation  </a></li>
+                        </ul>
+                    </li>
+                    <li class="panel">
+                        <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#membre" style="font-size: 13.6px;" >
+                            <i class="icon  icon-hand-right "></i> Gestion des Membres
+                            <span class="pull-right">
+                                <i class="icon-angle-left"></i>
+                            </span>
+                        </a>
+                        <ul class="collapse" id="membre" >
+                            <li ><a href="{{ path("read_profil") }}" style=""><i class="icon-angle-right"></i> Profils des membres </a></li>
+                            <li ><a href="{{ path("read_agent") }}" style=""><i class="icon-angle-right"></i> Liste des membres de la D I P </a></li>      
+                            <li ><a href="{{ path("read_directeurtechnique") }}" style=""><i class="icon-angle-right"></i> Liste des directeurs techniques  </a></li>
+                        </ul>
+                    </li>
+                    <li class="panel">
+                        <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#formulaires" style="font-size: 13.6px;" >
+                            <i class="icon  icon-edit "></i> Gestion des Formulaires
+                            <span class="pull-right">
+                                <i class="icon-angle-left"></i>
+                            </span>
+                        </a>
+                        <ul class="collapse" id="formulaires" >
+                            <li ><a href="{{ path("enregistre_requete") }}" style=""><i class="icon-angle-right"></i> Enregistrement de requêtes</a></li>
+                            <li ><a href="{{ path("requetes_attentes") }}" style=""><i class="icon-angle-right"></i> Requêtes en attentes d'analyse </a></li>
+                        </ul>
+                    </li>
+                    <li class="panel">
+                        <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#registre" style="font-size: 13.6px;" >
+                            <i class="icon  icon-book "></i> Gestion du Régistre
+                            <span class="pull-right">
+                                <i class="icon-angle-left"></i>
+                            </span>
+                        </a>
+                        <ul class="collapse" id="registre" >
+                            <li ><a href="{{ path("requetes_fondees") }}" style=""><i class="icon-angle-right"></i> Liste des requêtes fondées </a></li>
+                            <li ><a href="{{ path("requetes_nonfondees") }}" style=""><i class="icon-angle-right"></i> Liste des requêtes non fondées </a></li>
+                            <li ><a href="{{ path("requetes_avortees") }}" style=""><i class="icon-angle-right"></i> Requêtes avortées </a></li>
+                        </ul>
+                    </li>
+                    <li class="panel">
+                        <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#traitements" style="font-size: 13.6px;" >
+                            <i class="icon icon-retweet"></i> Gestion des traitements
+                            <span class="pull-right">
+                                <i class="icon-angle-left"></i>
+                            </span>
+                        </a>
+                        <ul class="collapse" id="traitements" >
+                            <li ><a href="{{ path("requetes_encours") }}" style=""><i class="icon-angle-right"></i> Situation des traitements </a></li>
+                            <li ><a href="{{ path("requetes_soufrance") }}" style=""><i class="icon-angle-right"></i>  Traitements en souffrances </a></li>
+                            <li ><a href="{{ path("requetes_resolues") }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes résolues</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="panel">
+                        <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#consultations" style="font-size: 13.6px;" >
+                            <i class="icon-folder-open-alt"></i> Gestion des consultations
+                            <span class="pull-right">
+                                <i class="icon-angle-left"></i>
+                            </span>
+                        </a>
+                        <ul class="collapse" id="consultations">
+                            <li ><a href="{{ path("statistiques_requetes") }}" style=""><i class="icon-angle-right"></i> Statistique des requêtes </a></li>
+                            <li ><a href="{{ path("repertoire_usager",{'type': 1}) }}" style=""><i class="icon-angle-right"></i> Répertoire des usagers/clients </a></li>
+                            <li ><a href="{{ path("requete_categorie",{'id': 0}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes par catégorie </a></li>
+                            <li ><a href="{{ path("requete_structure",{'id': 0}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes par structure </a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                   {% endif %}
+            </div>
+
+            <!--END MENU SECTION -->
+
+            <!--PAGE CONTENT -->
+            <div id="content">
+
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            {% block content_title %} <h4 style="text-align: center;text-shadow: 0px 0.5px 0.5px blue;font-size: 14px;"> BIENVENUE  DANS  *** SysGRU ***  PLATE-FORME DE  LA SRU  DU  DIP  DE  MERPMDER-BENIN </h4>
+                            {% endblock content_title %}
+                            <hr />
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {% block content_body %}
+
+                                <div class="panel-body">
+                                    <p style="text-align:center">
+                                        <a id="example1" href="{{ asset('images/1.jpg')}}" title="REPUBLIQUE DU BENIN"><img src="{{ asset('images/1.jpg')}}" alt="" style="width: 100px;height: 100px;"></a>
+
+                                        <a style="margin-left: 6%;" id="example1" href="{{ asset('images/logo.png')}}" title="MINISTERE DE L'ENERGIE, DES RECHERCHES PETROLIERES ET MINIERES ET DU DEVELOPPEMENT DES ENERGIES RENOUVELABLES"><img src="{{ asset('images/logo.png')}}" style="width: 100px;height: 100px;"alt=""></a>
+
+                                        <a style="margin-left: 6%;" id="example3" href="{{ asset('images/CEB-a.jpg')}}" title="COMMUNAUTE ELECTRIQUE DU BENIN"><img src="{{ asset('images/CEB-a.jpg')}}" alt="" style="width: 100px;height: 100px;"></a>
+
+                                        <a style="margin-left: 6%;" id="example4" href="{{ asset('images/SBEE.jpg')}}" title="SOCIETE BENINOISE D'ENRGIE ELECTRIQUE DU BENIN"><img src="{{ asset('images/SBEE.jpg')}}" alt="" style="width: 100px;height: 100px;"></a>
+                                    </p>   
+                                    <br/>   
+                                    <p style="text-align:center">
+                                        <a id="example3" href="{{ asset('images/SONEB.jpg')}}" title="SOCIETE NATIONALE DES EAUX DU BENIN"><img src="{{ asset('images/SONEB.jpg')}}" alt="" style="width: 100px;height: 100px;"></a>
+
+                                        <a style="margin-left: 6%;" id="example1" href="{{ asset('images/ABERME.jpg')}}" title="AGENCE BENINOISE D'ELECTRIFICATION RURALE"><img src="{{ asset('images/ABERME.jpg')}}" style="width: 100px;height: 100px;"alt=""></a>
+
+                                        <a style="margin-left: 6%;" id="example4" href="{{ asset('images/DGMINE.jpg')}}" title="DIRECTION GENERALE DES MINES DU BENIN"><img src="{{ asset('images/DGMINE.jpg')}}" alt="" style="width: 100px;height: 100px;"></a>
+
+                                        <a style="margin-left: 6%;" id="example1" href="{{ asset('images/giz.png')}}" title="GIZ"><img src="{{ asset('images/giz.png')}}" style="width: 100px;height: 100px;"alt=""></a>
+
+                                    </p>
+
+                                </div>
+
+                            {% endblock content_body %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END PAGE CONTENT -->
+        </div>
+        <!--END MAIN WRAPPER -->
+        <!-- FOOTER -->
+        <div id="footer">
+            <p>&copy;  Emile V. FADONOUGBO &nbsp;2016 &nbsp;</p>
+        </div>
+        <input type="number" class="hide" name="menu_num" value="{% if menu_num is defined %}{{ menu_num }}{% else %}5{% endif %}" id="menu_num"/>
+
+        <!--END FOOTER -->
+        <!-- GLOBAL SCRIPTS -->
+        <script src="{{ asset('assets/plugins/jquery-2.0.3.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js')}}"></script>
+        <!-- END GLOBAL SCRIPTS -->
+        <!-- PAGE LEVEL SCRIPT-->
+        <script src="{{ asset('assets/js/jquery-ui.min.js')}}"></script>
+        <script src="{{ asset('jquery-ui-1.11.4/jquery-ui.js')}}"></script>
+        <script src="{{ asset('jquery-ui-1.11.4/jquery.ui.datepicker-fr.js')}}"></script>
+        <script src="{{ asset('assets/plugins/dataTables/jquery.dataTables.js')}}"></script>
+        <script src="{{ asset('assets/plugins/dataTables/dataTables.bootstrap.js')}}"></script>
+        <script src="{{ asset('assets/plugins/uniform/jquery.uniform.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/inputlimiter/jquery.inputlimiter.1.3.1.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/chosen/chosen.jquery.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/colorpicker/js/bootstrap-colorpicker.js')}}"></script>
+        <script src="{{ asset('assets/plugins/tagsinput/jquery.tagsinput.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/validVal/js/jquery.validVal.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/jasny/js/bootstrap-fileupload.js')}}"></script>
+
+        <script src="{{ asset('assets/plugins/switch/static/js/bootstrap-switch.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/jquery.dualListbox-1.3/jquery.dualListBox-1.3.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/autosize/jquery.autosize.min.js')}}"></script>
+        <script src="{{ asset('assets/plugins/jasny/js/bootstrap-inputmask.js')}}"></script>
+        <script src="{{ asset('assets/js/formsInit.js')}}"></script>
+        <script src="{{ asset('assets/js/notifications.js')}}"></script>
+        <script>
+            $(function () {
+                formInit();
+                Notifications();
+                
+                 function notification(){
+                 $.ajax({
+                   type: 'GET',
+                   url: "{{ path('notifications') }}",
+                   cache: false,
+                   success: function(data) {
+                     //  $('#nbrearchive').html(data.nbrearchive);
+                       $('#nbreusers').html(data.nbreusers);
+                       $('#nbremsg').html(data.nbremsg);
+                   },
+                   error: function() {alert('coupé');} });
+             }
+             notification();
+             //nbresms();
+             setInterval(notification, 20000);
+            });
+        </script>
+        {% if menu_num is defined %}
+            {% if menu_num ==0 %}
+                <script src="{{ asset('assets/plugins/jquery.fancybox-1.3.4/jquery-1.4.3.min.js')}}"></script> <!--important for gallery-->
+                <script src="{{ asset('assets/plugins/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js')}}"></script> 
+                <script src="{{ asset('assets/plugins/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.js')}}"></script>
+                <script src="{{ asset('assets/js/image_gallery.js')}}"></script>
+            {% endif%}
+        {% endif%}
+        <!-- END  SCRIPTS -->
+        {% block javascript %} {% endblock javascript %}
+
+    </body>
+    <!-- END BODY-->
+
+</html>

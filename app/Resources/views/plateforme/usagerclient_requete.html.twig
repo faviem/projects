@@ -1,0 +1,205 @@
+<div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <form  class="ui-draggable"   style="position: relative; left: 254px; top: 10px;" action="{{ path('authentifier_requete',{'id': id}) }}" method="post" >
+        <div class="col-lg-7">
+            <div class="panel panel-info">
+                <div class="panel-heading" style="text-align: center;font-size: 13px;color: black;">
+                    <span > ESPACE USAGER/CLIENT DE SUIVI DE REQUETE</span>
+                      <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();" style="float: right;" > <i class="icon-remove"></i></a>
+                
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div style="color: black;font-size: 12px;" class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Expéditeur :   
+                                {% if element.typeusagerclient == 'Personne physique' %}
+                                    <strong> {{  element.particulier.prenom }}   {{  element.particulier.nom }}   </strong><br/>
+                                    Contact(s) : <strong>  {{  element.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
+                        E@mail : <strong>  {{  element.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
+                        Département :  <strong> {{  element.particulier.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
+                        Ville de résidence :  <strong> {{  element.particulier.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
+                        Profession : <strong>  {{  element.particulier.profession }} </strong>  
+                                {% else %}
+                                   <strong> {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</strong><br/>
+                                   Contact(s) :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
+                        E@mail :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
+                          Département :  <strong> {{  element.societeentreprise.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
+                        Ville de résidence :  <strong> {{  element.societeentreprise.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
+                       Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
+                                {% endif %}<br/>
+                            Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
+                            Structure Destinataire : <strong>{{  element.StructureSoustutelle.nom }}</strong><br/>
+                            Catégorie de requête : <strong>{{  element.typeRequete.libelle }}</strong><br/>
+                            Mode de Saisine :  {% if element.modesaisine is not null %}<strong>{{  element.modesaisine.libelle }}</strong>{% else %} Aucun {% endif %}<br/>
+                            Code de récépissé :  <strong>{{  element.codeRecepisse }}</strong><br/>
+                            Pièce Jointe : {% if element.filerequete is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( element.filerequete.dowloadPath) }}" target="_blank"><strong> {{ element.filerequete.nameFile }} </strong></a>{% endif %}<br/><br/>
+                        </div>
+                        <a type="button" class="btn btn-success btn-xs btn-line " href="{{ path('fiche_requeteclient',{'id': id, 'code': code }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
+                             
+                        {% if element.clotureRequete is null  %}
+                             <a type="button" class="btn btn-danger btn-xs btn-line envoichoix" href="{{ path('avorter_requeteclient',{'id': id}) }}" data-toggle="modal" data-target="#myModalu" ><i class="icon icon-trash"> </i> Avorter la requête</a>
+                           <span class='avorter_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Avortement ...</span>
+                        {% endif %}
+                    </div>
+                     {% set nbretraitement = 0 %}
+                    {% for traitement in  element.traitementrequetes  %}
+                        {% if traitement.estdelete == 0 %} 
+                            {% set nbretraitement =nbretraitement +1 %}
+                            <div class="box">
+                                <span>
+                                    <span class="icons"><i class="icon-building"></i> <span style="font-size: 12px;color: black;">Traitement N° {{ nbretraitement }}
+                                         Adressé à : <strong style="margin-left: 5px;margin-right: 5px;"> {{ traitement.directeurtechnique.nomPrenom }} </strong>
+                                    Le : 
+                                    <span class="tooltip-demo" style="font-size: 12px;">  
+                                        <a  style="text-align: center;text-decoration: none;" href="#{{ nbretraitement }}"  data-container="body" data-toggle="popover" data-placement="top" 
+                                            data-content="
+                                            Message : {{ traitement.commentaireLancement }} 
+                                            ">
+                                            <strong>{{  traitement.dateLancement|date('d-m-Y') }} à {{  traitement.dateLancement|date('H:i') }}</strong>
+                                        </a>
+                                    </span>
+                                        </span></span>
+                                    
+                                        <span class="toolbar" style="float: right;">
+                                        {% if traitement.reponsetraitementrequete is null and element.clotureRequete is null  %}<a class="btn btn-default btn-xs btn-rect createformulaire"  href="{{ path('enregistre_reponsetraitement',{'id': traitement.id,'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"   title="Réponse de l'usager/client "><i class="icon-user"></i></a>{% endif %}
+                                        <a class="btn btn-primary btn-xs btn-rect" data-toggle="collapse" data-target="#div{{ nbretraitement }}"><i class="icon-arrow-down"></i></a>
+                                    </span>
+                                </span>
+                                <div class="body collapse in" id="div{{ nbretraitement }}" style="font-size: 12px;">
+                                   
+                                    {% set nbreresultat = 0 %}
+                                    <div class="table-responsive"  >
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>N°</th>
+                                                    <th>Date</th>
+                                                    <th>PJ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for resultat in  traitement.resultattraitementrequetes  %}
+                                                    {% if resultat.estdelete == 0 %} 
+                                                        {% set nbreresultat = nbreresultat+1 %}
+                                                        <tr>
+                                                           <td>{{ nbreresultat }}</td>
+                                                            <td style="font-size: 11px;">
+                                                                <span class="tooltip-demo" style="font-size: 11px;color: black;">  
+                                                                    <a  style="text-align: center;text-decoration: none;" href="#{{ nbretraitement }}{{ nbreresultat }}"  data-container="body" data-toggle="popover" data-placement="top" 
+                                                                        data-content="
+                                                                        Message résultat : {{ resultat.commentaireResultat }} 
+                                                                        ">
+                                                                        <strong>{{ resultat.dateResultat|date('d-m-Y') }} à {{  resultat.dateResultat|date('H:i') }}</strong>
+                                                                    </a>
+                                                                </span>
+                                                            </td>
+                                                            <td style="font-size: 11px;">
+                                                                 {% if resultat.fileretraitement is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( resultat.fileretraitement.dowloadPath) }}" target="_blank"><strong> {{ resultat.fileretraitement.nameFile }} </strong></a>{% endif %}<br/>
+                                                            </td>
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                            {% if nbreresultat == 0 %} 
+                                        <div><strong style="color: red;font-size: 9px;text-align: center;">Aucun résultat n'est rendu disponible !!!</strong></div>
+                                    {% endif %} 
+                                    </div>
+                                    
+                                    {% if traitement.reponsetraitementrequete is not null %}
+                                        <div class="well">
+                                          Réponse de l'usager/client reçue le : 
+                                            <span class="tooltip-demo" style="font-size: 12px;margin-right: 5px;color: black;">  
+                                                <a  style="text-align: center;text-decoration: none;" href="#{{ nbretraitement }}"  data-container="body" data-toggle="popover" data-placement="top" 
+                                                    data-content="
+                                                    Message : {{ traitement.reponsetraitementrequete.commentaireReponse }} 
+                                                    ">
+                                                    <strong>{{  traitement.reponsetraitementrequete.dateReponse|date('d-m-Y') }} à {{  traitement.reponsetraitementrequete.dateReponse|date('H:i') }}</strong>
+                                                </a>
+                                            </span>
+                                                    Appréciation : <strong style="color: green;margin-right: 10px;">{{  traitement.reponsetraitementrequete.mention.libelle }}</strong>
+                                                    {% if element.clotureRequete is null  %}
+                                                    <a class="btn btn-danger btn-xs btn-rect createformulaire" href="{{ path('supprime_reponsetraitement',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"  title="Supprimer la réponse de l'usager/client"><i class="icon-trash"></i></a>
+                                                    <a class="btn btn-warning btn-xs btn-rect createformulaire" href="{{ path('modifie_reponsetraitement',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"  title="Modifier la réponse de l'usager/client"><i class="icon-edit-sign"></i></a>
+                                                    {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% if  nbretraitement == 0 %}
+                         <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                               <a href="#" class="alert-link">Information : </a> <br/>Votre requête est en cours d'examination.<br/> Veuillez patienter dans tout prochains jours, le temps que la SRU de la DIP vous obtienne une suite favorable ...!!!
+                            </div>
+                     {% endif %}
+                </div>
+                <div class="panel-footer">
+                    {% block parentBoutons %} 
+                    {% endblock parentBoutons %}
+                </div>
+            </div>
+        </div>
+    </form>
+    {% block parentScript %}
+        <script>
+            $('form').draggable();
+            $("form").submit(function (event) {
+                var $this = $(this);
+                $('.tachat_img').removeClass('hide');
+                $.ajax({
+                    type: $this.attr('method'),
+                    url: $this.attr('action'),
+                    cache: false,
+                    data: $this.serialize(),
+                    success: function (data) {
+                        $('.tachat_img').addClass('hide');
+                        $('#afficheformulaire').html(data);
+                        // location.reload();
+                    },
+                    error: function () {
+                        // $('.tachat_img').removeClass('hide');
+                    }
+                });
+                //we dont what the browser to submit the form
+                event.preventDefault();
+            });
+            
+            $('.envoichoix').click(function (event) {
+            var buton = $(this);
+             $('.avorter_img').removeClass('hide');
+            $.ajax({
+                type: 'GET',
+                url: buton.attr('href'),
+                cache: false,
+                success: function (data) {
+                     $('#afficheformulaire').html(data);
+                },
+                error: function () {
+                    alert('requête échouée');
+                }});
+            //we dont what the browser to submit the form
+            event.preventDefault();
+        });
+        
+        $('.createformulaire').click(function (event) {
+            var buton = $(this);
+           // $('#afficheformulaire').html('');
+            $.ajax({
+                type: 'GET',
+                url: buton.attr('href'),
+                cache: false,
+                success: function (data) {
+                    $('#afficheformulaire').html(data);
+                    // $('#frm_createVille').dialog();
+                },
+                error: function () {
+                    alert('requête échouée');
+                }});
+            //we dont what the browser to submit the form
+            event.preventDefault();
+        });
+        </script>
+    {% endblock parentScript %}
+</div>

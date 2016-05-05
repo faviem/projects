@@ -1,0 +1,131 @@
+<div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <form  class="ui-draggable"style="position: relative; left: 364px; top: 129px;" action="{{ path('envoyer_msg',{'id': id}) }}" method="post"  >
+
+        <div class="col-lg-5">
+
+            <div class="chat-panel panel panel-default">
+                <div class="panel-heading">
+                    <i class="icon-comments"></i>
+                    Discussion instantannée
+                    <a class="" id="btn-chat" href="#" onclick="location.reload();" style="float: right;">
+                          <i class="icon-remove"></i>   </a>
+                </div>
+                <div class="panel-body" id="consulterboite">
+                      {% for msg in  messages %}
+                           <ul class="chat">
+                            {% if msg.emetteur.user.id == app.user.id %}
+                                 {% set rep = 0 %}
+                                 {% for recep in  msg.recepteurs %}
+                                         {% if recep.user.id == id %}
+                                               {% set rep = 1 %}
+                                         {% endif %}    
+                                 {% endfor %}
+                                 {% if rep == 1%}
+                                 <li class="left clearfix">
+                                    <span class="chat-img pull-left">
+                                        <img src="{% if msg.emetteur.user is not null %}{% if msg.emetteur.user.fileidentite is not null %} {{ asset(msg.emetteur.user.fileidentite.webPath) }} {% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}{% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}" style="height: 32px;width: 32px;" class="img-circle" alt="Photo de l'émetteur"/>
+                                    </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font "> {{ msg.emetteur.user.nomPrenom }} </strong>
+                                            <small class="pull-right text-muted label label-default">
+                                                <i class="icon-time"></i>  {{ msg.dateEnvoi | date('d/m/Y') }} à {{ msg.dateEnvoi | date('H:i') }}
+                                            </small>
+                                        </div>
+                                        <br>
+                                        <p style="font-size: 11px;" class="textMessage">
+                                           {{ msg.messageEnvoi }}  
+                                        </p>
+                                    </div>
+                                </li>
+                               {% endif %}
+                             {% endif %}
+                         {% if msg.emetteur.user.id == id %}
+                         {% set rep = 0 %}
+                                 {% for recep in  msg.recepteurs %}
+                                         {% if recep.user.id == app.user.id %}
+                                               {% set rep = 1 %}
+                                         {% endif %}    
+                                 {% endfor %}
+                          {% if rep == 1%}
+                          <li class="right clearfix">
+                            <span class="chat-img pull-right">
+                                  <img src="{% if msg.emetteur.user is not null %}{% if msg.emetteur.user.fileidentite is not null %} {{ asset(msg.emetteur.user.fileidentite.webPath) }} {% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}{% else %} {{ asset('uploads/img/user.jpg') }} {% endif %}" style="height: 32px;width: 32px;" class="img-circle" alt="Photo de l'émetteur"/>
+                             </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted label label-info">
+                                        <i class="icon-time"></i> {{ msg.dateEnvoi | date('d/m/Y') }} à {{ msg.dateEnvoi | date('H:i') }}</small>
+                                    <strong class="pull-right primary-font"> {{ msg.emetteur.user.nomPrenom }}</strong>
+                                </div>
+                                <br>
+                                <p style="font-size: 11px;" class="textMessage">
+                                    {{ msg.messageEnvoi }} 
+                                </p>
+                            </div>
+                        </li>
+                        {% endif %}
+                      {% endif %}
+                     </ul>
+                    {% endfor %}
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" name="messageTexte" placeholder="Type your comment here...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-sm" id="btn-chat">
+                                Envoyer
+                            </button>
+                            <span class='tachat_img hide'><img src="{{ asset('/fileidentites/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> En cours ...</span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+  </div>
+</form>
+{% block parentScript %}
+    <script>
+        $('form').draggable();
+        $("form").submit(function (event) {
+            var $this = $(this);
+            $('.tachat_img').removeClass('hide');
+            $.ajax({
+                type: $this.attr('method'),
+                url: $this.attr('action'),
+                cache: false,
+                data: $this.serialize(),
+                success: function () {
+                    $('.tachat_img').addClass('hide');
+                     $('#btn-input').val('');
+                    message();
+                    // location.reload();
+                },
+                error: function () {
+                    // $('.tachat_img').removeClass('hide');
+                }
+            });
+            //we dont what the browser to submit the form
+            event.preventDefault();
+        });
+     $("#consulterboite").scrollTop( $("#consulterboite")[0].scrollHeight );
+        function message(){
+            $.ajax({
+                     type: 'GET',
+                     url: '{{ path('consulter_boiteautre',{'id': id}) }}',
+                     cache: false,
+                     data: null,
+                     success: function (data) {
+                         $('#consulterboite').replaceWith(data);
+                         $("#consulterboite").scrollTop( $("#consulterboite")[0].scrollHeight );
+                     
+                     },
+                     error: function () {
+                         // $('.tachat_img').removeClass('hide');
+                     }
+                 });
+         } 
+         setInterval(message, 20000);     
+    </script>
+{% endblock parentScript %}
+</div>

@@ -1,0 +1,35 @@
+requetes_encours:
+    pattern:    /requetes_encours_traitement
+    defaults: { _controller: BZControllerBundle:Traitement:requetes_encours }  
+    
+requetes_soufrance:
+    pattern:    /requetes_soufrance
+    defaults: { _controller: BZControllerBundle:Traitement:requetes_soufrance }  
+    
+requetes_resolues:
+    pattern:    /requetes_resolues
+    defaults: { _controller: BZControllerBundle:Traitement:requetes_resolues }  
+    
+traitement_requete:
+    pattern:    /traitement_requete/{id}
+    defaults: { _controller: BZControllerBundle:Traitement:traitement_requete }  
+    requirements:
+        id: \d+ 
+            
+enregistre_traitement:
+    pattern:    /enregistre_traitement/{id}
+    defaults: { _controller: BZControllerBundle:Traitement:enregistre_traitement }  
+    requirements:
+        id: \d+ 
+        
+supprimer_traitement:
+    pattern:    /supprimer_traitement/{id}
+    defaults: { _controller: BZControllerBundle:Traitement:supprimer_traitement }  
+    requirements:
+        id: \d+ 
+        
+fiche_requeteclientadmin:
+    pattern:    /fiche_requeteclientadmin/{id}
+    defaults: { _controller: BZControllerBundle:Traitement:fiche_requeteclientadmin }  
+    requirements:
+        id: \d+ 

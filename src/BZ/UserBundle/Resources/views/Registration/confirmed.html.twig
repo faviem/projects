@@ -1,0 +1,33 @@
+{% extends "BZUserBundle::layout.html.twig" %}
+
+{# Le titre de la page (defaut MathSup) #}
+{% block title %}{{ 'registration.confirmed-title'|trans({}, 'FOSUserBundle') }} | {{ parent() }}{% endblock %}
+{# La description de la page (defaut vide) #}
+{% block description %}{% endblock %}
+{# Les mots clés de la page (defaut vide) #}
+{% block keywords %}{% endblock %}
+{# Indication pour les robots de la page  (defaut all) #}
+{% block robots %}noindex, nofollow{% endblock %}
+
+{# Le titre de l'entête du document #}
+{% block entetetitle %}{{ 'registration.confirmed-title'|trans({}, 'FOSUserBundle') }} | {{ parent() }}{% endblock %}
+{# La barre latéralke de la page #}
+{% block aside %}{{ parent() }}{% endblock %}
+
+
+
+{% block fos_user_content %}
+    <header>        
+        <h1>{{ 'registration.confirmed-title'|trans({}, 'FOSUserBundle') }}</h1>        
+    </header>
+
+    <p class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        {{ 'registration.confirmed'|trans({ '%username%': user.username}, 'FOSUserBundle') }}
+    </p>
+    {% if app.session is not empty %}
+        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
+    {% endif %}
+                      
+{% endblock fos_user_content %}

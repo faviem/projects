@@ -1,0 +1,13 @@
+read_profil:
+    pattern:    /read_profil
+    defaults: { _controller: BZControllerBundle:Profil:read_profil }  
+    
+update_profil:
+    pattern:    /update_profil/{id}
+    defaults: { _controller: BZControllerBundle:Profil:update_profil }
+    requirements:
+        id: \d+    
+        
+print_profil:
+    pattern:    /print_profil
+    defaults: { _controller: BZControllerBundle:Profil:print_profil }

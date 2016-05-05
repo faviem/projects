@@ -1,0 +1,23 @@
+create_alerte:
+    pattern:    /create_alerte
+    defaults: { _controller: BZControllerBundle:Alerte:create_alerte }
+    
+read_alerte:
+    pattern:    /read_alerte
+    defaults: { _controller: BZControllerBundle:Alerte:read_alerte }  
+    
+update_alerte:
+    pattern:    /update_alerte/{id}
+    defaults: { _controller: BZControllerBundle:Alerte:update_alerte }
+    requirements:
+        id: \d+
+    
+delete_alerte:
+    pattern:    /delete_alerte/{id}
+    defaults: { _controller: BZControllerBundle:Alerte:delete_alerte }
+    requirements:
+        id: \d+
+        
+print_alerte:
+    pattern:    /print_alerte
+    defaults: { _controller: BZControllerBundle:Alerte:print_alerte }
