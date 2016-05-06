@@ -60,6 +60,8 @@ class DefaultController extends Controller
         $user->setType('DIP');
         $user->setRoles(array('ROLE_ADMIN'));
         $user->setProfil($profil);
+        $em->persist($user);
+        $em->flush();
         $agent = new Agent();
         $agent->setNom("FADONOUGBO");
         $agent->setPrenom("Emile");
