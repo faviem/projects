@@ -1,7 +1,5 @@
-imports:
-    - { resource: parameters.yml }
+imports: 
     - { resource: security.yml }
-    - { resource: "@BZControllerBundle/Resources/config/services.yml" }
 
 services:
     fos_user.doctrine_registry:
