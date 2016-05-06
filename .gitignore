@@ -10,7 +10,6 @@
 /web/bin/
 /node_modules/
 /bower_components/
-/web/assets/
 /web/fonts/
 /dist/
 bin
