@@ -24,7 +24,8 @@
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "nc/faye-client": "v1.1.0",
-        "ensepar/html2pdf-bundle" : "dev-master"
+        "ensepar/html2pdf-bundle" : "dev-master",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
