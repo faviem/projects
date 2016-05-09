@@ -53,7 +53,6 @@ supprime_reponsetraitement:
     path:     /supprime_reponsetraitement/{id}
     defaults: { _controller: "BZControllerBundle:Default:supprime_reponsetraitement" }
     
-
 #routes authentifiées
 bz_controller:
     resource: "@BZControllerBundle/Resources/config/routing.yml"
@@ -63,13 +62,17 @@ bz_user:
     resource: "@BZUserBundle/Resources/config/routing.yml"
     prefix:   /bz_user
 
+fos_user_security_login:
+    path:     /login
+    defaults: { _controller: "FOSUserBundle:Security:login" }
+    
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix:   /bz_user
     
-fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
-    prefix:   /
+#fos_user_security:
+#    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+#    prefix:   /
 #
 #    
 #fos_user_registration_register:

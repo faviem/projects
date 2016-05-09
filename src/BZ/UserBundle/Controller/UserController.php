@@ -16,6 +16,16 @@ class UserController extends Controller
 {
 
     
+    public function  fos_user_security_checkAction()
+    {
+        return $this->redirect( $this->generateUrl('page_accueil'));
+    }
+    
+    public function  fos_user_security_logoutAction()
+    {
+        return $this->redirect( $this->generateUrl('page_accueil'));
+    }
+    
     public function  deconnecterAction()
     {
         $entity=$this->getUser();

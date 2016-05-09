@@ -260,7 +260,7 @@ class User extends BaseUser
     
     public function getNomPrenom()
     {
-        $nomprenom='';
+        $nomprenom='*** ??? ***';
         if($this->getAgent() !=null)
         {
             $nomprenom=$this->getAgent()->getNomprenom(); 

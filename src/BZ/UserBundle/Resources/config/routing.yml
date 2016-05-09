@@ -30,7 +30,15 @@ bz_user_lock:
 bz_user_unlock:
     path:     /bz_user_unlock/{id}
     defaults: { _controller: "BZUserBundle:User:bz_user_unlock" }
+    #routes de login_check et login_out
+fos_user_security_check:
+    path:     /login_check
+    defaults: { _controller: "BZUserBundle:User:fos_user_security_check" }
     
+fos_user_security_logout:
+    path:     /logout
+    defaults: { _controller: "BZUserBundle:User:fos_user_security_logout" }
+    #fin des routes
 voir_groupe:
     pattern:    /voir_groupe
     defaults: { _controller: BZUserBundle:User:voir_groupe }
