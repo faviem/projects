@@ -29,8 +29,19 @@ class AdresseContactType extends AbstractType
              'attr' =>array(
             'class' =>'form-control'
               )))
-                
-            ->add('ville','entity', array('label' => 'Ville de résidence', 
+             ->add('departement','entity', array('label' => 'Département', 
+                'class' => 'BZModelBundle:Departement',
+                'property' => 'nomdepartement',
+                'empty_value' => '',
+                'multiple' => false,
+                'attr' =>array('class' =>'form-control chzn-select'),
+                'required' => true,
+                'query_builder' => function(EntityRepository $er )  {
+                                return $er->createQueryBuilder('d')
+                                          ->orderBy('d.nomdepartement', 'ASC')
+                                          ->where('d.estdelete = 0');
+                        }))
+            ->add('ville','entity', array('label' => 'Ville ou commune de résidence', 
                 'class' => 'BZModelBundle:Ville',
                 'property' => 'nomville',
                 'empty_value' => '',
@@ -43,28 +54,31 @@ class AdresseContactType extends AbstractType
                                           ->where('v.estdelete = 0');
                         }))
                         
-            ->add('departement','entity', array('label' => 'Département', 
-                'class' => 'BZModelBundle:Departement',
-                'property' => 'nomdepartement',
+              ->add('arrondissement','entity', array('label' => 'Arrondissement', 
+                'class' => 'BZModelBundle:Arrondissement',
+                'property' => 'libelle',
                 'empty_value' => '',
                 'multiple' => false,
                 'attr' =>array('class' =>'form-control chzn-select'),
                 'required' => true,
                 'query_builder' => function(EntityRepository $er )  {
-                                return $er->createQueryBuilder('d')
-                                          ->orderBy('d.nomdepartement', 'ASC')
-                                          ->where('d.estdelete = 0');
-                        }))
-             ->add('localite', 'text', array(
-            'label' => 'Localité/Quartier de résidence',
-             'attr' =>array(
-            'class' =>'form-control'
-                 )))           
-            ->add('details', 'textarea', array(
-            'label' => 'Autres détails adresses',
-             'attr' =>array(
-            'class' =>'form-control'
-             )))
+                                return $er->createQueryBuilder('a')
+                                          ->orderBy('a.libelle', 'ASC')
+                                          ->where('a.estdelete = 0');
+                        }))          
+              ->add('quartier','entity', array('label' => 'Quartier de ville ou village', 
+                'class' => 'BZModelBundle:Quartier',
+                'property' => 'libelle',
+                'empty_value' => '',
+                'multiple' => false,
+                'attr' =>array('class' =>'form-control chzn-select'),
+                'required' => true,
+                'query_builder' => function(EntityRepository $er )  {
+                                return $er->createQueryBuilder('q')
+                                          ->orderBy('q.libelle', 'ASC')
+                                          ->where('q.estdelete = 0');
+                        }))          
+            
         ;
     }
     

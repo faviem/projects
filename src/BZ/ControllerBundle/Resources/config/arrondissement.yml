@@ -1,0 +1,23 @@
+create_arrondissement:
+    pattern:    /create_arrondissement
+    defaults: { _controller: BZControllerBundle:Arrondissement:create_arrondissement }
+    
+read_arrondissement:
+    pattern:    /read_arrondissement
+    defaults: { _controller: BZControllerBundle:Arrondissement:read_arrondissement }  
+    
+update_arrondissement:
+    pattern:    /update_arrondissement/{id}
+    defaults: { _controller: BZControllerBundle:Arrondissement:update_arrondissement }
+    requirements:
+        id: \d+
+    
+delete_arrondissement:
+    pattern:    /delete_arrondissement/{id}
+    defaults: { _controller: BZControllerBundle:Arrondissement:delete_arrondissement }
+    requirements:
+        id: \d+
+        
+print_arrondissement:
+    pattern:    /print_arrondissement
+    defaults: { _controller: BZControllerBundle:Arrondissement:print_arrondissement }

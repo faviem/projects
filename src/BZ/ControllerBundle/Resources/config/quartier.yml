@@ -1,0 +1,23 @@
+create_quartier:
+    pattern:    /create_quartier
+    defaults: { _controller: BZControllerBundle:Quartier:create_quartier }
+    
+read_quartier:
+    pattern:    /read_quartier
+    defaults: { _controller: BZControllerBundle:Quartier:read_quartier }  
+    
+update_quartier:
+    pattern:    /update_quartier/{id}
+    defaults: { _controller: BZControllerBundle:Quartier:update_quartier }
+    requirements:
+        id: \d+
+    
+delete_quartier:
+    pattern:    /delete_quartier/{id}
+    defaults: { _controller: BZControllerBundle:Quartier:delete_quartier }
+    requirements:
+        id: \d+
+        
+print_quartier:
+    pattern:    /print_quartier
+    defaults: { _controller: BZControllerBundle:Quartier:print_quartier }

@@ -34,11 +34,15 @@ class AdresseContact
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="localite", type="string", length=255, nullable=true)
-     */
-    private $localite;
+    * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Arrondissement")
+    * @ORM\JoinColumn(nullable=true) 
+    */
+    private $arrondissement;
+    /**
+    * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Quartier")
+    * @ORM\JoinColumn(nullable=true) 
+    */
+    private $quartier;
 
     /**
      * @var string
@@ -207,5 +211,51 @@ class AdresseContact
     public function getDepartement()
     {
         return $this->departement;
+    }
+
+    /**
+     * Set arrondissement
+     *
+     * @param \BZ\ModelBundle\Entity\Arrondissement $arrondissement
+     * @return AdresseContact
+     */
+    public function setArrondissement(\BZ\ModelBundle\Entity\Arrondissement $arrondissement = null)
+    {
+        $this->arrondissement = $arrondissement;
+
+        return $this;
+    }
+
+    /**
+     * Get arrondissement
+     *
+     * @return \BZ\ModelBundle\Entity\Arrondissement 
+     */
+    public function getArrondissement()
+    {
+        return $this->arrondissement;
+    }
+
+    /**
+     * Set quartier
+     *
+     * @param \BZ\ModelBundle\Entity\Quartier $quartier
+     * @return AdresseContact
+     */
+    public function setQuartier(\BZ\ModelBundle\Entity\Quartier $quartier = null)
+    {
+        $this->quartier = $quartier;
+
+        return $this;
+    }
+
+    /**
+     * Get quartier
+     *
+     * @return \BZ\ModelBundle\Entity\Quartier 
+     */
+    public function getQuartier()
+    {
+        return $this->quartier;
     }
 }

@@ -52,6 +52,12 @@ bz_consultation:
 bz_blog_tchat:
     resource: "@BZControllerBundle/Resources/config/tchat.yml"
     prefix:   /   
+bz_blog_arrondissement:
+    resource: "@BZControllerBundle/Resources/config/arrondissement.yml"
+    prefix:   /   
+bz_blog_quartier:
+    resource: "@BZControllerBundle/Resources/config/quartier.yml"
+    prefix:   /   
     
 notifications:
     pattern:    /notifications
