@@ -37,13 +37,13 @@ class User extends BaseUser
     private $adressecontact;
 
     /**
-    * @ORM\OneToOne(targetEntity="BZ\ModelBundle\Entity\DirecteurTechnique", cascade={"persist"}, inversedBy="user")
+    * @ORM\OneToOne(targetEntity="BZ\ModelBundle\Entity\DirecteurTechnique")
     * @ORM\JoinColumn(nullable=true) 
     */
     private $directeurtechnique;
     
     /**
-    * @ORM\OneToOne(targetEntity="BZ\ModelBundle\Entity\Agent",  inversedBy="user")
+    * @ORM\OneToOne(targetEntity="BZ\ModelBundle\Entity\Agent")
     * @ORM\JoinColumn(nullable=true) 
     */
     private $agent;

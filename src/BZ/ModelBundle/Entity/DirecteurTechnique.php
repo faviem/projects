@@ -14,7 +14,7 @@ use BZ\ModelBundle\Entity\PersonnePhysique;
 class DirecteurTechnique extends PersonnePhysique
 {
      /**
-    * @ORM\OneToOne(targetEntity="BZ\UserBundle\Entity\User", cascade={"persist"}, mappedBy="directeurtechnique")
+    * @ORM\OneToOne(targetEntity="BZ\UserBundle\Entity\User")
     * @ORM\JoinColumn(nullable=true) 
     */
     private $user;

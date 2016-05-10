@@ -27,6 +27,27 @@ class LoadAgent extends AbstractFixture implements FixtureInterface, OrderedFixt
     
     public function load(ObjectManager $manager)
     {
+        $toutmodesaisine= $manager->getRepository('BZModelBundle:ModeSaisine')->findAll();
+        foreach ($toutmodesaisine as $element){
+            $manager->remove($element);
+        }
+         $manager->flush();
+        $toutprofil= $manager->getRepository('BZModelBundle:Profil')->findAll();
+          foreach ($toutprofil as $element){
+            $manager->remove($element);
+        }
+         $manager->flush();
+          $toutagent= $manager->getRepository('BZModelBundle:Agent')->findAll();
+        foreach ($toutagent as $element){
+            $manager->remove($element);
+        }
+          $manager->flush();
+        $toutuser= $manager->getRepository('BZUserBundle:User')->findAll();
+        foreach ($toutuser as $element){
+            $manager->remove($element);
+        }
+          $manager->flush();
+          
         for($i=5; $i>0; $i--)
         {
             $modesaisine= new ModeSaisine;
@@ -64,6 +85,8 @@ class LoadAgent extends AbstractFixture implements FixtureInterface, OrderedFixt
         $user->setType('DIP');
         $user->setRoles(array('ROLE_ADMIN'));
         $user->setProfil($profil);
+        $manager->persist($user);
+        $manager->flush();
         $agent = new Agent();
         $agent->setNom("FADONOUGBO");
         $agent->setPrenom("Emile");
@@ -73,6 +96,7 @@ class LoadAgent extends AbstractFixture implements FixtureInterface, OrderedFixt
         $agent->setUser($user);
         // On le persiste
         $manager->persist($agent);
+        $user->setAgent($agent);
         $manager->flush();
         
         $profil3 = new Profil;
