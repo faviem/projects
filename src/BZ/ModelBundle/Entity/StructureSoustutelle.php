@@ -290,4 +290,9 @@ class StructureSoustutelle extends PersonneMorale
     {
         return $this->estdelete;
     }
+    
+    public function getDesignationStructure()
+    {
+        return $this->getNom().' ('.$this->getRaisonsociale().')';
+    }
 }

@@ -32,7 +32,7 @@ class RequetePersonnePhysiqueType extends AbstractType
                         }))
             ->add('structuresoustutelle','entity', array('label' => 'Structure conernée', 
                 'class' => 'BZModelBundle:StructureSoustutelle',
-                'property' => 'nom',
+                'property' => 'designationStructure',
                 'empty_value' => '',
                 'multiple' => false,
                 'attr' =>array('class' =>'form-control chzn-select'),
