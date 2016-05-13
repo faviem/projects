@@ -137,7 +137,7 @@
                                                                         {% set nbrerecueilliautre = nbrerecueilliautre+1 %}
                                                                         {% set nbrerecueilli = nbrerecueilli+1 %}
                                                                         
-                                                                         {% if requete.cloturerequete is not null or requete.estFonder==0 %}
+                                                                         {% if requete.cloturerequete is not null  %}
                                                                              
                                                                             {% set nbreresoluautre = nbreresoluautre+1 %}
                                                                             {% set nbreresolu = nbreresolu+1 %}
@@ -160,7 +160,7 @@
                                                                         {% set nbre = nbre+1 %}
                                                                     <td class="" style="font-size: 10px;font-weight: bold;"> TOTAUX </td>
                                                                     <td class="" style="font-size: 12px;font-weight: bold;text-align: center;">{{ nbrerecueilli  }}  </td>
-                                                                    <td class="" style="font-size: 12px;font-weight: bold;text-align: center;">{{  nbreresolu }} </td>
+                                                                    <td class="" style="font-size: 12px;font-weight: bold;text-align: center;">{{   nbreresolu }} </td>
                                                                     <td class="" style="font-size: 12px;font-weight: bold;text-align: center;">{{  nbrerecueilli-nbreresolu}}  </td>
                                                                   </tr>
                                                                 
