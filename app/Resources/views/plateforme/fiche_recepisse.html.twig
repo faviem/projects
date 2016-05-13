@@ -174,11 +174,11 @@ table.morpion td.j2 { color: #A00; }
           <tr>
              <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">  Mode de Saisine :</td>
              <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">
-                  {% if element.filerequete is null %}  Aucune{% else %} {{ element.filerequete.nameFile }} {% endif %}
+                 {% if element.modesaisine is not null %}{{  element.modesaisine.libelle }}{% else %} Aucun {% endif %} 
                        </td>
          
               <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1">  Pièce Jointe :</td>
-             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1"> {% if element.modesaisine is not null %}{{  element.modesaisine.libelle }}{% else %} Aucun {% endif %} </td>
+             <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1"> {% if element.filerequete is null %}  Aucune{% else %} {{ element.filerequete.nameFile }} {% endif %} </td>
           </tr> 
            <tr>
               <td style="" colspan="4" >  </td>
