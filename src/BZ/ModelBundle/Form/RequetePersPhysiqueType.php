@@ -55,7 +55,7 @@ class RequetePersPhysiqueType extends AbstractType
                                          
                         }))
             ->add('commentaireUsagerclient','textarea',array('label' => 'Message de votre requête', 'required' => true,'attr' =>array('class' =>'form-control')))
-            ->add('filerequete', new FileRequeteType(),array('label' => false, 'required' => false))                       
+            ->add('filerequete', new FileRequeteType(),array('label' => 'Pièce justificative', 'required' => false))                       
         ;
     }
     
