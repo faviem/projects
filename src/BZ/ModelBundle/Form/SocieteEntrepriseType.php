@@ -16,12 +16,12 @@ class SocieteEntrepriseType extends AbstractType
     {
         $builder
            
-           ->add('nom','text',array('label' => 'Nom de votre structure ', 'required' => true,'attr' =>array('class' =>'form-control')))
-           ->add('raisonsociale','text',array('label' => 'Raison sociale ', 'required' => true,'attr' =>array('class' =>'form-control')))
-           ->add('domaineactivite','text',array('label' => 'Domaine d\'activité ', 'required' => true,'attr' =>array('class' =>'form-control')))
+           ->add('nom','text',array('label' => 'Nom de votre structure (*) ', 'required' => true,'attr' =>array('class' =>'form-control')))
+           ->add('raisonsociale','text',array('label' => 'Raison sociale (*) ', 'required' => true,'attr' =>array('class' =>'form-control')))
+           ->add('domaineactivite','text',array('label' => 'Domaine d\'activité ', 'required' => false,'attr' =>array('class' =>'form-control')))
                 ->add('numifu','text',array('label' => 'N° IFU', 'required' => false,'attr' =>array('class' =>'form-control')))
             ->add('numrccm','text',array('label' => 'N° RCCM', 'required' => false,'attr' =>array('class' =>'form-control')))
-            ->add('usagerclient', new UsagerClientType(),array('label' => false, 'required' => false))
+            ->add('usagerclient', new UsagerClientType(),array('label' => false))
         ;
     }
     

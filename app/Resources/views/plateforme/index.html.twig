@@ -104,6 +104,9 @@
                                                 {% endif %}
                                             {% endif %}
                                             <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnephysique) }} method="post"  >
+                                                <div class="alert alert-info fade in">
+                                                    <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
+                                                 </div>
                                                 {{ form_widget(formpersonnephysique) }}
                                                 {{ form_rest(formpersonnephysique) }}
                                                 <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"><i class="icon icon-share"> </i> Envoyer Votre Requête</button>
@@ -131,6 +134,9 @@
                                                 {% endif %}
                                             {% endif %}
                                             <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnemorale) }} method="post"  >
+                                               <div class="alert alert-info fade in">
+                                                    <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
+                                                 </div>
                                                 {{ form_widget(formpersonnemorale) }}
                                                 {{ form_rest(formpersonnemorale) }}
                                                 <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"> <i class="icon icon-share"> </i> Envoyer Votre Requête</button>

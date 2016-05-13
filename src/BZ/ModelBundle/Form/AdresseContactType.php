@@ -18,7 +18,7 @@ class AdresseContactType extends AbstractType
         $builder
            
             ->add('telmobile', 'text', array(
-            'label' => 'Contact(s)',
+            'label' => 'Contact(s) (*)',
             'required' => true,
              'attr' =>array(
             'class' =>'form-control'
@@ -29,7 +29,7 @@ class AdresseContactType extends AbstractType
              'attr' =>array(
             'class' =>'form-control'
               )))
-             ->add('departement','entity', array('label' => 'Département', 
+             ->add('departement','entity', array('label' => 'Département (*)', 
                 'class' => 'BZModelBundle:Departement',
                 'property' => 'nomdepartement',
                 'empty_value' => '',
@@ -41,7 +41,7 @@ class AdresseContactType extends AbstractType
                                           ->orderBy('d.nomdepartement', 'ASC')
                                           ->where('d.estdelete = 0');
                         }))
-            ->add('ville','entity', array('label' => 'Ville ou commune de résidence', 
+            ->add('ville','entity', array('label' => 'Ville ou commune de résidence (*)', 
                 'class' => 'BZModelBundle:Ville',
                 'property' => 'nomville',
                 'empty_value' => '',
@@ -54,7 +54,7 @@ class AdresseContactType extends AbstractType
                                           ->where('v.estdelete = 0');
                         }))
                         
-              ->add('arrondissement','entity', array('label' => 'Arrondissement', 
+              ->add('arrondissement','entity', array('label' => 'Arrondissement (*)', 
                 'class' => 'BZModelBundle:Arrondissement',
                 'property' => 'libelle',
                 'empty_value' => '',
@@ -72,7 +72,7 @@ class AdresseContactType extends AbstractType
                 'empty_value' => '',
                 'multiple' => false,
                 'attr' =>array('class' =>'form-control chzn-select'),
-                'required' => true,
+                'required' => false,
                 'query_builder' => function(EntityRepository $er )  {
                                 return $er->createQueryBuilder('q')
                                           ->orderBy('q.libelle', 'ASC')

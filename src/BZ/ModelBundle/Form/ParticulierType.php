@@ -16,10 +16,10 @@ class ParticulierType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom','text',array('label' => 'Votre Nom', 'required' => true,'attr' =>array('class' =>'form-control')))
-            ->add('prenom','text',array('label' => 'Votre Prénom ', 'required' => true,'attr' =>array('class' =>'form-control')))
-            ->add('profession','text',array('label' => 'Votre Profession ', 'required' => true,'attr' =>array('class' =>'form-control')))
-            ->add('usagerclient', new UsagerClientType(),array('label' => false, 'required' => false))
+            ->add('nom','text',array('label' => 'Votre Nom (*)', 'required' => true,'attr' =>array('class' =>'form-control')))
+            ->add('prenom','text',array('label' => 'Votre Prénom (*)', 'required' => true,'attr' =>array('class' =>'form-control')))
+            ->add('profession','text',array('label' => 'Votre Profession ', 'required' => false,'attr' =>array('class' =>'form-control')))
+            ->add('usagerclient', new UsagerClientType(),array('label' => false))
         ;
     }
     

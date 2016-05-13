@@ -17,8 +17,8 @@ class RequetePersonnePhysiqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('particulier', new ParticulierType(),array('label' => false, 'required' => false))
-            ->add('typerequete','entity', array('label' => 'Type de requête', 
+            ->add('particulier', new ParticulierType(),array('label' => false))
+            ->add('typerequete','entity', array('label' => 'Type de requête (*)', 
                 'class' => 'BZModelBundle:TypeRequete',
                 'property' => 'libelle',
                 'empty_value' => '',
@@ -30,7 +30,7 @@ class RequetePersonnePhysiqueType extends AbstractType
                                           ->orderBy('t.libelle', 'ASC');
                                          
                         }))
-            ->add('structuresoustutelle','entity', array('label' => 'Structure conernée', 
+            ->add('structuresoustutelle','entity', array('label' => 'Structure conernée (*)', 
                 'class' => 'BZModelBundle:StructureSoustutelle',
                 'property' => 'designationStructure',
                 'empty_value' => '',
@@ -42,7 +42,7 @@ class RequetePersonnePhysiqueType extends AbstractType
                                           ->orderBy('s.nom', 'ASC');
                                          
                         }))
-            ->add('commentaireUsagerclient','textarea',array('label' => 'Message de votre requête', 'required' => true,'attr' =>array('class' =>'form-control')))
+            ->add('commentaireUsagerclient','textarea',array('label' => 'Message de votre requête (*)', 'required' => true,'attr' =>array('class' =>'form-control')))
             ->add('filerequete', new FileRequeteType(),array('label' => 'Pièce justificative', 'required' => false))                       
         ;
     }

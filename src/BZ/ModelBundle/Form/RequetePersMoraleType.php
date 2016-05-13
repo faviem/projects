@@ -16,7 +16,7 @@ class RequetePersMoraleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                 ->add('modesaisine','entity', array('label' => 'Mode de saisine', 
+                 ->add('modesaisine','entity', array('label' => 'Mode de saisine (*)', 
                 'class' => 'BZModelBundle:ModeSaisine',
                 'property' => 'libelle',
                 'empty_value' => '',
@@ -28,8 +28,8 @@ class RequetePersMoraleType extends AbstractType
                                           ->orderBy('m.libelle', 'ASC');
                                          
                         }))
-            ->add('societeentreprise', new SocieteEntrepriseType(),array('label' => false, 'required' => false))
-            ->add('typerequete','entity', array('label' => 'Type de requête', 
+            ->add('societeentreprise', new SocieteEntrepriseType(),array('label' => false))
+            ->add('typerequete','entity', array('label' => 'Type de requête (*)', 
                 'class' => 'BZModelBundle:TypeRequete',
                 'property' => 'libelle',
                 'empty_value' => '',
@@ -41,7 +41,7 @@ class RequetePersMoraleType extends AbstractType
                                           ->orderBy('t.libelle', 'ASC');
                                          
                         }))
-            ->add('structuresoustutelle','entity', array('label' => 'Structure conernée', 
+            ->add('structuresoustutelle','entity', array('label' => 'Structure conernée (*)', 
                 'class' => 'BZModelBundle:StructureSoustutelle',
                 'property' => 'designationStructure',
                 'empty_value' => '',
@@ -53,7 +53,7 @@ class RequetePersMoraleType extends AbstractType
                                           ->orderBy('s.nom', 'ASC');
                                          
                         }))
-            ->add('commentaireUsagerclient','textarea',array('label' => 'Message de votre requête', 'required' => true,'attr' =>array('class' =>'form-control')))
+            ->add('commentaireUsagerclient','textarea',array('label' => 'Message de votre requête (*)', 'required' => true,'attr' =>array('class' =>'form-control')))
             ->add('filerequete', new FileRequeteType(),array('label' => 'Pièce justificative', 'required' => false))
       ;
     }
