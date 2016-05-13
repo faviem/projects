@@ -44,5 +44,5 @@ security:
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/bz_user, roles: ROLE_USER   }
-        - { path: ^/bz_controller, roles: ROLE_USER  }
+        - { path: ^/bz_data, roles: ROLE_USER  }
         

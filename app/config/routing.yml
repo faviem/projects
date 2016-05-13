@@ -56,7 +56,7 @@ supprime_reponsetraitement:
 #routes authentifiées
 bz_controller:
     resource: "@BZControllerBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /bz_data
     
 bz_user:
     resource: "@BZUserBundle/Resources/config/routing.yml"
