@@ -35,7 +35,7 @@ class UserDirecteurType extends AbstractType
 //                                         
 //                        }))
             ->add('adressecontact', new AdresseContactType(),array('label' => false, 'required' => false))
-            ->add('fileidentite', new FileIdentiteType(),array('label' => false, 'required' => false))
+            ->add('fileidentite', new FileIdentiteType(),array('label' => 'Joindre Photo', 'required' => false))
         ;
     }
     
