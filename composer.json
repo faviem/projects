@@ -25,6 +25,7 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "nc/faye-client": "v1.1.0",
         "ensepar/html2pdf-bundle" : "dev-master",
+        "helios-ag/fm-bbcode-bundle":"~6",
         "ext-mbstring": "*"
     },
     "require-dev": {

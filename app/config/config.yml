@@ -76,3 +76,15 @@ fos_user:
     db_driver:    orm
     firewall_name: main
     user_class:     BZ\UserBundle\Entity\User
+    
+fm_bbcode:
+      filter_sets:
+        my_forum_filter:
+          locale: ru
+          xhtml: true
+          filters: [ default, quote ]
+          whitelist: [ b, quote ]
+        my_comment_filter:
+          locale: ru
+          xhtml: true
+          filters: [ default, block, code, email, image, list, quote, text, url, video ]
