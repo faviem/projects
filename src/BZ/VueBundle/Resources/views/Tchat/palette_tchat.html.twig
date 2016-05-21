@@ -34,7 +34,7 @@
                                         </div>
                                         <br>
                                         <p style="font-size: 11px;" class="textMessage">
-                                           {{ msg.messageEnvoi }}  
+                                           {{ msg.messageEnvoi | bbcode_filter('my_comment_filter')}}
                                         </p>
                                     </div>
                                 </li>
