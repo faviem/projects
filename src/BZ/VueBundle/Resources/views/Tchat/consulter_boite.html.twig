@@ -22,7 +22,7 @@
                             </div>
                             <br>
                             <p style="font-size: 11px;">
-                                {{ msg.messageEnvoi|bbcode_render|raw }}
+                                {{ msg.messageEnvoi|bbcode_filter('my_comment_filter')}}
                             </p>
                         </div>
                     </li>
