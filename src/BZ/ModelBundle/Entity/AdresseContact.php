@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AdresseContact
  *
- * @ORM\Table()
+ * @ORM\Table(name="adressecontact")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\AdresseContactRepository")
  * @ORM\HasLifecycleCallbacks()
  */

@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table()
+ * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="BZ\UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  *

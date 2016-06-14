@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
 * BZ\ModelBundle\Entity\FileRequete
 *
-* @ORM\Table()
+* @ORM\Table(name="filerequete")
 * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\FileRequeteRepository")
 * @ORM\HasLifecycleCallbacks
 */

@@ -23,7 +23,7 @@ class DefaultController extends Controller
             
            $modesaisine= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:ModeSaisine')
-                                      ->findOneBy(Array('libelle'=>'Plate-forme *SysGERUC@MEEM*'));
+                                      ->findOneBy(Array('libelle'=>'Plate-forme SysGERUC'));
             $usagerclient= new UsagerClient;
             $particulier= new Particulier;
             $societentreprise= new SocieteEntreprise;

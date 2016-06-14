@@ -63,7 +63,7 @@ class LoadAgent extends AbstractFixture implements FixtureInterface, OrderedFixt
                     $modesaisine->setLibelle('Accueil du siège');
                     break;
                 case 2: 
-                    $modesaisine->setLibelle('Plate-forme *SysGERUC@MEEM*');
+                    $modesaisine->setLibelle('Plate-forme SysGERUC');
                     break;
                 case 1: 
                     $modesaisine->setLibelle('Autres');

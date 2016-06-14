@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Emetteur
  *
- * @ORM\Table()
+ * @ORM\Table(name="emetteur")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\EmetteurRepository")
  * @ORM\HasLifecycleCallbacks()
  */

@@ -8,7 +8,7 @@ use BZ\ModelBundle\Entity\PersonnePhysique;
 /**
  * Particulier
  *
- * @ORM\Table()
+ * @ORM\Table(name="particulier")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\ParticulierRepository")
  * @ORM\HasLifecycleCallbacks()
  */

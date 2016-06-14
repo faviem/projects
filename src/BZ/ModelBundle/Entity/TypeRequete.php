@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TypeRequete
  *
- * @ORM\Table()
+ * @ORM\Table(name="typerequete")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\TypeRequeteRepository")
  * @ORM\HasLifecycleCallbacks()
  */

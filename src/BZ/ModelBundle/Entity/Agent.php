@@ -7,7 +7,7 @@ use BZ\ModelBundle\Entity\PersonnePhysique;
 /**
  * Agent
  *
- * @ORM\Table()
+ * @ORM\Table(name="agent")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\AgentRepository")
  *  @ORM\HasLifecycleCallbacks()
  */

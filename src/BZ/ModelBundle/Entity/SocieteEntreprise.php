@@ -7,7 +7,7 @@ use BZ\ModelBundle\Entity\PersonneMorale;
 /**
  * SocieteEntreprise
  *
- * @ORM\Table()
+ * @ORM\Table(name="societeentreprise")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\SocieteEntrepriseRepository")
  *  @ORM\HasLifecycleCallbacks()
  */

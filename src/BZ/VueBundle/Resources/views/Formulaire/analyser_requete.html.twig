@@ -5,7 +5,7 @@
 {% block parentEnctype %}  
 
 {% endblock parentEnctype %}
-{% block parentTitre %} ANALYSE DE REQUETE {% endblock parentTitre %}
+{% block parentTitre %} CLASSEMENT DE REQUETE {% endblock parentTitre %}
 {% block parentContenu %}
     <div style="color: black;font-size: 12px;" class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -40,9 +40,9 @@
 {% endblock parentContenu %}
 {% block parentBoutons %} 
     <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
-    <a type="button" class="btn btn-success btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Déclarer fondée</a>
-    <a type="button" class="btn btn-danger btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Déclarer non fondée</a>
-    <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Déclaration en cours ...</span>
+    <a type="button" class="btn btn-success btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Classer prioritaire</a>
+    <a type="button" class="btn btn-danger btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Classer non prioritaire</a>
+    <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Classement en cours ...</span>
 {% endblock parentBoutons %}
    {% block parentScript %}
         <script>

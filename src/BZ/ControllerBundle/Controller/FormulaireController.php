@@ -64,11 +64,11 @@ class FormulaireController extends Controller
              if( !empty($_GET['valide']))
             {
            return $this->render('BZVueBundle:Formulaire:enregistre_requete.html.twig', 
-                   array('menu_num'   => 3, 'valide'=>$_GET['valide'],'code'=>$_GET['code'], 'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));  
+                   array('menu_num'   => 4, 'valide'=>$_GET['valide'],'code'=>$_GET['code'], 'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));  
                     }
             else{
                  return $this->render('BZVueBundle:Formulaire:enregistre_requete.html.twig', 
-                   array('menu_num'   => 3, 'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));  
+                   array('menu_num'   => 4, 'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));  
                  
             }
     }
@@ -79,7 +79,7 @@ class FormulaireController extends Controller
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
                                       ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>null),Array('dateEmise'=>'ASC'));
-             return $this->render('BZVueBundle:Formulaire:requetes_attentes.html.twig', array('requete' => $requetes,'menu_num'   => 3));             
+             return $this->render('BZVueBundle:Formulaire:requetes_attentes.html.twig', array('requete' => $requetes,'menu_num'   => 4));             
     }
     
     public function requetes_fondeesAction()
@@ -87,7 +87,7 @@ class FormulaireController extends Controller
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
                                       ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true),Array('dateEmise'=>'ASC'));
-             return $this->render('BZVueBundle:Formulaire:requetes_fondees.html.twig', array('requete' => $requetes,'menu_num'   => 3));             
+             return $this->render('BZVueBundle:Formulaire:requetes_fondees.html.twig', array('requete' => $requetes,'menu_num'   => 4));             
     }
     
     public function analyser_requeteAction($id)
@@ -112,7 +112,7 @@ class FormulaireController extends Controller
                     $em->flush();
             }
              return $this->render('BZVueBundle:Formulaire:analyser_requete.html.twig', 
-                     array('menu_num' => 3, 'element'   => $requete,'id' => $id ));        
+                     array('menu_num' => 4, 'element'   => $requete,'id' => $id ));        
     }
     
     public function avorter_requeteAction($id)
@@ -130,7 +130,7 @@ class FormulaireController extends Controller
                     $em->flush();
             }
              return $this->render('BZVueBundle:Formulaire:avorter_requete.html.twig', 
-                     array('menu_num' => 3, 'element'   => $requete,'id' => $id ));             
+                     array('menu_num' => 4, 'element'   => $requete,'id' => $id ));             
     }
     
     public function annuler_avorteeAction($id)
@@ -149,7 +149,7 @@ class FormulaireController extends Controller
                     $em->flush();
             }
              return $this->render('BZVueBundle:Formulaire:annuler_avortee.html.twig', 
-                     array('menu_num' => 3, 'element'   => $requete,'id' => $id ));             
+                     array('menu_num' => 4, 'element'   => $requete,'id' => $id ));             
     }
     
      public function fiche_recepisseadminAction($id)
@@ -173,7 +173,7 @@ class FormulaireController extends Controller
             //Output envoit le document PDF au navigateur internet
             return new Response($html2pdf->Output('fiche_requete.pdf'), 200, array('Content-Type' => 'application/pdf'));
 
-            //  return $this->render('BZVueBundle::mandatcashAttestation.html.twig',array('menu_num'   =>3, 'id' => $id, 'code' => sha1($mandacah->getNumero1())));
+            //  return $this->render('BZVueBundle::mandatcashAttestation.html.twig',array('menu_num'   =>4, 'id' => $id, 'code' => sha1($mandacah->getNumero1())));
         }
           }
              

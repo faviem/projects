@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ClotureRequete
  *
- * @ORM\Table()
+ * @ORM\Table(name="cloturerequete")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\ClotureRequeteRepository")
  * @ORM\HasLifecycleCallbacks()
  */

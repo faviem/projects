@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TraitementRequete
  *
- * @ORM\Table()
+ * @ORM\Table(name="traitementrequete")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\TraitementRequeteRepository")
  * @ORM\HasLifecycleCallbacks()
  */

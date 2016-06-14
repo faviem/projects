@@ -17,7 +17,7 @@ class ResultatTraitementRequeteType extends AbstractType
     {
         $builder
             ->add('commentaireResultat','textarea',array('label' => 'Résumé du contenu', 'required' => true,'attr' =>array('class' =>'form-control')))
-            ->add('fileretraitement', new FileTraitementType(),array('label' => 'Pièce témoin', 'required' => false))
+            ->add('fileretraitement', new FileTraitementType(),array('label' => 'Joindre Pièce témoin', 'required' => false))
         ;
     }
     

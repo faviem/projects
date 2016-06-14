@@ -7,7 +7,7 @@ use BZ\ModelBundle\Entity\PersonnePhysique;
 /**
  * DirecteurTechnique
  *
- * @ORM\Table()
+ * @ORM\Table(name="directeurtechnique")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\DirecteurTechniqueRepository")
  * @ORM\HasLifecycleCallbacks()
  */

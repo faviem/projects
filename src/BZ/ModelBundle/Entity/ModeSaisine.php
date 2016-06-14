@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ModeSaisine
  *
- * @ORM\Table()
+ * @ORM\Table(name="modesaisine")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\ModeSaisineRepository")
  * @ORM\HasLifecycleCallbacks()
  */

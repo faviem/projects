@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * UsagerClient
  *
- * @ORM\Table()
+ * @ORM\Table(name="usagerclient")
  * @ORM\Entity(repositoryClass="BZ\ModelBundle\Repository\UsagerClientRepository")
  *  @ORM\HasLifecycleCallbacks()
  */
