@@ -93,7 +93,7 @@ class DefaultController extends Controller
     {
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>false),Array('dateEmise'=>'DESC'));
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'cloturerequete'=>null),Array('dateEmise'=>'DESC'));
              return $this->render(':plateforme:repertoire_requete.html.twig', array('requete' => $requetes,'menu'   => 2));             
     }
     

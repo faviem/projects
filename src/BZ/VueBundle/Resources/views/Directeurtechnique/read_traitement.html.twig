@@ -48,7 +48,7 @@
                                      {% endif %}       
                                   {% endfor %}
                                 <td class="sorting_1" style="text-align: center;">
-                                    <a href="{{ path('resultat_traitement', {'id':  element.id }) }}" class="btn btn-success btn-xs btn-rect " " title="Gestionnaire du traitement de la requête" style="font-size: 11px;"><i class="icon  icon-edit-sign"> </i> {{ nbreresultat }} </a>
+                                    <a href="{{ path('resultat_traitement', {'id':  element.id }) }}" class="btn btn-success btn-xs btn-rect "  title="Gestionnaire du traitement de la requête" style="font-size: 11px;"><i class="icon  icon-edit-sign"> </i> {{ nbreresultat }} </a>
                                     <a href="{{ path('voir_traitement', {'id':  element.id }) }}" class="btn btn-default btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModal" title="Voir le détail" style="font-size: 11px;"><i class="icon  icon-align-center"> </i> </a>
                                 </td>
                                 <td class="" style="font-size: 12px;text-align: center;">{{  element.requete.dateEmise|date('d-m-Y') }} à {{  element.requete.dateEmise|date('H:i') }}</td>

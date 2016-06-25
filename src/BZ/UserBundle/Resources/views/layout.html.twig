@@ -68,8 +68,8 @@
                         <!-- SUGGESTIONS SECTION -->
                         {% if  app.user.type !="DIP" %}
                         <li class="chat-panel dropdown">
-                            <a class=""  href="{{ path('read_traitement') }}" title="voir les requêtes non encore étudiées">
-                                <span class="label label-info" id="nbreplainte">0</span>   <i class="icon-comments "></i>&nbsp; 
+                            <a class=""  href="{{ path('read_traitement') }}" title="Consulter liste des traitements en cours ...">
+                                <span class="label label-info" id="nbretraitement">0</span>   <i class="icon-comments "></i>&nbsp; 
                             </a>
                         </li>
                         {% endif %}
@@ -306,6 +306,7 @@
                      //  $('#nbrearchive').html(data.nbrearchive);
                        $('#nbreusers').html(data.nbreusers);
                        $('#nbremsg').html(data.nbremsg);
+                       $('#nbretraitement').html(data.nbretraitements);
                    },
                    error: function() {alert('coupé');} });
              }

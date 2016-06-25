@@ -83,8 +83,18 @@ class TchatController extends Controller
         foreach ($messagesnonlus as $i){
           $nbremesg++;  
         }
-          
-        $response = new Response(json_encode(array('nbreusers' => $nbreuser, 'nbremsg' => $nbremesg)));
+        
+        $nbretraitement=0;
+        if($this->getUser()->getDirecteurtechnique() !=null)
+        {
+            $traitements= $this->getDoctrine()
+                                          ->getManager()->getRepository('BZModelBundle:TraitementRequete')
+                                          ->findBy(Array('estdelete'=>false,'directeurtechnique'=>  $this->getUser()->getDirecteurtechnique()->getId()),Array('dateLancement'=>'ASC'));
+              foreach ($traitements as $i){
+                    if($i->getRequete()->getestFonder() == true && $i->getRequete()->getestAvorterUsagerclient() == false && $i->getRequete()->getestResolu() == false){ $nbretraitement++;  }
+                }
+        }
+        $response = new Response(json_encode(array('nbreusers' => $nbreuser, 'nbremsg' => $nbremesg, 'nbretraitements' => $nbretraitement)));
             $response->headers->set('Content-Type', 'application/json');
             return $response;      
     }

@@ -49,11 +49,18 @@ class AdresseContactType extends AbstractType
                                           ->orderBy('d.nomdepartement', 'ASC');
                         }))
                         
-             ->add('localite', 'text', array(
-            'label' => 'Localité/Quartier de résidence',
-             'attr' =>array(
-            'class' =>'form-control'
-                 )))           
+               ->add('quartier','entity', array('label' => 'Quartier de ville ou village', 
+                'class' => 'BZModelBundle:Quartier',
+                'property' => 'libelle',
+                'empty_value' => '',
+                'multiple' => false,
+                'attr' =>array('class' =>'form-control chzn-select'),
+                'required' => false,
+                'query_builder' => function(EntityRepository $er )  {
+                                return $er->createQueryBuilder('q')
+                                          ->orderBy('q.libelle', 'ASC')
+                                          ->where('q.estdelete = 0');
+                        }))   
                                 
             ->add('details', 'textarea', array(
             'label' => 'Autres détails adresses',
