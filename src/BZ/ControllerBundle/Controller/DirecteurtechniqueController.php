@@ -120,8 +120,9 @@ class DirecteurtechniqueController extends Controller
                     $directeurtechnique->setDatedelete(new \ Datetime());
                     $directeurtechnique->setEstdelete(true);
                     $directeurtechnique->getUser()->setEnabled(false);
-                    $userManager = $this->get('fos_user.user_manager');
-                    $userManager->reloadUser($directeurtechnique->getUser());
+                    $directeurtechnique->getUser()->setLocked(true);
+//                    $userManager = $this->get('fos_user.user_manager');
+//                    $userManager->reloadUser($directeurtechnique->getUser());
                     $em->flush();
             }
             $element='Compte : '.$directeurtechnique->getNom().'  '.$directeurtechnique->getPrenom();

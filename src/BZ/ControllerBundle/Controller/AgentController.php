@@ -113,6 +113,7 @@ class AgentController extends Controller
                     $agent->setDatedelete(new \ Datetime());
                     $agent->setEstdelete(true);
                     $agent->getUser()->setEnabled(false);
+                    $agent->getUser()->setLocked(true);
                     $userManager = $this->get('fos_user.user_manager');
                     $userManager->reloadUser($agent->getUser());
                     $em->flush();

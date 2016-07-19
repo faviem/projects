@@ -45,9 +45,13 @@ class UserController extends Controller
             {
 //                $form->bind($request);
 //                if ($form->isValid()) {
-                $user->setRoles(array('roles'=>$user->getProfil()->getCode()));
-                $userManager->updateUser($user);
-                $userManager->reloadUser($user);
+                $profil= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Profil')->find($_POST['bz_userbundle_user']['profil']);
+                $em = $this->getDoctrine()->getManager();
+                // $em->flush();
+                $user->setProfil($profil);
+                $user->setRoles(array('roles'=>$profil->getCode()));
+                $em->flush();
 //                  }
             }
              return $this->render('BZUserBundle:User:profil.html.twig', 
