@@ -24,13 +24,15 @@ class FormulaireController extends Controller
             $requetepersonnephysique= new Requete;
             $requetepersonnephysique->setTypeusagerclient('Personne physique');
             $requetepersonnephysique->setParticulier($particulier);
-            $requetepersonnephysique->setEstFonder(true);
+            $requetepersonnephysique->setEstFonder(null);
+            $requetepersonnephysique->setEstAvorterUsagerclient(false);
             $requetepersonnephysique->setEstentraitement(false);
             $requetepersonnephysique->setDateEmise(new \Datetime());
             $requetepersonnemorale= new Requete;
             $requetepersonnemorale->setTypeusagerclient('Personne morale');
             $requetepersonnemorale->setSocieteentreprise($societentreprise);
-            $requetepersonnemorale->setEstFonder(true);
+            $requetepersonnemorale->setEstFonder(null);
+            $requetepersonnemorale->setEstAvorterUsagerclient(false);
             $requetepersonnemorale->setEstentraitement(false);
             $requetepersonnemorale->setDateEmise(new \Datetime());
             

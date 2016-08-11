@@ -129,7 +129,7 @@
                             </span>
                         </a>
                         <ul class="collapse" id="parametre" >
-                            <li ><a href="{{ path("read_alerte") }}" style=""><i class="icon-angle-right"></i> Alertes de requête  </a></li>
+                            <li class="hide"><a href="{{ path("read_alerte") }}" style=""><i class="icon-angle-right"></i> Alertes de requête  </a></li>
                             <li ><a href="{{ path("read_ville") }}" style=""><i class="icon-angle-right"></i> Liste des Villes ou Communes </a></li>
                             <li ><a href="{{ path("read_departement") }}" style=""><i class="icon-angle-right"></i> Liste des Départements  </a></li>
                             <li ><a href="{{ path("read_arrondissement") }}" style=""><i class="icon-angle-right"></i> Liste des Arrondissements  </a></li>
@@ -141,13 +141,13 @@
                     </li>
                     <li class="panel">
                         <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#membre" style="font-size: 13.6px;" >
-                            <i class="icon  icon-hand-right "></i> Gestion des Membres
+                            <i class="icon  icon-hand-right "></i> Gestion des Utilisateurs
                             <span class="pull-right">
                                 <i class="icon-angle-left"></i>
                             </span>
                         </a>
                         <ul class="collapse" id="membre" >
-                            <li ><a href="{{ path("read_profil") }}" style=""><i class="icon-angle-right"></i> Profils des membres </a></li>
+                            <li ><a href="{{ path("read_profil") }}" style=""><i class="icon-angle-right"></i> Profils des utilisateurs </a></li>
                             <li ><a href="{{ path("read_agent") }}" style=""><i class="icon-angle-right"></i> Liste des membres de la D I P </a></li>      
                             <li ><a href="{{ path("read_directeurtechnique") }}" style=""><i class="icon-angle-right"></i> Liste des directeurs techniques  </a></li>
                         </ul>
@@ -155,22 +155,22 @@
                    
                     <li class="panel">
                         <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#registre" style="font-size: 13.6px;" >
-                            <i class="icon  icon-book "></i> Gestion du Régistre
+                            <i class="icon  icon-book "></i> Enregistrement et Classement des requêtes
                             <span class="pull-right">
                                 <i class="icon-angle-left"></i>
                             </span>
                         </a>
                         <ul class="collapse" id="registre" >
                             <li ><a href="{{ path("enregistre_requete") }}" style=""><i class="icon-angle-right"></i> Formulaires d'Enregistrement</a></li>
-                            <li ><a href="{{ path("requetes_attentes") }}" style=""><i class="icon-angle-right"></i> Requêtes non classées </a></li>
-                           <li ><a href="{{ path("requetes_fondees") }}" style=""><i class="icon-angle-right"></i> Requêtes classées prioritaires </a></li>
+                            <li ><a href="{{ path("requetes_attentes") }}" style=""><i class="icon-angle-right"></i> Requêtes non classées <span class="label label-danger" style="float: right;margin-right: 2%;" id="nonclasser">4</span> </a></li>
+                           <li ><a href="{{ path("requetes_fondees") }}" style=""><i class="icon-angle-right"></i> Requêtes classées prioritaires <span class="label label-info" style="float: right;margin-right: 2%;" id="classerprioritairereq">4</span></a></li>
                             <li ><a href="{{ path("requetes_nonfondees") }}" style=""><i class="icon-angle-right"></i> Requêtes classées non prioritaires </a></li>
-                            <li ><a href="{{ path("requetes_avortees") }}" style=""><i class="icon-angle-right"></i> Requêtes abandonnées </a></li>
+                            <li ><a href="{{ path("requetes_avortees") }}" style=""><i class="icon-angle-right"></i> Requêtes abandonnées <span class="label label-success" style="float: right;margin-right: 2%;" id="classerprioritairereq">4</span></a> </li>
                         </ul>
                     </li>
                     <li class="panel">
                         <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#traitements" style="font-size: 13.6px;" >
-                            <i class="icon icon-retweet"></i> Gestion des traitements
+                            <i class="icon icon-retweet"></i> Traitement des requêtes
                             <span class="pull-right">
                                 <i class="icon-angle-left"></i>
                             </span>
@@ -224,7 +224,7 @@
                                     <p style="text-align:center">
                                         <a id="example1" href="{{ asset('images/1.jpg')}}" title="REPUBLIQUE DU BENIN"><img src="{{ asset('images/1.jpg')}}" alt="" style="width: 100px;height: 100px;"></a>
 
-                                        <a style="margin-left: 6%;" id="example1" href="{{ asset('images/logo.png')}}" title="MINISTERE DE L'ENERGIE, DES RECHERCHES PETROLIERES ET MINIERES ET DU DEVELOPPEMENT DES ENERGIES RENOUVELABLES"><img src="{{ asset('images/logo.png')}}" style="width: 100px;height: 100px;"alt=""></a>
+                                        <a style="margin-left: 6%;" id="example1" href="{{ asset('images/logo.gif')}}" title="MINISTERE DE L'ENERGIE, DES RECHERCHES PETROLIERES ET MINIERES ET DU DEVELOPPEMENT DES ENERGIES RENOUVELABLES"><img src="{{ asset('images/logo.gif')}}" style="width: 100px;height: 100px;"alt=""></a>
 
                                         <a style="margin-left: 6%;" id="example3" href="{{ asset('images/CEB-a.jpg')}}" title="COMMUNAUTE ELECTRIQUE DU BENIN"><img src="{{ asset('images/CEB-a.jpg')}}" alt="" style="width: 100px;height: 100px;"></a>
 
@@ -262,7 +262,7 @@
         <!--END MAIN WRAPPER -->
         <!-- FOOTER -->
         <div id="footer">
-            <p>&copy;  Emile V. FADONOUGBO &nbsp;2016 &nbsp;</p>
+            <p>&copy; Developed an design By Emile FADONOUGBO; email: faviem1990@yahoo.fr; Tél: +229 96892625; Copyright MEEM/DIP-BENIN 2016</p>
         </div>
         <input type="number" class="hide" name="menu_num" value="{% if menu_num is defined %}{{ menu_num }}{% else %}5{% endif %}" id="menu_num"/>
 

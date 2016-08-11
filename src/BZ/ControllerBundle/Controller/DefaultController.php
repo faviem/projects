@@ -33,10 +33,19 @@ class DefaultController extends Controller
             $requetepersonnephysique->setTypeusagerclient('Personne physique');
             $requetepersonnephysique->setModesaisine($modesaisine);
             $requetepersonnephysique->setParticulier($particulier);
+             $requetepersonnephysique->setEstFonder(null);
+            $requetepersonnephysique->setEstAvorterUsagerclient(false);
+            $requetepersonnephysique->setEstentraitement(false);
+            $requetepersonnephysique->setDateEmise(new \Datetime());
+            
             $requetepersonnemorale= new Requete;
             $requetepersonnemorale->setTypeusagerclient('Personne morale');
             $requetepersonnemorale->setModesaisine($modesaisine);
             $requetepersonnemorale->setSocieteentreprise($societentreprise);
+            $requetepersonnemorale->setEstFonder(null);
+            $requetepersonnemorale->setEstAvorterUsagerclient(false);
+            $requetepersonnemorale->setEstentraitement(false);
+            $requetepersonnemorale->setDateEmise(new \Datetime());
             
             $formpersonnephysique = $this->createForm(new RequetePersonnePhysiqueType(), $requetepersonnephysique); 
             $formpersonnemorale = $this->createForm(new RequetePersonneMoraleType(), $requetepersonnemorale); 

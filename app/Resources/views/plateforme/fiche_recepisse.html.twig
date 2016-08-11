@@ -80,7 +80,7 @@ table.morpion td.j2 { color: #A00; }
           </tr>
           <tr>
              <td style="width: 35mm; text-align: left; font-size: 10pt;" colspan="1">Ville de résidence :  </td>
-             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1"> {{  element.particulier.usagerclient.adressecontact.ville.nomville }} </td>
+             <td style="width: 50mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1"> {% if element.particulier.usagerclient.adressecontact.ville is not null  %}{{  element.particulier.usagerclient.adressecontact.ville.nomville }} {% endif %}</td>
           
               <td style="width: 30mm; text-align: left; font-size: 10pt;" colspan="1"> Profession : </td>
              <td style="width: 45mm; text-align: left; font-size: 10pt;font-weight: bold;" colspan="1">   {{  element.particulier.profession }}  </td>
