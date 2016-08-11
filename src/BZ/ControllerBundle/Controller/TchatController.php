@@ -65,7 +65,7 @@ class TchatController extends Controller
 //                      
     }
    
-     public function notificationsAction()
+   public function notificationsAction()
     {
          
       $usersconnectes= $this->getDoctrine()
@@ -94,7 +94,36 @@ class TchatController extends Controller
                     if($i->getRequete()->getestFonder() == true && $i->getRequete()->getestAvorterUsagerclient() == false && $i->getRequete()->getestResolu() == false){ $nbretraitement++;  }
                 }
         }
-        $response = new Response(json_encode(array('nbreusers' => $nbreuser, 'nbremsg' => $nbremesg, 'nbretraitements' => $nbretraitement)));
+        $nonclasse=0;
+        $requetes= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estdelete'=>false,'estFonder'=>null,'estentraitement'=>false));
+        foreach ($requetes as $i){
+          $nonclasse++;  
+        }
+        $classerprioritairereq=0;
+        $requeteprioritaires= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true,'estdelete'=>false,'estentraitement'=>false));
+        foreach ($requeteprioritaires as $i){
+          $classerprioritairereq++;  
+        }
+        $requeteavorter=0;
+        $requeteavorters= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('estAvorterUsagerclient'=>true,'estdelete'=>false));
+        foreach ($requeteavorters as $i){
+          $requeteavorter++;  
+        }
+        
+        $nbrecloturer=0;
+        $cloturerequetes= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:ClotureRequete')
+                                      ->findAll();
+           foreach ($cloturerequetes as $i){
+          $nbrecloturer++;  
+        }
+        $response = new Response(json_encode(array('requetecloturer' => $nbrecloturer,'requeteabandonner' => $requeteavorter,'classerprioritairereq' => $classerprioritairereq,'nonclasser' => $nonclasse,'nbreusers' => $nbreuser, 'nbremsg' => $nbremesg, 'nbretraitements' => $nbretraitement)));
             $response->headers->set('Content-Type', 'application/json');
             return $response;      
     }

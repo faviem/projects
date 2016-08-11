@@ -12,7 +12,7 @@ class RegistreController extends Controller
     {
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true,'estentraitement'=>false ),Array('dateEmise'=>'ASC'));
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true,'estentraitement'=>false,'estdelete'=>false ),Array('dateEmise'=>'ASC'));
              return $this->render('BZVueBundle:Registre:requetes_fondees.html.twig', array('requete' => $requetes,'menu_num'   => 4));             
     }
     
@@ -20,7 +20,7 @@ class RegistreController extends Controller
     {
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>false,'estentraitement'=>false),Array('dateEmise'=>'ASC'));
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>false,'estentraitement'=>false,'estdelete'=>false),Array('dateEmise'=>'ASC'));
              return $this->render('BZVueBundle:Registre:requetes_nonfondees.html.twig', array('requete' => $requetes,'menu_num'   => 4));             
     }
     
@@ -28,7 +28,7 @@ class RegistreController extends Controller
     {
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>true),Array('dateEmise'=>'ASC'));
+                                      ->findBy(Array('estAvorterUsagerclient'=>true,'estdelete'=>false),Array('dateEmise'=>'ASC'));
              return $this->render('BZVueBundle:Formulaire:requetes_avortees.html.twig', array('requete' => $requetes,'menu_num'   => 4));             
     }
     

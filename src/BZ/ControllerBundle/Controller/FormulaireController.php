@@ -27,6 +27,7 @@ class FormulaireController extends Controller
             $requetepersonnephysique->setEstFonder(null);
             $requetepersonnephysique->setEstAvorterUsagerclient(false);
             $requetepersonnephysique->setEstentraitement(false);
+            $requetepersonnephysique->setEstdelete(false);
             $requetepersonnephysique->setDateEmise(new \Datetime());
             $requetepersonnemorale= new Requete;
             $requetepersonnemorale->setTypeusagerclient('Personne morale');
@@ -34,6 +35,7 @@ class FormulaireController extends Controller
             $requetepersonnemorale->setEstFonder(null);
             $requetepersonnemorale->setEstAvorterUsagerclient(false);
             $requetepersonnemorale->setEstentraitement(false);
+            $requetepersonnemorale->setEstdelete(false);
             $requetepersonnemorale->setDateEmise(new \Datetime());
             
             $formpersonnephysique = $this->createForm(new RequetePersPhysiqueType(), $requetepersonnephysique); 
@@ -80,7 +82,7 @@ class FormulaireController extends Controller
     {
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>null),Array('dateEmise'=>'ASC'));
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estdelete'=>false,'estFonder'=>null,'estentraitement'=>false),Array('dateEmise'=>'ASC'));
              return $this->render('BZVueBundle:Formulaire:requetes_attentes.html.twig', array('requete' => $requetes,'menu_num'   => 4));             
     }
     
@@ -88,7 +90,7 @@ class FormulaireController extends Controller
     {
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true),Array('dateEmise'=>'ASC'));
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true,'estdelete'=>false,'estentraitement'=>false),Array('dateEmise'=>'ASC'));
              return $this->render('BZVueBundle:Formulaire:requetes_fondees.html.twig', array('requete' => $requetes,'menu_num'   => 4));             
     }
     

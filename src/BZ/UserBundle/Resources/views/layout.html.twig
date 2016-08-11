@@ -165,7 +165,7 @@
                             <li ><a href="{{ path("requetes_attentes") }}" style=""><i class="icon-angle-right"></i> Requêtes non classées <span class="label label-danger" style="float: right;margin-right: 2%;" id="nonclasser">4</span> </a></li>
                            <li ><a href="{{ path("requetes_fondees") }}" style=""><i class="icon-angle-right"></i> Requêtes classées prioritaires <span class="label label-info" style="float: right;margin-right: 2%;" id="classerprioritairereq">4</span></a></li>
                             <li ><a href="{{ path("requetes_nonfondees") }}" style=""><i class="icon-angle-right"></i> Requêtes classées non prioritaires </a></li>
-                            <li ><a href="{{ path("requetes_avortees") }}" style=""><i class="icon-angle-right"></i> Requêtes abandonnées <span class="label label-success" style="float: right;margin-right: 2%;" id="classerprioritairereq">4</span></a> </li>
+                            <li ><a href="{{ path("requetes_avortees") }}" style=""><i class="icon-angle-right"></i> Requêtes abandonnées <span class="label label-success" style="float: right;margin-right: 2%;" id="requeteabandonner">4</span></a> </li>
                         </ul>
                     </li>
                     <li class="panel">
@@ -178,7 +178,7 @@
                         <ul class="collapse" id="traitements" >
                             <li ><a href="{{ path("requetes_encours") }}" style=""><i class="icon-angle-right"></i> Requêtes en cours de traitement </a></li>
                             <li ><a href="{{ path("requetes_soufrance") }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes non traitées </a></li>
-                            <li ><a href="{{ path("requetes_resolues") }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes clôturées</a></li>
+                            <li ><a href="{{ path("requetes_resolues") }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes clôturées <span class="label label-default" style="float: right;margin-right: 2%;" id="requetecloturer">0</span></a></li>
 
                         </ul>
                     </li>
@@ -307,6 +307,10 @@
                        $('#nbreusers').html(data.nbreusers);
                        $('#nbremsg').html(data.nbremsg);
                        $('#nbretraitement').html(data.nbretraitements);
+                       $('#nonclasser').html(data.nonclasser);
+                       $('#classerprioritairereq').html(data.classerprioritairereq);
+                       $('#requeteabandonner').html(data.requeteabandonner);
+                       $('#requetecloturer').html(data.requetecloturer);
                    },
                    error: function() {alert('coupé');} });
              }

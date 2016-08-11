@@ -36,6 +36,7 @@ class DefaultController extends Controller
              $requetepersonnephysique->setEstFonder(null);
             $requetepersonnephysique->setEstAvorterUsagerclient(false);
             $requetepersonnephysique->setEstentraitement(false);
+            $requetepersonnephysique->setEstdelete(false);
             $requetepersonnephysique->setDateEmise(new \Datetime());
             
             $requetepersonnemorale= new Requete;
@@ -45,6 +46,7 @@ class DefaultController extends Controller
             $requetepersonnemorale->setEstFonder(null);
             $requetepersonnemorale->setEstAvorterUsagerclient(false);
             $requetepersonnemorale->setEstentraitement(false);
+            $requetepersonnemorale->setEstdelete(false);
             $requetepersonnemorale->setDateEmise(new \Datetime());
             
             $formpersonnephysique = $this->createForm(new RequetePersonnePhysiqueType(), $requetepersonnephysique); 
