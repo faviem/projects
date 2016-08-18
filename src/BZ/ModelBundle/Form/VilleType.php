@@ -5,6 +5,7 @@ namespace BZ\ModelBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class VilleType extends AbstractType
 {
@@ -15,6 +16,18 @@ class VilleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+                  ->add('departement','entity', array('label' => 'Département (*)', 
+                'class' => 'BZModelBundle:Departement',
+                'property' => 'nomdepartement',
+                'empty_value' => '',
+                'multiple' => false,
+                'attr' =>array('class' =>'form-control chzn-select'),
+                'required' => true,
+                'query_builder' => function(EntityRepository $er )  {
+                                return $er->createQueryBuilder('d')
+                                          ->orderBy('d.nomdepartement', 'ASC')
+                                          ->where('d.estdelete = 0');
+                        }))
             ->add('nomville', 'text', array(
             'label' => 'Ville',
              'attr' =>array(

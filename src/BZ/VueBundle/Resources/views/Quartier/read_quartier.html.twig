@@ -6,7 +6,7 @@
 <div class="col-lg-12" style="margin-top: 1%;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <span style="font-size: 12px;"> LISTE DES QUARTIERS DE VILLE OU VILLAGE</span> 
+            <span style="font-size: 12px;"> LISTE DES ZONES OU QUARTIERS DE VILLE OU VILLAGES</span> 
             <a href="{{ path('create_quartier')}}" class="btn btn-success btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModal" style="float: right;" ><i class="icon icon-plus-sign"></i></a>
         <a href="{{ path('print_quartier') }}" style="float: right;margin-right: 5px;color: black;" target="_blank" class="btn btn-default  btn-xs btn-rect" > <i class="icon   icon-print"></i></a>                
         </div>
@@ -20,7 +20,10 @@
                                     Actions
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
-                                     Quartiers de ville ou Villages
+                                     Zones ou Quartiers de ville ou Villages
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                     Arrondissement
                                 </th>
                            </tr>
                         </thead>
@@ -34,6 +37,7 @@
                                     <a href="{{ path('delete_quartier', {'id':  element.id }) }}" class="btn btn-danger btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModal" style="font-size: 11px;"><i class="icon  icon-trash"> </i> </a>
                                  </td>
                                 <td class="" style="font-size: 12px;">{{  element.libelle }} </td>
+                                <td class="" style="font-size: 12px;"> {% if  element.arrondissement %} {{  element.arrondissement.libelle }}  {% endif %} </td>
                                </tr>
                            {% endfor %}
                         </tbody>

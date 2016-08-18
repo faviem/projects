@@ -22,6 +22,9 @@
                                 <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
                                      Arrondissement
                                 </th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                     Ville ou commune
+                                </th>
                            </tr>
                         </thead>
                         <tbody>
@@ -34,6 +37,7 @@
                                     <a href="{{ path('delete_arrondissement', {'id':  element.id }) }}" class="btn btn-danger btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModal" style="font-size: 11px;"><i class="icon  icon-trash"> </i> </a>
                                  </td>
                                 <td class="" style="font-size: 12px;">{{  element.libelle }} </td>
+                                <td class="" style="font-size: 12px;">{% if  element.ville %} {{  element.ville.nomville }}  {% endif %}</td>
                                </tr>
                            {% endfor %}
                         </tbody>

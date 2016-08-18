@@ -14,6 +14,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Quartier
 {
     /**
+    * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Arrondissement")
+    * @ORM\JoinColumn(nullable=true) 
+    */
+    private $arrondissement;
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -207,5 +212,28 @@ class Quartier
     public function getEstdelete()
     {
         return $this->estdelete;
+    }
+
+    /**
+     * Set arrondissement
+     *
+     * @param \BZ\ModelBundle\Entity\Arrondissement $arrondissement
+     * @return Quartier
+     */
+    public function setArrondissement(\BZ\ModelBundle\Entity\Arrondissement $arrondissement = null)
+    {
+        $this->arrondissement = $arrondissement;
+
+        return $this;
+    }
+
+    /**
+     * Get arrondissement
+     *
+     * @return \BZ\ModelBundle\Entity\Arrondissement 
+     */
+    public function getArrondissement()
+    {
+        return $this->arrondissement;
     }
 }

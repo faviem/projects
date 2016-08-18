@@ -24,6 +24,7 @@
 </form>
 {% block parentScript %}
 <script>
+       $(".chzn-select").chosen();
      $('form').draggable();
      $("form").submit(function(event) {
             var $this = $(this);

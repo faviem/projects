@@ -6,7 +6,7 @@
 <div class="col-lg-12" style="margin-top: 1%;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <span style="font-size: 12px;"> LISTE DES VILLES</span> 
+            <span style="font-size: 12px;"> LISTE DES VILLES OU COMMUNES </span> 
             <a href="{{ path('create_ville')}}" class="btn btn-success btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModal" style="float: right;" ><i class="icon icon-plus-sign"></i></a>
         <a href="{{ path('print_ville') }}" style="float: right;margin-right: 5px;color: black;" target="_blank" class="btn btn-default  btn-xs btn-rect" > <i class="icon   icon-print"></i></a>                
         </div>
@@ -22,6 +22,9 @@
                                 <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
                                      Ville de résidence
                                 </th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                     Département
+                                </th>
                            </tr>
                         </thead>
                         <tbody>
@@ -30,10 +33,11 @@
                             <tr class="gradeA {% if nbre%2==0 %} odd {% else %} even{% endif%}">
                                 {% set nbre = nbre+1 %}
                                 <td class="sorting_1" style="text-align: center;">
-                                    <a href="{{ path('update_ville', {'id':  element.id }) }}" class="btn btn-warning btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu" style="font-size: 11px;"><i class="icon icon-edit"> </i> </a>
-                                    <a href="{{ path('delete_ville', {'id':  element.id }) }}" class="btn btn-danger btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModal" style="font-size: 11px;"><i class="icon  icon-trash"> </i> </a>
+                                    <a href="{{ path('update_ville', {'id':  element.id }) }}" class="btn btn-warning btn-xs btn-rect createformulaire"  style="font-size: 11px;"><i class="icon icon-edit"> </i> </a>
+                                    <a href="{{ path('delete_ville', {'id':  element.id }) }}" class="btn btn-danger btn-xs btn-rect createformulaire" style="font-size: 11px;"><i class="icon  icon-trash"> </i> </a>
                                  </td>
                                 <td class="" style="font-size: 12px;">{{  element.nomville }} </td>
+                                <td class="" style="font-size: 12px;">  {% if  element.departement %} {{  element.departement.nomdepartement }}  {% endif %} </td>
                                </tr>
                            {% endfor %}
                         </tbody>
