@@ -2,19 +2,11 @@
 page_accueil:
     path:     /
     defaults: { _controller: "BZControllerBundle:Default:index" }
-    
-apropos:
-    path:     /apropos
-    defaults: { _controller: "BZControllerBundle:Default:apropos" }
-    
+   
 statistiques:
     path:     /statistiques
     defaults: { _controller: "BZControllerBundle:Default:statistiques" }
-
-repertoire_requete:
-    path:     /repertoire_requete
-    defaults: { _controller: "BZControllerBundle:Default:repertoire_requete" }
-    
+ 
 authentifier_requete:
     path:     /authentifier_requete/{id}
     defaults: { _controller: "BZControllerBundle:Default:authentifier_requete" }
@@ -22,6 +14,10 @@ authentifier_requete:
 retour_requete:
     path:     /retour_requete/{id}
     defaults: { _controller: "BZControllerBundle:Default:retour_requete" }
+    
+fermer_requete:
+    path:     /fermer_requete
+    defaults: { _controller: "BZControllerBundle:Default:fermer_requete" }
     
 avorter_requeteclient:
     pattern:    /avorter_requeteclient/{id}

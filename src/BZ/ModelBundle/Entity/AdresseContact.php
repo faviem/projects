@@ -13,17 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AdresseContact
 {
-    
-    /**
-    * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Ville")
-    * @ORM\JoinColumn(nullable=true) 
-    */
-    private $ville;
-    /**
-    * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Departement")
-    * @ORM\JoinColumn(nullable=true) 
-    */
-    private $departement;
     /**
      * @var integer
      *
@@ -33,11 +22,6 @@ class AdresseContact
      */
     private $id;
 
-    /**
-    * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Arrondissement")
-    * @ORM\JoinColumn(nullable=true) 
-    */
-    private $arrondissement;
     /**
     * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Quartier")
     * @ORM\JoinColumn(nullable=true) 
@@ -165,75 +149,6 @@ class AdresseContact
     public function getDetails()
     {
         return $this->details;
-    }
-
-    /**
-     * Set ville
-     *
-     * @param \BZ\ModelBundle\Entity\Ville $ville
-     * @return AdresseContact
-     */
-    public function setVille(\BZ\ModelBundle\Entity\Ville $ville = null)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
-     * Get ville
-     *
-     * @return \BZ\ModelBundle\Entity\Ville 
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
-
-    /**
-     * Set departement
-     *
-     * @param \BZ\ModelBundle\Entity\Departement $departement
-     * @return AdresseContact
-     */
-    public function setDepartement(\BZ\ModelBundle\Entity\Departement $departement = null)
-    {
-        $this->departement = $departement;
-
-        return $this;
-    }
-
-    /**
-     * Get departement
-     *
-     * @return \BZ\ModelBundle\Entity\Departement 
-     */
-    public function getDepartement()
-    {
-        return $this->departement;
-    }
-
-    /**
-     * Set arrondissement
-     *
-     * @param \BZ\ModelBundle\Entity\Arrondissement $arrondissement
-     * @return AdresseContact
-     */
-    public function setArrondissement(\BZ\ModelBundle\Entity\Arrondissement $arrondissement = null)
-    {
-        $this->arrondissement = $arrondissement;
-
-        return $this;
-    }
-
-    /**
-     * Get arrondissement
-     *
-     * @return \BZ\ModelBundle\Entity\Arrondissement 
-     */
-    public function getArrondissement()
-    {
-        return $this->arrondissement;
     }
 
     /**

@@ -26,7 +26,11 @@
                 </div>
                 <div class="panel-footer">
                     {% block parentBoutons %} 
-                        <a type="button" class="btn btn-default btn-xs btn-line createformulaire" href="{{ path('retour_requete',{'id': element.id}) }}" data-toggle="modal" data-target="#myModalu"><i class="icon icon-arrow-left"> </i> Retour</a>
+                        <a type="button" class="btn btn-default btn-xs btn-line " href="#{{id}}" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('retour_requete',{'id': element.id}) }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"><i class="icon icon-arrow-left"> </i> Retour</a>
                         <button type="submit" class="btn btn-danger btn-xs btn-line" >Annuler requête</button>
                         <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Annulation en cours ...</span>
                         {% endblock parentBoutons %}
@@ -56,24 +60,6 @@
                 //we dont what the browser to submit the form
                 event.preventDefault();
             });
-
-            $('.createformulaire').click(function (event) {
-                var buton = $(this);
-                // $('#afficheformulaire').html('');
-                $.ajax({
-                    type: 'GET',
-                    url: buton.attr('href'),
-                    cache: false,
-                    success: function (data) {
-                        $('#afficheformulaire').html(data);
-                        // $('#frm_createVille').dialog();
-                    },
-                    error: function () {
-                        alert('requête échouée');
-                    }});
-                //we dont what the browser to submit the form
-                event.preventDefault();
-            });
-        </script>
+    </script>
     {% endblock parentScript %}
 </div>

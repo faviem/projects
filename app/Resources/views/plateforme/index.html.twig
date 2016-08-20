@@ -26,6 +26,7 @@
 
         <link rel="stylesheet" href="{{ asset('assets/plugins/chosen/chosen.min.css')}}" />
 
+        <link rel="stylesheet" href="{{ asset('assets/plugins/dataTables/dataTables.bootstrap.css')}}" />
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -45,19 +46,10 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li {%if menu==1%}  class="active"  {% endif %}>
-                                    <a href="{{ path("page_accueil") }}" style="font-size: 17px;">ESPACE DE DEPOT DE REQUETES</a>
-                                </li>
-                                <li {%if menu==2%}  class="active"  {% endif %}>
-                                    <a href="{{ path("repertoire_requete") }}" style="font-size: 17px;">REPERTOIRE DES REQUETES</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path("fos_user_security_login") }}" style="font-size: 17px;">ESPACE MEMBRE</a>
-                                </li>
-                                <li {%if menu==4%}  class="active"  {% endif %}>
-                                    <a href="{{ path("apropos") }}" style="font-size: 17px;">A PROPOS ?</a>
-                                </li>
 
+                                <li>
+                                    <a href="{{ path("fos_user_security_login") }}" style="font-size: 17px;" target="_blank"><i class="icon-user"> </i>ESPACE MEMBRE</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -69,166 +61,293 @@
 
             <!-- Pay Off -->
             <div class="row center vspace30">
+
                 <div class="col-md-12">
-                    <h1><span><img src="{{ asset('images/1.jpg')}}" style="height: 50px;width: 60px;"alt=""> BIENVENUE DANS SysGERUC <img style="height: 50px;width: 60px;" src="{{ asset('images/logo.gif')}}" alt=""></span></h1>
-                    <p style="color: #000000;text-shadow: 0.3px 0.2px 0.2px #000;font-size: 17px;"><span style="font-size: 19px;text-shadow: 1px 1px 1px #000;color: #0000AA;">=*=*=*Système de Gestion des Requêtes des Usagers/clients*=*=*= </span><br/> Plate-forme web du Service des Relation avec les Usagers/clients (SRU) de la Direction de l'Informatique et du Pré-archivage (DIP) du<br/> <span  style="font-size: 17px;text-shadow: 1px 1px 1px #000;"> Ministère de l'Energie, de l'Eau et des Mines (MEEM) </span></p>
+                    <h3 style="margin-top: -0.05%;"><span><img src="{{ asset('images/1.jpg')}}" style="height: 70px;width: 75px;"alt=""> BIENVENUE DANS SysGERUC <img style="height: 70px;width: 75px;" src="{{ asset('images/logo.gif')}}" alt=""></span></h3>
+                    <p style="color: #000000;text-shadow: 0.3px 0.2px 0.2px #000;font-size: 17px;margin-top: -25px;" >
+                        <span  style="font-size: 16px;text-shadow: 1px 1px 1px #008200;"> 
+                            République du Bénin
+                        </span><br/>
+                        <span  style="font-size: 17.5px;text-shadow: 1px 1px 1px #000;"> 
+                            Ministère de l'Energie, de l'Eau et des Mines (MEEM) 
+                        </span><br/>
+                        <span  style="font-size: 16px;"> 
+                            Direction de l'Informatique et du Pré-archivage (DIP)
+                        </span><br/>
+                        <span style="font-size: 16px;text-shadow: 1px 1px 1px #000;color: #0000AA;">
+                            =*=*=*Système de Gestion des Requêtes des Usagers/clients*=*=*=
+                        </span>
+                    </p>
                 </div>
             </div>
             <!-- /Pay Off -->
-            <div class="content" style="margin-top: -3%;">
+            <div class="content " style="margin-top: -4%;">
                 <div class="container theme">
                     <!-- FAQ -->
                     <div class="row vspace30">
+                        <div class="col-md-2" >
+                        </div>
                         <div class="col-md-8">
-                            <div class="panel-group" id="faq">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="text-decoration: none;">
-                                                <span class="glyphicon glyphicon-comment"></span>  <span style="font-size: 13px;color: #002200;">Espace d'expression de requête réservé aux particuliers </span> 
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse  {% if valide is defined %} {% if valide ==1 %} in {% endif %}   {% else %} in {% endif %}">
-                                        <div class="panel-body">
-                                            {% if valide is defined %}
-                                                {% if valide ==1 %}
-                                                <div class="alert alert-success fade in">
-                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-                                                    <strong>Votre requête est reçue avec succès!</strong> le code de récépissé pour consultation est : {{ code }}
-                                                        <a type="button" class="hide" href="{{ path('fiche_recepisse',{'id': id, 'codecacher': codecacher }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
+                            <div id="portfolio">
+                                <!-- Portfolio Button Filters -->
+                                <ul id="portfolio-filter" class="nav nav-pills" style="margin-left: 2.45%;">
+                                    <li class="active"><a href="#" class="filter" data-filter="*"> <i class="icon-refresh"></i> Actualiser tout</a></li>
+                                    <li class=""><a href="#" class="filter" data-filter="category1"> <i class="icon-phone"></i> Particulier</a></li>
+                                    <li class=""><a href="#" class="filter" data-filter="category2"> <i class="icon-phone"></i> Personne Morale</a></li>
+                                    <li class=""><a href="#" class="filter" data-filter="category3"> <i class="icon-question"></i> A Propos de la SRU</a></li>
+                                    <li class=""><a href="#" class="filter" data-filter="category4"> <i class="icon-folder-open"></i> Repertoire des requêtes </a></li>
+                                </ul>
+                                <!-- /Portfolio Button Filters -->
+
+                                <!-- Portfolio Items Container -->
+                                <div class="row vspace30 " id="portfolio-items" >
+                                    <!-- Portfolio Item -->
+                                    <div class="item category1">
+
+                                        <div class="panel-group" id="faq">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">
+
+                                                        <span style="font-size: 13px;color: #002200;" id="apropos"> FORMULAIRE RESERVE AUX PARTICULIERS ... </span> 
+
+                                                    </h3>
                                                 </div>
-                                                {% endif %}
-                                            {% endif %}
-                                            <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnephysique) }} method="post"  >
-                                                <div class="alert alert-info fade in">
-                                                    <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
-                                                 </div>
-                                                {{ form_widget(formpersonnephysique) }}
-                                                {{ form_rest(formpersonnephysique) }}
-                                                <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"><i class="icon icon-share"> </i> Envoyer Votre Requête</button>
-                                            </form>
+                                                <div id="collapseOne" class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        {% if valide is defined %}
+                                                            {% if valide ==1 %}
+                                                                <div class="alert alert-success fade in">
+                                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                                                    <strong>Votre requête est reçue avec succès!</strong> le code de récépissé pour consultation est : {{ code }}
+                                                                    <a type="button" class="hide" href="{{ path('fiche_recepisse',{'id': id, 'codecacher': codecacher }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnephysique) }} method="post"  >
+                                                            <div class="alert alert-info fade in">
+                                                                <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
+                                                            </div>
+                                                            {{ form_widget(formpersonnephysique) }}
+                                                            {{ form_rest(formpersonnephysique) }}
+                                                            <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"><i class="icon icon-share"> </i> Envoyer Votre Requête</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- /Portfolio Item -->
+                                    <!-- Portfolio Item -->
+
+                                    <div class=" item category2">
+
+                                        <div class="panel-group" id="faq">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">
+                                                        <span style="font-size: 13px;color: #002200;" id="apropos"> FORMULAIRE RESERVE AUX ENTREPRISES - SOCIETE - STRUCTURES - ONG ETC ... </span> 
+                                                    </h3>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        {% if valide is defined %}
+                                                            {% if valide ==2 %}
+                                                                <div class="alert alert-success fade in">
+                                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                                                    <strong>Votre requête est reçue avec succès!</strong> le code de récépissé pour consultation est : {{ code }}
+                                                                    <a type="button" class="hide" href="{{ path('fiche_recepisse',{'id': id, 'codecacher': codecacher }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnemorale) }} method="post"  >
+                                                            <div class="alert alert-info fade in">
+                                                                <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
+                                                            </div>
+                                                            {{ form_widget(formpersonnemorale) }}
+                                                            {{ form_rest(formpersonnemorale) }}
+                                                            <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"> <i class="icon icon-share"> </i> Envoyer Votre Requête</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
-                                                <span class="glyphicon glyphicon-comment"></span>  <span style="font-size: 13px;color: #002200;">Espace d'expression de requête réservé aux strucutres et entreprises </span> 
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse {% if valide is defined %}{% if valide ==2 %}in{% endif %} {% endif %}">
-                                        <div class="panel-body">
-                                            {% if valide is defined %}
-                                                {% if valide ==2 %}
-                                                <div class="alert alert-success fade in">
-                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-                                                    <strong>Votre requête est reçue avec succès!</strong> le code de récépissé pour consultation est : {{ code }}
-                                                     <a type="button" class="hide" href="{{ path('fiche_recepisse',{'id': id, 'codecacher': codecacher }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
+                                    <!-- /Portfolio Item -->
+                                    <!-- Portfolio Item -->
+
+                                    <div class="item category3" >
+                                        <div class="panel-group" id="faq">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">
+                                                        <span style="font-size: 13px;color: #002200;" id="apropos"> A Propos de la SRU ... </span> 
+                                                    </h3>
                                                 </div>
-                                                {% endif %}
-                                            {% endif %}
-                                            <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnemorale) }} method="post"  >
-                                               <div class="alert alert-info fade in">
-                                                    <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
-                                                 </div>
-                                                {{ form_widget(formpersonnemorale) }}
-                                                {{ form_rest(formpersonnemorale) }}
-                                                <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"> <i class="icon icon-share"> </i> Envoyer Votre Requête</button>
-                                            </form>
+                                                <div id="collapseOne" class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        <p style="font-size: 17px;text-align: center;text-shadow: 2px 1px 2px #5500AA;color: black;">SERVICE DES RELATIONS AVEC LES USAGERS (SRU)</p>
+                                                        <p style="font-size: 12px;text-align: center;color: black;">Arrêté interministériel, N°002/MRAI/PM_CCAGEPPPDDS/MEF/MDGLAAT/MTFP/MCRI/DC/SGM/SA,</p>
+                                                        <p style="font-size: 12px;text-align: center;margin-top: -2%;color: black;">portant Attributions, Organisation et Fonctionnement du Service des Relations avec les Usagers</p>
+                                                        <p style="font-size: 14px;text-align: center;font-weight: bold;color: black;">Le Service des Relations avec les Usagers (SRU) a pour mission de faciliter les relations entre les directions techniques et les usagers/clients pour un service public plus efficace et plus efficient.</p>
+
+                                                        <p style="font-size: 15px;text-align: left;text-shadow: 0.5px 0.5px 0.5px #5500AA;color: black;"> Le Service des Relations avec les Usagers (SRU) est chargé : </p>
+
+                                                        <p style="font-size: 13px;text-align: left; color: black;">
+                                                            <i class="icon-arrow-right"> </i>  d'accueillir, de renseigner et d'orienter les usagers/clients du Ministère ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i> de mettre à la disposition des usagers/clients, les documents et les formulaires utiles à leurs requêtes ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>  de contribuer à l'organisation, au besoin, de campagne de prestation de service mobile ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>   de tenir une statistique permanente des usagers/clients et des services fournis ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>   d'émettre des avis et de faire des recommandations sur toute question relevant de sa compétence, dans le cadre de l'amélioration continue de la qualité des prestations aux usagers/clients et autres contribuables ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    d'apporter des solutions aux préoccupations des usagers/clients ne nécessitant pas de recherches particulières ou de recours aux services techniques ou aux supérieures hiérarchiques ;</p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    de collecter et de fournir aux usagers, des informations sur le traitement de leurs dossiers ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    de faciliter, en cas de besoin, les relations entre les Directeurs techniques et les usagers/clients pour un service public plus efficace et plus efficient ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    d'enregistrer et d'examiner, avec les directions compétentes, les plaintes et suggestions des usagers ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    de préserver l'image de marque du Ministère en offrant aux usagers/clients le meilleur service possible ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    de produire un rapport mensuel sur les plaintes et suggestions des usagers/clients du Munistère de l'Energie, des Recherches Pétrolières et Minières et du Développement des Energies Renouvelables et formuler des propositions en vue de l'amélioration des prestations des différentes structures du Ministère ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    de mettre à la disposition du public une ligne verte pour poursuivre leurs préoccupations ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    d'assurer la collecte des informations à diffuser sur le site Web du Ministère et de l'Intranet ;
+                                                        </p>
+                                                        <p style="font-size: 13px;text-align: left;color: black;">
+                                                            <i class="icon-arrow-right"> </i>    d'organiser périodiquement des journées portes ouvertes aux usagers/clients du Ministère ;
+                                                        </p>
+
+                                                        <h3></i>&nbsp; A QUOI SERT ''SYSGERUC'' ?</h3>
+                                                        <address class="well">
+                                                            <p>
+                                                                Plate-forme de recueil des requêtes (plainte, suggestion, recommandation etc...) des Usagers du Ministère de l'Energie et de l'Eau (MEEM).
+                                                            </p>
+                                                        </address>
+                                                        <h3>&nbsp;Contact Info</h3>
+                                                        <address class="well">
+                                                            <p><i class="icon-map-marker"></i>&nbsp;Avenu Jean Paul II 04 BP 1412 - Cotonou - Bénin <br/> Numéro IFU 4200901839118</p>
+                                                            <p><i class="icon-phone"></i>&nbsp;Phone: (229) 21 31 29 07 / 21 31 29 24 / 21 31 29 38</p>
+                                                            <p><i class="icon-print"></i>&nbsp;Fax: (229) 21 31 35 46</p>
+                                                            <p><i class="icon-envelope"></i>&nbsp;Email: spmmeh@internet.bj</p>
+                                                            <p><i class="icon-globe"></i>&nbsp;Web: https://meem-dip.herokuapp.com/</p>
+                                                        </address>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- /Portfolio Item -->
+                                    <!-- Portfolio Item -->
+
+                                    <div class="item category4" >
+                                        <div class="panel-group" id="faq">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">
+                                                        <span style="font-size: 13px;color: #002200;" id="apropos"> REPERTOIRE  DES REQUETES NON CLOTUREES</span> 
+                                                    </h3>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        <div class="table-responsive">
+                                                            <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                                <table style="color: black;" class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th class="sorting_desc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" aria-sort="descending" style="font-size: 13px;text-align: center;">
+                                                                                #
+                                                                            </th>
+                                                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                                                                Date Emise
+                                                                            </th>
+                                                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                                                                Usager/client
+                                                                            </th>
+                                                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                                                                Pour le compte de
+                                                                            </th>
+                                                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                                                                Type
+                                                                            </th>
+                                                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                                                                Etat
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {% set nbre = 0 %}
+                                                                        {% for element in  requete %}
+                                                                            <tr class="gradeA {% if nbre%2==0 %} odd {% else %} even{% endif%}">
+                                                                                {% set nbre = nbre+1 %}
+                                                                                <td class="sorting_1" style="text-align: center;">
+                                                                                    <a onclick=" $.ajax({type: 'GET', url: '{{ path('authentifier_requete',{'id': element.id}) }}', cache: false, success: function (data) {
+                                                                                        $('#afficheformulaire').html(data);
+                                                                                    }, error: function () {
+                                                                                        alert('requête échouée');
+                                                                                    }});" href="#{{element.id}}" class="btn btn-info btn-xs btn-rect " style="font-size: 11px;"><i class="icon icon-lock"> </i> </a>
+                                                                                </td>
+                                                                                <td class="" style="font-size: 12px;">{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}  </td>
+                                                                                <td class="" style="font-size: 12px;">
+                                                                                    {% if element.typeusagerclient == 'Personne physique' %}
+                                                                                        {{  element.particulier.prenom }}   {{  element.particulier.nom }}   
+                                                                                    {% else %}
+                                                                                        {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )
+                                                                                    {% endif %}
+                                                                                </td>
+                                                                                <td class="" style="font-size: 12px;">{{  element.structuresoustutelle.nom }} </td>
+                                                                                <td class="" style="font-size: 12px;">{{  element.typerequete.libelle }}  </td>
+                                                                                <td class="" style="font-size: 12px;">
+                                                                                    {% if element.cloturerequete is null %}
+                                                                                        <span style="color: red;">  en cours ...  </span>
+                                                                                    {% else %}
+                                                                                        <span style="color: green;"> résolue </span>
+                                                                                    {% endif %}
+                                                                                </td>
+                                                                            </tr>
+                                                                        {% endfor %}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div id='afficheformulaire'>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Portfolio Item -->
                                 </div>
+                                <!-- Portfolio Items Container -->
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            
-                            <h3><i class="icon-download-alt"></i>&nbsp; ORGANISMES</h3>
-                            <address class="">
-                                <div id="myCarousel" class="carousel slide">
-                                    <div class="carousel-inner">
-                                        <div class="item active"> <img style="height: 180px;" alt="" src="{{ asset('images/1.jpg')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/logo.gif')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/SBEE.jpg')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/ABERME.jpg')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/CEB-a.jpg')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/DGMINE.jpg')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/giz.png')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/SONEB.jpg')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/contrelec.png')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/dghcf.png')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="item"> <img style="height: 180px;" alt="" src="{{ asset('images/dgeau.jpg')}}"/>
-                                            <div class="carousel-caption">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control left" data-slide="prev"
-                                       href="#myCarousel">‹</a>
-                                    <a class="carousel-control right" data-slide="next"
-                                       href="#myCarousel">›</a> 
-                                </div>
-                            </address>
-                              <h3><i class="icon-question"></i>&nbsp;Aide</h3>
-                            <address class="well">
-                                <p>Cette plate-forme web du Ministère de l'Energie, de l'Eau et des Mines (MEEM) administrée par 
-                                    le Service des Relations avec les Usagers/Clients (SRU) compétent de la 
-                                    Direction de l'Informatique et du Pré-archivage (DIP).
-                                    Elle vise a permettre au grand public de soumettre leur requête à volonté au MEEM dans l'espérance d'une satisfaction rapide et totale. 
-                                    Si vous désirez formuler votre requête au MEEM en tant que particulier
-                                    où une personne morale (Société - Entreprise - ONG etc...) vous pouvez remplir l'une des formulaires ci-précédent prévus à cet effet.
-                                    En effet, vous pouvez après avoir posté votre requête, la revisitée au niveau du menu *REPERTOIRE DES REQUÊTES* afin de suivre l'évolution des traitements
-                                    et aussi et d'y émettre votre avis de satisfaction.
-                                 </p>
-                            </address>
-                        </div>
                     </div>
-                                        
                     <!-- /FAQ -->
-                   </div>
-             </div>
+                </div>
+            </div>
         </div>
 
         <footer id="footer">
@@ -257,18 +376,20 @@
         <script src="{{ asset('/plateforme/js/bootstrap/js/bootstrap.min.js')}}"></script>
         <script src="{{ asset('/plateforme/js/script.js')}}"></script>
 
+        <script src="{{ asset('assets/plugins/dataTables/jquery.dataTables.js')}}"></script>
+        <script src="{{ asset('assets/plugins/dataTables/dataTables.bootstrap.js')}}"></script>
         <script src="{{ asset('assets/plugins/chosen/chosen.jquery.min.js')}}"></script>
-        {% if valide is defined %}
-        <script type="text/javascript">
-              $(document).ready(function(){
-                  var url=$("#ficherequeteclient");
-                 window.open(url.attr('href'));
-                 return false;
-                //  location.load(url);
-                  //document.location.href=url, target
-              });
-      </script>
-        {% endif %}
+
+        <script>
+                                                                           $('#dataTables-example').dataTable();
+                                                                           // $(document).ready(function () {
+                                                                           // var url = $("#ficherequeteclient");
+                                                                           //  window.open(url.attr('href'));
+                                                                           //  return false;
+                                                                           //  location.load(url);
+                                                                           //document.location.href=url, target
+                                                                           // });
+        </script>
 
     </body>
 </html>

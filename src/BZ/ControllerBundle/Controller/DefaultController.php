@@ -52,6 +52,10 @@ class DefaultController extends Controller
             $formpersonnephysique = $this->createForm(new RequetePersonnePhysiqueType(), $requetepersonnephysique); 
             $formpersonnemorale = $this->createForm(new RequetePersonneMoraleType(), $requetepersonnemorale); 
             
+            $requetes= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'cloturerequete'=>null),Array('dateEmise'=>'DESC'));
+            
             $request = $this->get('request');
             if ($request->getMethod() == 'POST') 
             {
@@ -82,11 +86,11 @@ class DefaultController extends Controller
                                       ->getManager()->getRepository('BZModelBundle:Requete')
                                       ->find($_GET['id']);
                  return $this->render(':plateforme:index.html.twig',
-                   array('menu'   => 1,'valide'=>$_GET['valide'],'code'=>$requete->getCodeRecepisse(),'id'=>$_GET['id'],'codecacher'=>sha1($requete->getCodeRecepisse()),'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));
+                   array('menu'   => 1, 'requete' => $requetes, 'valide'=>$_GET['valide'],'code'=>$requete->getCodeRecepisse(),'id'=>$_GET['id'],'codecacher'=>sha1($requete->getCodeRecepisse()),'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));
             }
             else{
            return $this->render(':plateforme:index.html.twig',
-                   array('menu'   => 1, 'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));
+                   array('menu'   => 1, 'requete' => $requetes,'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));
             }
         }
         else
@@ -100,14 +104,7 @@ class DefaultController extends Controller
         }
     }
     //pour les requêtes
-    public function repertoire_requeteAction()
-    {
-            $requetes= $this->getDoctrine()
-                                      ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>false,'cloturerequete'=>null),Array('dateEmise'=>'DESC'));
-             return $this->render(':plateforme:repertoire_requete.html.twig', array('requete' => $requetes,'menu'   => 2));             
-    }
-    
+
     public function authentifier_requeteAction($id)
     {
           $requete= $this->getDoctrine()
@@ -127,6 +124,12 @@ class DefaultController extends Controller
           return $this->render(':plateforme:authentifier_requete.html.twig', array('menu' => 2,'id' => $id,'element' => $requete,'code' => ''));             
     }
     
+    public function fermer_requeteAction()
+    {
+          
+             return $this->render(':plateforme:fermer_requete.html.twig');             
+     }
+     
     public function retour_requeteAction($id)
     {
           $requete= $this->getDoctrine()
@@ -134,12 +137,6 @@ class DefaultController extends Controller
                                       ->find($id);
              return $this->render(':plateforme:usagerclient_requete.html.twig', array('menu' => 2,'id' => $id,'element' => $requete,'code' => sha1($requete->getCodeRecepisse())));             
      }
-    
-    public function aproposAction()
-    {
-            
-             return $this->render(':plateforme:apropos.html.twig', array('menu'   => 4));             
-    }
     
     public function statistiquesAction()
     {

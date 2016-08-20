@@ -4,9 +4,8 @@
             <div class="panel panel-info">
                 <div class="panel-heading" style="text-align: center;font-size: 13px;color: black;">
                     <span > ESPACE USAGER/CLIENT DE SUIVI DE REQUETE</span>
-                      <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();" style="float: right;" > <i class="icon-remove"></i></a>
-                
-                </div>
+                    <a style="float: right;" type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick=" $.ajax({type: 'GET',url: '{{ path('fermer_requete') }}',cache: false,success: function(data) { $('#afficheformulaire').html(data); }, error: function() {alert('requête échouée');} });"><i class="icon icon-arrow-left"> </i> </a>
+                 </div>
                 <div class="panel-body">
                     <div class="form-group">
                         <div style="color: black;font-size: 12px;" class="alert alert-success">
@@ -16,29 +15,29 @@
                                     <strong> {{  element.particulier.prenom }}   {{  element.particulier.nom }}   </strong><br/>
                                     Contact(s) : <strong>  {{  element.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
                         E@mail : <strong>  {{  element.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
-                        Département :  <strong> {{  element.particulier.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                        Ville de résidence :  <strong> {{  element.particulier.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
-                        Profession : <strong>  {{  element.particulier.profession }} </strong>  
+                       Profession : <strong>  {{  element.particulier.profession }} </strong>  
                                 {% else %}
                                    <strong> {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</strong><br/>
                                    Contact(s) :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
                         E@mail :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
-                          Département :  <strong> {{  element.societeentreprise.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                        Ville de résidence :  <strong> {{  element.societeentreprise.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
-                       Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
+                        Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
                                 {% endif %}<br/>
                             Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
                             Structure Destinataire : <strong>{{  element.StructureSoustutelle.nom }}</strong><br/>
                             Catégorie de requête : <strong>{{  element.typeRequete.libelle }}</strong><br/>
                             Mode de Saisine :  {% if element.modesaisine is not null %}<strong>{{  element.modesaisine.libelle }}</strong>{% else %} Aucun {% endif %}<br/>
-                            Code de récépissé :  <strong>{{  element.codeRecepisse }}</strong><br/>
                             Pièce Jointe : {% if element.filerequete is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( element.filerequete.dowloadPath) }}" target="_blank"><strong> {{ element.filerequete.nameFile }} </strong></a>{% endif %}<br/><br/>
                         </div>
                         <a type="button" class="btn btn-success btn-xs btn-line " href="{{ path('fiche_requeteclient',{'id': id, 'code': code }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
                              
                         {% if element.clotureRequete is null  %}
-                             <a type="button" class="btn btn-danger btn-xs btn-line envoichoix" href="{{ path('avorter_requeteclient',{'id': id}) }}" data-toggle="modal" data-target="#myModalu" ><i class="icon icon-trash"> </i> Avorter la requête</a>
-                           <span class='avorter_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Avortement ...</span>
+                             <a type="button" class="btn btn-danger btn-xs btn-line envoichoix" href="{{ path('avorter_requeteclient',{'id': id}) }}" ><i class="icon icon-remove"> </i> Abandonner définitivement la requête</a>
+                           <a onclick=" $.ajax({type: 'POST', url: '{{ path('avorter_requeteclient',{'id': id}) }}', cache: false, data: $('form').serialize(), success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});" href="#{{id}}" class="btn btn-danger btn-xs btn-line" style="font-size: 11px;"><i class="icon icon-remove"> </i> Abandonner définitivement la requête</a>
+                             <span class='avorter_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Avortement ...</span>
                         {% endif %}
                     </div>
                      {% set nbretraitement = 0 %}
@@ -59,15 +58,13 @@
                                         </a>
                                     </span>
                                         </span></span>
-                                    
                                         <span class="toolbar" style="float: right;">
                                         {% if traitement.reponsetraitementrequete is null and element.clotureRequete is null  %}<a class="btn btn-default btn-xs btn-rect createformulaire"  href="{{ path('enregistre_reponsetraitement',{'id': traitement.id,'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"   title="Réponse de l'usager/client "><i class="icon-user"></i></a>{% endif %}
                                         <a class="btn btn-primary btn-xs btn-rect" data-toggle="collapse" data-target="#div{{ nbretraitement }}"><i class="icon-arrow-down"></i></a>
                                     </span>
                                 </span>
                                 <div class="body collapse in" id="div{{ nbretraitement }}" style="font-size: 12px;">
-                                   
-                                    {% set nbreresultat = 0 %}
+                                   {% set nbreresultat = 0 %}
                                     <div class="table-responsive"  >
                                         <table class="table table-hover">
                                             <thead>
@@ -131,7 +128,7 @@
                     {% if  nbretraitement == 0 %}
                          <div class="alert alert-info alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                               <a href="#" class="alert-link">Information : </a> <br/>Votre requête est en cours d'examination.<br/> Veuillez patienter dans tout prochains jours, le temps que la SRU de la DIP vous obtienne une suite favorable ...!!!
+                               <a href="#" class="alert-link">Information : </a> <br/>Votre requête est en cours d'examination.<br/> Veuillez patienter dans les tout prochains jours, le temps que la SRU  vous obtienne une suite favorable ...!!!
                             </div>
                      {% endif %}
                 </div>

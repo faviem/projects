@@ -1,5 +1,5 @@
-<div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-    <form  class="ui-draggable"   style="position: relative; left: 424px; top: 229px;" action="{{ path('authentifier_requete',{'id': id}) }}" method="post" >
+<div style="display: block;" class="modal fade in " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <form  class="ui-draggable"   style="position: relative; left: 424px; top: 229px;" action="#" method="post" >
         <div class="col-lg-4">
             <div class="panel panel-danger">
                 <div class="panel-heading">
@@ -17,22 +17,27 @@
                                 {% endif %}</strong><br/>
                             Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
                             Structure Destinataire : <strong>{{  element.StructureSoustutelle.nom }}</strong><br/>
-                           </div>
-
+                        </div>
                         <div style="font-size: 12px;" class="alert alert-danger {% if code =='' %} hide{% endif %}">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                             <strong>Erreur !!! </strong>   Le code d'authentification entré est erroné.
                         </div>
-
                         <label for="CodeRecepisse" > Code de Récépissé </label>
-                        <input id="CodeRecepisse" value="{{ code }}" name="CodeRecepisse" type="password" placeholder="*** Entrer le code de Récépissé ici ***"  required="true" class="form-control">
-
+                        <input id="CodeRecepisse" value="{{ code }}" name="CodeRecepisse" type="password" placeholder="*** Entrer obligatoirement le code de récépissé ici ***"  required="true" class="form-control">
                     </div>
                 </div>
                 <div class="panel-footer">
                     {% block parentBoutons %} 
-                        <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
-                        <button type="submit" class="btn btn-danger btn-xs btn-line" >Accéder au détails</button>
+                        <a type="button" class="btn btn-default btn-xs btn-line " href="#{{id}}" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('fermer_requete') }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"><i class="icon icon-arrow-left"> </i> Retour</a>
+                        <a onclick=" $.ajax({type: 'POST', url: '{{ path('authentifier_requete',{'id': id}) }}', cache: false, data: $('form').serialize(), success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});" href="#{{id}}" class="btn btn-danger btn-xs btn-line" style="font-size: 11px;"><i class="icon icon-unlock"> </i> Ouvrir </a>
                         <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Authentification en cours ...</span>
                         {% endblock parentBoutons %}
                 </div>
