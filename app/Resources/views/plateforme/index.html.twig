@@ -62,23 +62,6 @@
             <!-- Pay Off -->
             <div class="row center vspace30">
 
-                <div class="col-md-12 hide">
-                    <h3 style="margin-top: -0.05%;"><span><img src="{{ asset('images/1.jpg')}}" style="height: 70px;width: 75px;"alt=""> BIENVENUE DANS SysGERUC <img style="height: 70px;width: 75px;" src="{{ asset('images/logo.gif')}}" alt=""></span></h3>
-                    <p style="color: #000000;text-shadow: 0.3px 0.2px 0.2px #000;font-size: 17px;margin-top: -25px;" >
-                        <span  style="font-size: 16px;text-shadow: 1px 1px 1px #008200;"> 
-                            République du Bénin
-                        </span><br/>
-                        <span  style="font-size: 17.5px;text-shadow: 1px 1px 1px #000;"> 
-                            Ministère de l'Energie, de l'Eau et des Mines (MEEM) 
-                        </span><br/>
-                        <span  style="font-size: 16px;"> 
-                            Direction de l'Informatique et du Pré-archivage (DIP)
-                        </span><br/>
-                        <span style="font-size: 16px;text-shadow: 1px 1px 1px #000;color: #0000AA;">
-                            =*=*=*Système de Gestion des Requêtes des Usagers/clients*=*=*=
-                        </span>
-                    </p>
-                </div>
             </div>
             <!-- /Pay Off -->
             <div class="content " style="margin-top: -4%;">
@@ -92,91 +75,16 @@
                                 <!-- Portfolio Button Filters -->
                                 <ul id="portfolio-filter" class="nav nav-pills" style="margin-left: 2.45%;">
                                     <li class="active"><a href="#" class="filter" data-filter="*" > <i class="icon-refresh"></i> Actualiser tout</a></li>
+                                    <li class=""><a href="#" class="filter" data-filter="category3"> <i class="icon-question"></i> A Propos de la SRU</a></li>
                                     <li class=""><a href="#" class="filter" data-filter="category1"> <i class="icon-phone"></i> Particulier</a></li>
                                     <li class=""><a href="#" class="filter" data-filter="category2"> <i class="icon-phone"></i> Personne Morale</a></li>
-                                    <li class=""><a href="#" class="filter" data-filter="category3"> <i class="icon-question"></i> A Propos de la SRU</a></li>
                                     <li class=""><a href="#" class="filter" data-filter="category4"> <i class="icon-folder-open"></i> Repertoire des requêtes </a></li>
                                 </ul>
                                 <!-- /Portfolio Button Filters -->
 
                                 <!-- Portfolio Items Container -->
                                 <div class="row vspace30 " id="portfolio-items" >
-                                    <!-- Portfolio Item -->
-                                    <div class="item category1">
-
-                                        <div class="panel-group" id="faq">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">
-
-                                                        <span style="font-size: 13px;color: #002200;" id="apropos"> FORMULAIRE RESERVE AUX PARTICULIERS ... </span> 
-
-                                                    </h3>
-                                                </div>
-                                                <div id="collapseOne" class="panel-collapse collapse in">
-                                                    <div class="panel-body">
-                                                        {% if valide is defined %}
-                                                            {% if valide ==1 %}
-                                                                <div class="alert alert-success fade in">
-                                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-                                                                    <strong>Votre requête est reçue avec succès!</strong> le code de récépissé pour consultation est : {{ code }}
-                                                                    <a type="button" class="hide" href="{{ path('fiche_recepisse',{'id': id, 'codecacher': codecacher }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
-                                                                </div>
-                                                            {% endif %}
-                                                        {% endif %}
-                                                        <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnephysique) }} method="post"  >
-                                                            <div class="alert alert-info fade in">
-                                                                <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
-                                                            </div>
-                                                            {{ form_widget(formpersonnephysique) }}
-                                                            {{ form_rest(formpersonnephysique) }}
-                                                            <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"><i class="icon icon-share"> </i> Envoyer Votre Requête</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- /Portfolio Item -->
-                                    <!-- Portfolio Item -->
-
-                                    <div class=" item category2">
-
-                                        <div class="panel-group" id="faq">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">
-                                                        <span style="font-size: 13px;color: #002200;" id="apropos"> FORMULAIRE RESERVE AUX ENTREPRISES - SOCIETE - STRUCTURES - ONG ETC ... </span> 
-                                                    </h3>
-                                                </div>
-                                                <div id="collapseOne" class="panel-collapse collapse in">
-                                                    <div class="panel-body">
-                                                        {% if valide is defined %}
-                                                            {% if valide ==2 %}
-                                                                <div class="alert alert-success fade in">
-                                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-                                                                    <strong>Votre requête est reçue avec succès!</strong> le code de récépissé pour consultation est : {{ code }}
-                                                                    <a type="button" class="hide" href="{{ path('fiche_recepisse',{'id': id, 'codecacher': codecacher }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
-                                                                </div>
-                                                            {% endif %}
-                                                        {% endif %}
-                                                        <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnemorale) }} method="post"  >
-                                                            <div class="alert alert-info fade in">
-                                                                <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
-                                                            </div>
-                                                            {{ form_widget(formpersonnemorale) }}
-                                                            {{ form_rest(formpersonnemorale) }}
-                                                            <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"> <i class="icon icon-share"> </i> Envoyer Votre Requête</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Portfolio Item -->
-                                    <!-- Portfolio Item -->
+                                           <!-- Portfolio Item -->
 
                                     <div class="item category3" >
                                         <div class="panel-group" id="faq">
@@ -257,6 +165,82 @@
                                         </div>
                                     </div>
                                     <!-- /Portfolio Item -->
+                                    <!-- Portfolio Item -->
+                                    <div class="item category1">
+
+                                        <div class="panel-group" id="faq">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">
+
+                                                        <span style="font-size: 13px;color: #002200;" id="apropos"> FORMULAIRE RESERVE AUX PARTICULIERS ... </span> 
+
+                                                    </h3>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        {% if valide is defined %}
+                                                            {% if valide ==1 %}
+                                                                <div class="alert alert-success fade in">
+                                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                                                    <strong>Votre requête est reçue avec succès!</strong> le code de récépissé pour consultation est : {{ code }}
+                                                                    <a type="button" class="hide" href="{{ path('fiche_recepisse',{'id': id, 'codecacher': codecacher }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnephysique) }} method="post"  >
+                                                            <div class="alert alert-info fade in">
+                                                                <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
+                                                            </div>
+                                                            {{ form_widget(formpersonnephysique) }}
+                                                            {{ form_rest(formpersonnephysique) }}
+                                                            <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"><i class="icon icon-share"> </i> Envoyer Votre Requête</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- /Portfolio Item -->
+                                    <!-- Portfolio Item -->
+
+                                    <div class=" item category2">
+
+                                        <div class="panel-group" id="faq">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">
+                                                        <span style="font-size: 13px;color: #002200;" id="apropos"> FORMULAIRE RESERVE AUX ENTREPRISES - SOCIETE - STRUCTURES - ONG ETC ... </span> 
+                                                    </h3>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        {% if valide is defined %}
+                                                            {% if valide ==2 %}
+                                                                <div class="alert alert-success fade in">
+                                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                                                    <strong>Votre requête est reçue avec succès!</strong> le code de récépissé pour consultation est : {{ code }}
+                                                                    <a type="button" class="hide" href="{{ path('fiche_recepisse',{'id': id, 'codecacher': codecacher }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        <form     action="{{ path("page_accueil") }}"  {{ form_enctype(formpersonnemorale) }} method="post"  >
+                                                            <div class="alert alert-info fade in">
+                                                                <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
+                                                            </div>
+                                                            {{ form_widget(formpersonnemorale) }}
+                                                            {{ form_rest(formpersonnemorale) }}
+                                                            <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"> <i class="icon icon-share"> </i> Envoyer Votre Requête</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Portfolio Item -->
+                             
                                     <!-- Portfolio Item -->
 
                                     <div class="item category4" >
