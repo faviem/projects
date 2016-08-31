@@ -66,8 +66,8 @@ ul {
     Twitter Bootstrap Override 
 ********************************/
 .navbar {
-  background: transparent url(../img/menu_paper.png) top left repeat;
-  height: 310px;
+  background: transparent url(../img/IMAGE.png) top left repeat;
+  height: 250px;
 }
 
 .navbar-fixed-top {
