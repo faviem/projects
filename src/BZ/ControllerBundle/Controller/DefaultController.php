@@ -308,6 +308,7 @@ class DefaultController extends Controller
                     $requete->setDateAvorterUsagerclient(new \Datetime());
                     $requete->setEstAvorterUsagerclient(true);
                     $em->flush();
+                    return $this->redirect( $this->generateUrl('fermer_requete'));
                 //    return $this->render(':plateforme:usagerclient_requete.html.twig', array('menu' => 2,'id' => $id,'element' => $requete));  
             }
              return $this->render(':plateforme:avorter_requeteclient.html.twig', 

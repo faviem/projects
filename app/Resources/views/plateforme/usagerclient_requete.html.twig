@@ -1,5 +1,5 @@
 <div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-    <form  class="ui-draggable"   style="position: relative; left: 254px; top: 10px;" action="{{ path('authentifier_requete',{'id': id}) }}" method="post" >
+    <form  class="ui-draggable"   style="position: relative; left: 254px; top: 10px;" action="#" method="post" >
         <div class="col-lg-7">
             <div class="panel panel-info">
                 <div class="panel-heading" style="text-align: center;font-size: 13px;color: black;">
@@ -8,18 +8,18 @@
                  </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <div style="color: black;font-size: 12px;" class="alert alert-success">
+                        <div style="color: black;font-size: 12px;" class="well">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                             Expéditeur :   
                                 {% if element.typeusagerclient == 'Personne physique' %}
-                                    <strong> {{  element.particulier.prenom }}   {{  element.particulier.nom }}   </strong><br/>
+                                    <strong> {{  element.particulier.prenom }}   {{  element.particulier.nom }}   </strong>
                                     Contact(s) : <strong>  {{  element.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
-                        E@mail : <strong>  {{  element.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
+                        E@mail : <strong>  {{  element.particulier.usagerclient.adressecontact.email }} </strong>                                               
                        Profession : <strong>  {{  element.particulier.profession }} </strong>  
                                 {% else %}
-                                   <strong> {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</strong><br/>
+                                   <strong> {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</strong>
                                    Contact(s) :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
-                        E@mail :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
+                        E@mail :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.email }} </strong>                                              
                         Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
                                 {% endif %}<br/>
                             Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
@@ -31,12 +31,11 @@
                         <a type="button" class="btn btn-success btn-xs btn-line " href="{{ path('fiche_requeteclient',{'id': id, 'code': code }) }}" id="ficherequeteclient" target="_blank" ><i class="icon icon-print"> </i> Fiche de requête</a>
                              
                         {% if element.clotureRequete is null  %}
-                             <a type="button" class="btn btn-danger btn-xs btn-line envoichoix" href="{{ path('avorter_requeteclient',{'id': id}) }}" ><i class="icon icon-remove"> </i> Abandonner définitivement la requête</a>
-                           <a onclick=" $.ajax({type: 'POST', url: '{{ path('avorter_requeteclient',{'id': id}) }}', cache: false, data: $('form').serialize(), success: function (data) {
+                            <a onclick=" $.ajax({type: 'GET', url: '{{ path('avorter_requeteclient',{'id': id}) }}', cache: false, data: $('form').serialize(), success: function (data) {
                                         $('#afficheformulaire').html(data);
                                     }, error: function () {
                                         alert('requête échouée');
-                                    }});" href="#{{id}}" class="btn btn-danger btn-xs btn-line" style="font-size: 11px;"><i class="icon icon-remove"> </i> Abandonner définitivement la requête</a>
+                                    }});" href="#{{id}}" class="btn btn-danger btn-xs btn-line" style="font-size: 12px;"><i class="icon icon-remove"> </i> Abandonner définitivement la requête</a>
                              <span class='avorter_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Avortement ...</span>
                         {% endif %}
                     </div>
@@ -116,8 +115,17 @@
                                             </span>
                                                     Appréciation : <strong style="color: green;margin-right: 10px;">{{  traitement.reponsetraitementrequete.mention.libelle }}</strong>
                                                     {% if element.clotureRequete is null  %}
-                                                    <a class="btn btn-danger btn-xs btn-rect createformulaire" href="{{ path('supprime_reponsetraitement',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"  title="Supprimer la réponse de l'usager/client"><i class="icon-trash"></i></a>
-                                                    <a class="btn btn-warning btn-xs btn-rect createformulaire" href="{{ path('modifie_reponsetraitement',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"  title="Modifier la réponse de l'usager/client"><i class="icon-edit-sign"></i></a>
+                                                        <a onclick=" $.ajax({type: 'GET', url: '{{ path('supprime_reponsetraitement',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}', cache: false, data: $('form').serialize(), success: function (data) {
+                                                            $('#afficheformulaire').html(data);
+                                                        }, error: function () {
+                                                            alert('requête échouée');
+                                                        }});" href="#{{id}}{{ traitement.reponsetraitementrequete.id}}" class="btn btn-danger btn-xs btn-line" style="font-size: 12px;"><i class="icon-trash"></i></a>
+                                                      
+                                                        <a onclick=" $.ajax({type: 'GET', url: '{{ path('modifie_reponsetraitement',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}', cache: false, data: $('form').serialize(), success: function (data) {
+                                                            $('#afficheformulaire').html(data);
+                                                        }, error: function () {
+                                                            alert('requête échouée');
+                                                        }});" href="#{{id}}{{ traitement.reponsetraitementrequete.id}}" class="btn btn-warning btn-xs btn-line" style="font-size: 12px;" title="Modifier la réponse de l'usager/client"><i class="icon-edit-sign"></i></a>
                                                     {% endif %}
                                         </div>
                                     {% endif %}
@@ -139,64 +147,5 @@
             </div>
         </div>
     </form>
-    {% block parentScript %}
-        <script>
-            $('form').draggable();
-            $("form").submit(function (event) {
-                var $this = $(this);
-                $('.tachat_img').removeClass('hide');
-                $.ajax({
-                    type: $this.attr('method'),
-                    url: $this.attr('action'),
-                    cache: false,
-                    data: $this.serialize(),
-                    success: function (data) {
-                        $('.tachat_img').addClass('hide');
-                        $('#afficheformulaire').html(data);
-                        // location.reload();
-                    },
-                    error: function () {
-                        // $('.tachat_img').removeClass('hide');
-                    }
-                });
-                //we dont what the browser to submit the form
-                event.preventDefault();
-            });
-            
-            $('.envoichoix').click(function (event) {
-            var buton = $(this);
-             $('.avorter_img').removeClass('hide');
-            $.ajax({
-                type: 'GET',
-                url: buton.attr('href'),
-                cache: false,
-                success: function (data) {
-                     $('#afficheformulaire').html(data);
-                },
-                error: function () {
-                    alert('requête échouée');
-                }});
-            //we dont what the browser to submit the form
-            event.preventDefault();
-        });
-        
-        $('.createformulaire').click(function (event) {
-            var buton = $(this);
-           // $('#afficheformulaire').html('');
-            $.ajax({
-                type: 'GET',
-                url: buton.attr('href'),
-                cache: false,
-                success: function (data) {
-                    $('#afficheformulaire').html(data);
-                    // $('#frm_createVille').dialog();
-                },
-                error: function () {
-                    alert('requête échouée');
-                }});
-            //we dont what the browser to submit the form
-            event.preventDefault();
-        });
-        </script>
-    {% endblock parentScript %}
+
 </div>

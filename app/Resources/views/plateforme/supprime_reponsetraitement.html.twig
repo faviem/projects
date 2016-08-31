@@ -1,5 +1,5 @@
 <div style="display: block;" class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-    <form  class="ui-draggable"   style="position: relative; left: 400px; top: 95px;" action="{{ path('supprime_reponsetraitement',{'id': id}) }}" method="post" >
+    <form  class="ui-draggable"   style="position: relative; left: 400px; top: 95px;" action="#" method="post" >
         <div class="col-lg-4">
             <div class="panel panel-danger">
                 <div class="panel-heading">
@@ -13,8 +13,16 @@
         </div>
                  <div class="panel-footer">
                     {% block parentBoutons %} 
-                        <a type="button" class="btn btn-default btn-xs btn-line createformulaire" href="{{ path('retour_requete',{'id': idrequete}) }}" data-toggle="modal" data-target="#myModalu"><i class="icon icon-arrow-left"> </i> Retour</a>
-                        <button type="submit" class="btn btn-danger btn-xs btn-line" >Supprimer</button>
+                        <a type="button" class="btn btn-default btn-xs btn-line " href="#{{id}}" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('retour_requete',{'id': id}) }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"><i class="icon icon-arrow-left"> </i> Retour</a>
+                        <a type="button" class="btn btn-danger btn-xs btn-line " href="#{{id}}" id="retour" onclick=" $.ajax({type: 'POST', url: '{{ path('supprime_reponsetraitement',{'id': id}) }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});">Supprimer</a>
                         <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Suppression en cours ...</span>
                         {% endblock parentBoutons %}
                 </div>
