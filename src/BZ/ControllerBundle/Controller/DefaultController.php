@@ -56,6 +56,13 @@ class DefaultController extends Controller
                                       ->getManager()->getRepository('BZModelBundle:Requete')
                                       ->findBy(Array('estAvorterUsagerclient'=>false,'cloturerequete'=>null),Array('dateEmise'=>'DESC'));
             
+            $quartiers= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Quartier')
+                                      ->findBy(Array('estdelete'=>false));
+            $arrondissements= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Quartier')
+                                      ->findBy(Array('estdelete'=>false));
+            
             $request = $this->get('request');
             if ($request->getMethod() == 'POST') 
             {
@@ -86,11 +93,11 @@ class DefaultController extends Controller
                                       ->getManager()->getRepository('BZModelBundle:Requete')
                                       ->find($_GET['id']);
                  return $this->render(':plateforme:index.html.twig',
-                   array('menu'   => 1, 'requete' => $requetes, 'valide'=>$_GET['valide'],'code'=>$requete->getCodeRecepisse(),'id'=>$_GET['id'],'codecacher'=>sha1($requete->getCodeRecepisse()),'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));
+                   array('menu'   => 1,'quartiers'   => $quartiers, 'arrondissements'   => $arrondissements,  'requete' => $requetes, 'valide'=>$_GET['valide'],'code'=>$requete->getCodeRecepisse(),'id'=>$_GET['id'],'codecacher'=>sha1($requete->getCodeRecepisse()),'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));
             }
             else{
            return $this->render(':plateforme:index.html.twig',
-                   array('menu'   => 1, 'requete' => $requetes,'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));
+                   array('menu'   => 1, 'quartiers'   => $quartiers, 'arrondissements'   => $arrondissements, 'requete' => $requetes,'formpersonnemorale'   => $formpersonnemorale->createView(), 'formpersonnephysique'   => $formpersonnephysique->createView()));
             }
         }
         else
@@ -100,7 +107,7 @@ class DefaultController extends Controller
             $user->setIsconnect(1);
             $userManager->updateUser($user);
             $userManager->reloadUser($user);
-            return $this->render('BZUserBundle::layout.html.twig',array('menu_num'   =>0 ));
+            return $this->render('BZUserBundle::layout.html.twig',array('menu_num' =>0 ));
         }
     }
     //pour les requêtes

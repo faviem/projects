@@ -37,10 +37,7 @@
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"><span class="logo">S</span></a>
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,8 +57,26 @@
         <div class="content" style="" >
 
             <!-- Pay Off -->
-            <div class="row center vspace30">
-
+            <div class="row center vspace30" style="margin-top: -5%;margin-bottom: -5.5%;">
+                 <table style="text-align: center;">
+                        <tr>
+                            <td>
+                             <img  src="../plateforme/img/RB.jpg" style="height: 40px;width: 40px; float: left;" />
+                           </td>
+                            <td>
+                             <span style="font-family: Times; color: #009900;font-weight: bold;text-align: center;"> REPUBLIQUE DU BENIN</span><br/>
+                    <span style="font-family: Arial; color: #443007;font-weight: bold;text-align: center;"> MINISTERE DE L'ENNERGIE, DE L'EAU ET DES MINES (MEEM)</span><br/>
+                    <span style="font-family: Calibri; color: #800000;font-weight: bold;text-align: center;"> DIRECTION DE L'INFORMATIQUE ET DU PRE-ARCHIVAGE (DIP)</span><br/>
+                    <span style="font-family: Times; color: #000033;font-weight: bold;text-align: center;"> Système de Gestion des Relations avec les Usagers/Client</span><br/>
+                    <span style="font-family: Arial; color: #8d41e2;font-weight: bold;text-align: center;"> BIENVENU DANS ''SysGERUC''</span>
+                    
+                            </td>
+                            <td>
+                             <img  src="../plateforme/img/MEEM.gif" style="height: 40px;width: 40px; float: left;" />
+                            </td>
+                        </tr>
+                    </table>
+                  <br/>
             </div>
             <!-- /Pay Off -->
             <div class="content " style="margin-top: -4%;">
@@ -86,7 +101,7 @@
                                 <div class="row vspace30 " id="portfolio-items" >
                                            <!-- Portfolio Item -->
 
-                                    <div class="item category3" >
+                                    <div class="item category3" style="margin-top: -3%;">
                                         <div class="panel-group" id="faq">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
@@ -166,7 +181,7 @@
                                     </div>
                                     <!-- /Portfolio Item -->
                                     <!-- Portfolio Item -->
-                                    <div class="item category1">
+                                    <div class="item category1" style="margin-top: -3%;">
 
                                         <div class="panel-group" id="faq">
                                             <div class="panel panel-default">
@@ -206,7 +221,7 @@
                                     <!-- /Portfolio Item -->
                                     <!-- Portfolio Item -->
 
-                                    <div class=" item category2">
+                                    <div class=" item category2" style="margin-top: -3%;">
 
                                         <div class="panel-group" id="faq">
                                             <div class="panel panel-default">
@@ -231,6 +246,7 @@
                                                                 <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
                                                             </div>
                                                             {{ form_widget(formpersonnemorale) }}
+                                                        
                                                             {{ form_rest(formpersonnemorale) }}
                                                             <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"> <i class="icon icon-share"> </i> Envoyer Votre Requête</button>
                                                         </form>
@@ -243,7 +259,7 @@
                              
                                     <!-- Portfolio Item -->
 
-                                    <div class="item category4" >
+                                    <div class="item category4" style="margin-top: -3%;">
                                         <div class="panel-group" id="faq">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
@@ -334,26 +350,6 @@
             </div>
         </div>
 
-        <footer id="footer">
-            <div id="post-footer">
-                <div class="container">		
-                    <div class="row center">
-                        <div class="col-md-12">
-                            <div class="vspace10">
-                                <a href="https://www.facebook.com/" target="_blank"><img src="{{ asset('plateforme/img/socials/png/32x32/facebook.png')}}" alt="" /></a>
-                                <a href="https://twitter.com/" target="_blank"><img src="{{ asset('plateforme/img/socials/png/32x32/twitter.png')}}" alt="" /></a>
-                                <a href="https://www.linkedin.com" target="_blank"><img src="{{ asset('plateforme/img/socials/png/32x32/linkedin.png')}}" alt="" /></a>
-                                <a href="https://www.google.com" target="_blank"><img src="{{ asset('plateforme/img/socials/png/32x32/google+.png')}}" alt="" /></a>
-                                <a href="https://www.youtube.com/" target="_blank"><img src="{{ asset('plateforme/img/socials/png/32x32/youtube.png')}}" alt="" /></a>
-                                <br /><br />
-                                <p>&copy; Developed an design By Emile FADONOUGBO; email: faviem1990@yahoo.fr; Tél: +229 96892625; Copyright MEEM/DIP-BENIN 2016</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
         <a class="scrolltotop" href="#"></a>
 
         <script src="{{ asset('/plateforme/js/jquery-1.8.3.min.js')}}"type="text/javascript"></script>
@@ -366,13 +362,7 @@
 
         <script>
                                                                            $('#dataTables-example').dataTable();
-                                                                           // $(document).ready(function () {
-                                                                           // var url = $("#ficherequeteclient");
-                                                                           //  window.open(url.attr('href'));
-                                                                           //  return false;
-                                                                           //  location.load(url);
-                                                                           //document.location.href=url, target
-                                                                           // });
+                                                                           $(".chzn-select").chosen();
         </script>
 
     </body>

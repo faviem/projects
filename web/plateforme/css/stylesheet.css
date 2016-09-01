@@ -58,7 +58,7 @@ ul {
 
 #post-footer {
   padding: 35px 0;
-  background: transparent url(../img/footer_paper.png) top left repeat-x;
+  background: transparent url(../img/IMAGE.png) top left repeat-x;
 }
 
 
@@ -67,7 +67,7 @@ ul {
 ********************************/
 .navbar {
   background: transparent url(../img/IMAGE.png) top left repeat;
-  height: 120px;
+  height: 20px;
 }
 
 .navbar-fixed-top {
