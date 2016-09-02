@@ -91,8 +91,8 @@
                             <div id="portfolio">
                                 <!-- Portfolio Button Filters -->
                                 <ul id="portfolio-filter" class="nav nav-pills" style="margin-left: 2.45%;">
-                                    <li class="active"><a href="#" class="filter" data-filter="*" > <i class="icon-refresh"></i> Actualiser tout</a></li>
-                                    <li class=""><a href="#" class="filter" data-filter="category3"> <i class="icon-question"></i> A Propos de la SRU</a></li>
+                                    <li class="active"><a href="#" class="filter" data-filter="*" > <i class="icon-refresh"></i> Actualiser tous</a></li>
+                                    <li class=""><a href="#" class="filter" data-filter="category3"> <i class="icon-question"></i> A Propos</a></li>
                                     <li class=""><a href="#" class="filter" data-filter="category1"> <i class="icon-phone"></i> Particulier</a></li>
                                     <li class=""><a href="#" class="filter" data-filter="category2"> <i class="icon-phone"></i> Personne Morale</a></li>
                                     <li class=""><a href="#" class="filter" data-filter="category4"> <i class="icon-folder-open"></i> Repertoire des requêtes </a></li>
@@ -209,7 +209,9 @@
                                                             <div class="alert alert-info fade in">
                                                                 <strong>Important !!!</strong> les champs se terminants par (*) sont obligatoires.
                                                             </div>
+                                                             
                                                             {{ form_widget(formpersonnephysique) }}
+                                                           
                                                             {{ form_rest(formpersonnephysique) }}
                                                             <button type="submit" class="btn btn-success btn-xs btn-line" style="float: right;"><i class="icon icon-share"> </i> Envoyer Votre Requête</button>
                                                         </form>
@@ -363,8 +365,9 @@
         <script src="{{ asset('assets/plugins/chosen/chosen.jquery.min.js')}}"></script>
 
         <script>
-                                                                           $('#dataTables-example').dataTable();
-                                                                           $(".chzn-select").chosen();
+               $('#dataTables-example').dataTable();
+               $(".chzn-select").chosen();
+             //  $(".chzn-select").css('color','black');
         </script>
 
     </body>

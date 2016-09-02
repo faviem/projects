@@ -29,7 +29,7 @@ class RequetePersonneMoraleType extends AbstractType
                                           ->orderBy('t.libelle', 'ASC');
                                          
                         }))
-            ->add('structuresoustutelle','entity', array('label' => 'Structure conernée (*)', 
+            ->add('structuresoustutelle','entity', array('label' => 'Précisez la Structure ou la Direction du Ministère conernée (*)', 
                 'class' => 'BZModelBundle:StructureSoustutelle',
                 'property' => 'designationStructure',
                 'empty_value' => '',

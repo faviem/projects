@@ -236,4 +236,7 @@ class Quartier
     {
         return $this->arrondissement;
     }
+       public function getParentName() { 
+    return $this->getArrondissement() ? $this->getArrondissement()->getLibelle() : null;         
+}
 }

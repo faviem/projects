@@ -29,10 +29,11 @@ class AdresseContactType extends AbstractType
              'attr' =>array(
             'class' =>'form-control'
               )))     
-              ->add('quartier','entity', array('label' => 'Quartier de ville ou village', 
+              ->add('quartier','entity', array('label' => 'Zone de résidence (Communes/Quartiers de ville ou villages)', 
                 'class' => 'BZModelBundle:Quartier',
                 'property' => 'libelle',
                 'empty_value' => '',
+                   'group_by' => 'parentName',
                 'multiple' => false,
                 'attr' =>array('class' =>'form-control chzn-select'),
                 'required' => false,
