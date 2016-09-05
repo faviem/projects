@@ -29,12 +29,15 @@ class TraitementController extends Controller
              return $this->render('BZVueBundle:Traitement:requetes_soufrance.html.twig', array('requete' => $requetes,'menu_num'   => 5));             
     }
     
-    public function requetes_resoluesAction()
+    public function requetes_resoluesAction($exercice)
     {
             $cloturerequetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:ClotureRequete')
-                                      ->findBy(Array(),Array('dateCloture'=>'ASC'));
-             return $this->render('BZVueBundle:Traitement:requetes_resolues.html.twig', array('cloturerequetes' => $cloturerequetes,'menu_num'   => 5));             
+                                      ->findBy(Array('exercice'=>$exercice),Array('dateCloture'=>'ASC'));
+            $exercices= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false));
+             return $this->render('BZVueBundle:Traitement:requetes_resolues.html.twig', array('cloturerequetes' => $cloturerequetes,'menu_num'   => 5, 'exercice'=>$exercice, 'exercices'=>$exercices));             
     }
     
     public function traitement_requeteAction($id)

@@ -7,7 +7,7 @@ requetes_soufrance:
     defaults: { _controller: BZControllerBundle:Traitement:requetes_soufrance }  
     
 requetes_resolues:
-    pattern:    /requetes_resolues
+    pattern:    /requetes_resolues/{exercice}
     defaults: { _controller: BZControllerBundle:Traitement:requetes_resolues }  
     
 traitement_requete:

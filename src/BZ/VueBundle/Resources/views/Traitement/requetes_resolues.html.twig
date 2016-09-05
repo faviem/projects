@@ -6,7 +6,14 @@
     <div class="col-lg-12" style="margin-top: 1%;">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span style="font-size: 12px;"> LISTE DES REQUETES  CLOTUREES </span> 
+                <span style="font-size: 12px;"> LISTE DES REQUETES  CLOTUREES AU COURS DE L'EXERCICE 
+                <select style="width: 15%;" id="getExercice" name="getExercices" class="form-control chzn-select">
+                    <option value=""> Choisissez</option>
+                    {% for typ  in  exercices %}
+                        <option value="{{ typ.id }}" {% if typ.id==exercice %} selected="true" {% endif %}>{{ typ.libelle }}</option>
+                    {% endfor %}
+                </select>
+                </span> 
                 <a href="#" style="float: right;margin-right: 5px;color: black;" target="_blank" class="btn btn-default  btn-xs btn-rect" > <i class="icon   icon-print"></i></a>                
             </div>
             <div class="panel-body">
@@ -78,6 +85,19 @@
 {% endblock content_body %}
 {% block javascript %} 
     <script>
+          $('#getExercice').change(function () {
+            if ($('#getExercice').val() === "")
+            {
+
+            }
+            else
+            {
+                // alert('route de la liste des estdirecteurtechniques de la structure '+$(this).val());
+                var url = '{{ path("requetes_resolues",{'exercice':  'exercice' }) }}';
+                url = url.replace("exercice", $(this).val() === "" ? 0 : $(this).val());
+                location.href = "" + url + "";
+            }
+        });
         // Notifications();      
         $('.createformulaire').click(function (event) {
             var buton = $(this);

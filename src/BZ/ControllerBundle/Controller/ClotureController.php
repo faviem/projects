@@ -25,6 +25,8 @@ class ClotureController extends Controller
                 $form->bind($request);
                 if ($form->isValid()) {
                     $em = $this->getDoctrine()->getManager();
+                    $exercice = $this->getDoctrine()->getManager()->getRepository('BZModelBundle:Exercice')->findOneBy(array('libelle'=>$cloture->getDateCloture()->format('Y')));
+                    $cloture->setExercice($exercice);
                     $em->persist($cloture);
                     $em->flush();
                     $requete->setEstResolu(true);
