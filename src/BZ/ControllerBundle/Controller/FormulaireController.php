@@ -47,6 +47,8 @@ class FormulaireController extends Controller
                 $formpersonnephysique->bind($request);
                 if ($formpersonnephysique->isValid()) {
                     $em = $this->getDoctrine()->getManager();
+                    $exercice = $this->getDoctrine()->getManager()->getRepository('BZModelBundle:Exercice')->findOneBy(array('libelle'=>$requetepersonnephysique->getDateEmise()->format('Y')));
+                    $requetepersonnephysique->setExercice($exercice);
                     $em->persist($requetepersonnephysique);
                     $em->flush();
                     $requetepersonnephysique->setCodeRecepisse($requetepersonnephysique->getId().''.$requetepersonnephysique->getDateEmise()->format('i') .''.$requetepersonnephysique->getDateEmise()->format('H').''.$requetepersonnephysique->getDateEmise()->format('d'));
@@ -57,6 +59,8 @@ class FormulaireController extends Controller
                 $formpersonnemorale->bind($request);
                 if ($formpersonnemorale->isValid()) {
                     $em = $this->getDoctrine()->getManager();
+                    $exercice = $this->getDoctrine()->getManager()->getRepository('BZModelBundle:Exercice')->findOneBy(array('libelle'=>$requetepersonnemorale->getDateEmise()->format('Y')));
+                    $requetepersonnemorale->setExercice($exercice);
                     $em->persist($requetepersonnemorale);
                     $em->flush();
                     $requetepersonnemorale->setCodeRecepisse($requetepersonnemorale->getId().''.$requetepersonnemorale->getDateEmise()->format('i') .''.$requetepersonnemorale->getDateEmise()->format('H').''.$requetepersonnemorale->getDateEmise()->format('d'));

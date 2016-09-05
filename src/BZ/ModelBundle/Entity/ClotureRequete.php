@@ -14,6 +14,11 @@ use Doctrine\ORM\Mapping as ORM;
 class ClotureRequete
 {
     /**
+    * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Exercice", inversedBy="cloturerequetes")
+    * @ORM\JoinColumn(nullable=true) 
+    */
+    private $exercice;
+    /**
     * @ORM\OneToOne(targetEntity="BZ\ModelBundle\Entity\Requete", inversedBy="cloturerequete")
     * @ORM\JoinColumn(nullable=false) 
     */
@@ -149,5 +154,28 @@ class ClotureRequete
         return $this->mention;
     }
     
+     /**
+     * Set exercice
+     *
+     * @param \BZ\ModelBundle\Entity\Exercice $exercice
+     * @return ClotureRequete
+     */
+    public function setExercice(\BZ\ModelBundle\Entity\Exercice $exercice = null)
+    {
+        $this->exercice = $exercice;
+
+        return $this;
+    }
+
+    /**
+     * Get exercice
+     *
+     * @return \BZ\ModelBundle\Entity\Exercice 
+     */
+    public function getExercice()
+    {
+        return $this->exercice;
+    }
+
     
 }

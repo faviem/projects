@@ -44,6 +44,11 @@ class Requete
     */
     private $alerte;
     /**
+    * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\Exercice", inversedBy="requetes")
+    * @ORM\JoinColumn(nullable=true) 
+    */
+    private $exercice;
+    /**
     * @ORM\ManyToOne(targetEntity="BZ\ModelBundle\Entity\ModeSaisine", inversedBy="requetes")
     * @ORM\JoinColumn(nullable=true) 
     */
@@ -611,6 +616,29 @@ class Requete
     public function getAlerte()
     {
         return $this->alerte;
+    }
+    
+    /**
+     * Set exercice
+     *
+     * @param \BZ\ModelBundle\Entity\Exercice $exercice
+     * @return Requete
+     */
+    public function setExercice(\BZ\ModelBundle\Entity\Exercice $exercice = null)
+    {
+        $this->exercice = $exercice;
+
+        return $this;
+    }
+
+    /**
+     * Get exercice
+     *
+     * @return \BZ\ModelBundle\Entity\Exercice 
+     */
+    public function getExercice()
+    {
+        return $this->exercice;
     }
 
     /**

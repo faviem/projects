@@ -58,6 +58,9 @@ bz_blog_arrondissement:
 bz_blog_quartier:
     resource: "@BZControllerBundle/Resources/config/quartier.yml"
     prefix:   /   
+bz_blog_exercice:
+    resource: "@BZControllerBundle/Resources/config/exercice.yml"
+    prefix:   /   
     
 notifications:
     pattern:    /notifications
