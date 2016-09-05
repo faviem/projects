@@ -15,16 +15,14 @@
                 {% if element.particulier.usagerclient is not null %}
                Contact(s) : <strong>  {{  element.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
                         E@mail : <strong>  {{  element.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
-                        Département :  <strong> {{  element.particulier.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                        Ville de résidence :  <strong> {{  element.particulier.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
+                        Zone de résidence :  <strong>{{  element.particulier.usagerclient.adressecontact.quartier.ParentName }} - {{  element.particulier.usagerclient.adressecontact.quartier.libelle }} </strong><br/>                                                    
                         Profession : <strong>  {{  element.particulier.profession }} </strong>  
                           {% endif %}
                  {% else %}
                       <strong>  {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</strong><br/>
                         Contact(s) :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
                         E@mail :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
-                        Département : <strong> {{  element.societeentreprise.usagerclient.adressecontact.departement.nomdepartement }}</strong><br/>                                                  
-                        Ville de résidence :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.ville.nomville }}</strong><br/>                                                   
+                        Zone de résidence :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.quartier.ParentName }} - {{  element.societeentreprise.usagerclient.adressecontact.quartier.libelle }}</strong><br/>                                                   
                         Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
             {% endif %}<hr/>
         Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
@@ -39,8 +37,12 @@
         </p>
 {% endblock parentContenu %}
 {% block parentBoutons %} 
-    <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
-    <a type="button" class="btn btn-success btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Classer prioritaire</a>
+   <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('fermer_requete') }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"><i class="icon icon-arrow-left"> </i> Retour</a>
+   <a type="button" class="btn btn-success btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Classer prioritaire</a>
     <a type="button" class="btn btn-danger btn-xs btn-line envoichoix" href="{{ path('analyser_requete',{'id': id, 'choix': 1}) }}" >Classer non prioritaire</a>
     <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Classement en cours ...</span>
 {% endblock parentBoutons %}

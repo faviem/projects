@@ -11,7 +11,6 @@
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                              Adressé à : <strong style="margin-left: 5px;margin-right: 5px;"> {{ element.directeurtechnique.nomPrenom }} </strong><br/>
                                Le :  <strong>{{  element.dateLancement|date('d-m-Y') }} à {{  element.dateLancement|date('H:i') }}</strong><br/>
-                               Message : <br/>  <span style="margin-left: 10px;">{{ element.commentaireLancement }} </span><br/> <br/>  
                                <span style="text-decoration-color: #0000AA;font-size: 12px;text-align: center;color: #002200;">RESULTATS DU TRAITEMENT</span>
                                 {% set nbreresultat = 0 %}
                                     <div class="table-responsive"  >
@@ -60,7 +59,7 @@
                 </div>
                 <div class="panel-footer">
                     {% block parentBoutons %} 
-                        <a type="button" class="btn btn-default btn-xs btn-line " href="#{{id}}" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('retour_requete',{'id': id}) }}', cache: false, success: function (data) {
+                        <a type="button" class="btn btn-default btn-xs btn-line " href="#{{id}}" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('retour_requete',{'id': element.requete.id}) }}', cache: false, success: function (data) {
                                         $('#afficheformulaire').html(data);
                                     }, error: function () {
                                         alert('requête échouée');

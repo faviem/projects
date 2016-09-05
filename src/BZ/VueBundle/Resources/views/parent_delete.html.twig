@@ -12,8 +12,12 @@
         </div>
         <div class="panel-footer">
              {% block parentBoutons %} 
-             <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
-                <button type="submit" class="btn btn-danger btn-xs btn-line" >Supprimer</button>
+              <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('fermer_requete') }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"><i class="icon icon-arrow-left"> </i> Retour</a>
+            <button type="submit" class="btn btn-danger btn-xs btn-line" >Supprimer</button>
                   <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Suppression ...</span>
         {% endblock parentBoutons %}
              </div>
@@ -34,6 +38,7 @@
                    success: function() {
                      $('.tachat_img').addClass('hide');
                      location.reload();
+                     
                    },
                    error: function() {
                       // $('.tachat_img').removeClass('hide');

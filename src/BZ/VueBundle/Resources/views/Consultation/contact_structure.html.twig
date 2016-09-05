@@ -11,13 +11,16 @@
         Nom structure :   <strong> {{  element.nom }}  ( {{  element.raisonsociale }} ) </strong><br/>
                      Contact(s) : <strong>  {{  element.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
         E@mail : <strong>  {{  element.usagerclient.adressecontact.email }} </strong><br/>                                               
-                        Département :  <strong> {{  element.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                        Ville de résidence :  <strong> {{  element.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
+                        Zone de résidence :  <strong> {% if element.usagerclient.adressecontact.quartier is not null %} {{  element.usagerclient.adressecontact.quartier.ParentName }} - {{  element.usagerclient.adressecontact.quartier.libelle }} {% else  %} Aucune indication {% endif  %}</strong><br/>
                         Profession : <strong>  {{  element.domaineactivite }} </strong> <br/>  
                         Autres : <br/>  <strong style="margin-left: 10px;"> {% if  element.usagerclient.adressecontact.details is not null %} {{  element.usagerclient.adressecontact.details }} {% else %} Néant {% endif %}</strong> 
      </div>
 {% endblock parentContenu %}
 {% block parentBoutons %} 
-    <a type="button" class="btn btn-default btn-xs btn-line " href="{{ path("repertoire_usager",{'type': 2}) }}" ><i class="icon icon-arrow-left"> </i> Retour</a>
+    <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('fermer_requete') }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"><i class="icon icon-arrow-left"> </i> Retour</a>
 {% endblock parentBoutons %}
 

@@ -40,9 +40,9 @@
                                         {% set nbre = nbre+1 %}
                                         <td class="sorting_1" style="text-align: center;">
                                             <a href="{{ path('fiche_recepisseadmin',{'id': element.id}) }}" title="Editer la fiche de requête" class="btn btn-default btn-xs btn-rect "  target="_blank" style="font-size: 11px;"><i class="icon icon-print"> </i> </a>
-                                            <a href="{{ path('avorter_requete',{'id': element.id}) }}" title="Avorter la requête"  class="btn btn-danger btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu" style="font-size: 11px;"><i class="icon icon-trash"> </i> </a>
-                                            <a href="{{ path('declarer_nonfondee',{'id': element.id}) }}" title="Déclarer la requête non fondée"  class="btn btn-success btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu"  style="font-size: 11px;"><i class="icon icon-remove"> </i> </a>
-                                            <a href="{{ path('enregistre_traitement',{'id': element.id}) }}" title="Créer un traitement"  class="btn btn-primary btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu"  style="font-size: 11px;"><i class="icon icon-edit-sign"> </i> </a>
+                                            <a href="{{ path('avorter_requete',{'id': element.id}) }}" title="Avorter la requête"  class="btn btn-danger btn-xs btn-rect createformulaire" style="font-size: 11px;"><i class="icon icon-trash"> </i> </a>
+                                            <a href="{{ path('declarer_nonfondee',{'id': element.id}) }}" title="Déclarer la requête non fondée"  class="btn btn-warning btn-xs btn-rect createformulaire"  style="font-size: 11px;"><i class="icon icon-remove"> </i> </a>
+                                            <a href="{{ path('enregistre_traitement',{'id': element.id}) }}" title="Créer un traitement"  class="btn btn-primary btn-xs btn-rect createformulaire"  style="font-size: 11px;"><i class="icon icon-edit-sign"> </i> </a>
                                         </td>
                                         <td class="" style="font-size: 12px;">{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}  </td>
                                         <td class="" style="font-size: 12px;">

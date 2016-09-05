@@ -1,5 +1,5 @@
 <div style="display: block;" class="modal fade in " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-    <form  class="ui-draggable"   style="position: relative; left: 424px; top: 229px;" action="#" method="post" >
+    <form  class="ui-draggable"   style="position: relative; left: 424px; top: 229px;" action="{{ path('authentifier_requete',{'id': id}) }}" method="post" >
         <div class="col-lg-4">
             <div class="panel panel-danger">
                 <div class="panel-heading">
@@ -23,7 +23,7 @@
                             <strong>Erreur !!! </strong>   Le code d'authentification entré est erroné.
                         </div>
                         <label for="CodeRecepisse" > Code de Récépissé </label>
-                        <input id="CodeRecepisse" value="{{ code }}" name="CodeRecepisse" type="password" placeholder="*** Entrer obligatoirement le code de récépissé ici ***"  required="true" class="form-control">
+                        <input id="CodeRecepisse" value="{{ code }}" name="CodeRecepisse" type="password" placeholder="-- Le code de récépissé --"  required="true" class="form-control">
                     </div>
                 </div>
                 <div class="panel-footer">
@@ -38,8 +38,9 @@
                                     }, error: function () {
                                         alert('requête échouée');
                                     }});" href="#{{id}}" class="btn btn-danger btn-xs btn-line" style="font-size: 11px;"><i class="icon icon-unlock"> </i> Ouvrir </a>
-                        <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Authentification en cours ...</span>
-                        {% endblock parentBoutons %}
+                           <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Authentification en cours ...</span>
+                           <button type="submit" class=""> envoyer</button>    
+                    {% endblock parentBoutons %}
                 </div>
             </div>
         </div>

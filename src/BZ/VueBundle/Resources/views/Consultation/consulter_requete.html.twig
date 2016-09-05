@@ -4,7 +4,11 @@
             <div class="panel panel-info">
                 <div class="panel-heading" style="text-align: center;font-size: 13px;color: black;">
                     <span > CONSULTATION DE LA REQUETE</span>
-                      <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();" style="float: right;" > <i class="icon-remove"></i></a>
+                    <a type="button" class="btn btn-default btn-xs btn-line " style="float: right;" href="#" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('fermer_requete') }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"> <i class="icon-remove"></i></a>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -15,16 +19,14 @@
                                     <strong> {{  element.particulier.prenom }}   {{  element.particulier.nom }}   </strong><br/>
                                     Contact(s) : <strong>  {{  element.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
                         E@mail : <strong>  {{  element.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
-                        Département :  <strong> {{  element.particulier.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                        Ville de résidence :  <strong> {{  element.particulier.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
-                        Profession : <strong>  {{  element.particulier.profession }} </strong>  
+                         Zone de résidence :  <strong> {% if element.particulier.usagerclient.adressecontact.quartier is not null %} {{  element.particulier.usagerclient.adressecontact.quartier.ParentName }} - {{  element.particulier.usagerclient.adressecontact.quartier.libelle }} {% else  %} Aucune indication {% endif  %}</strong><br/>
+                         Profession : <strong>  {{  element.particulier.profession }} </strong>  
                                 {% else %}
                                    <strong> {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</strong><br/>
                                    Contact(s) :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
                         E@mail :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
-                          Département :  <strong> {{  element.societeentreprise.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                        Ville de résidence :  <strong> {{  element.societeentreprise.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
-                       Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
+                         Zone de résidence :  <strong> {% if element.societeentreprise.usagerclient.adressecontact.quartier is not null %} {{  element.societeentreprise.usagerclient.adressecontact.quartier.ParentName }} - {{  element.societeentreprise.usagerclient.adressecontact.quartier.libelle }} {% else  %} Aucune indication {% endif  %}</strong><br/>
+                         Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
                                 {% endif %}<br/>
                             
                                 <hr/>

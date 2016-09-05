@@ -237,6 +237,6 @@ class Quartier
         return $this->arrondissement;
     }
        public function getParentName() { 
-    return $this->getArrondissement() ? $this->getArrondissement()->getLibelle() : null;         
+    return $this->getArrondissement() ? $this->getArrondissement()->getVille()->getNomville().' - '.$this->getArrondissement()->getLibelle() : null;         
 }
 }

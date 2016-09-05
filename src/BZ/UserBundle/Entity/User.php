@@ -272,4 +272,18 @@ class User extends BaseUser
         return $nomprenom;
     }
     
+    public function getPrenomNom()
+    {
+        $nomprenom='*** ??? ***';
+        if($this->getAgent() !=null)
+        {
+            $nomprenom=$this->getAgent()->getPrenom().' '.$this->getAgent()->getNom(); 
+        }
+        if($this->getDirecteurtechnique() !=null)
+        {
+            $nomprenom=$this->getDirecteurtechnique()->getPrenom().' '.$this->getDirecteurtechnique()->getNom();
+        }
+        return $nomprenom;
+    }
+    
 }

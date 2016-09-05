@@ -61,6 +61,7 @@
                     </a>
                     <!-- LOGO SECTION -->
                     <header class="navbar-header" style="">
+                        <img src="{{ asset('images/logo.gif')}}" style="width: 20px;height: 20px; float: left;margin-right: 2px;"alt="">
                        <a href="{{ path('page_accueil') }}" class="navbar-brand" style="color: #001F3F;"> SysGERUC</a>
                      </header>
                     <!-- END LOGO SECTION -->
@@ -86,7 +87,7 @@
                         <!--ADMIN SETTINGS SECTIONS -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                               <span class="label label-danger" id="nbreusers">0</span>  &nbsp; Bienvenu {{ app.user.NomPrenom }} <i class="icon-chevron-down " > </i>
+                               <span class="label label-danger" id="nbreusers">0</span>  &nbsp; Bienvenu {{ app.user.PrenomNom }} <i class="icon-chevron-down " > </i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
                                 <li><a href="{% if  app.user.type=="DIP" %}{{ path('compte_agent') }}{% else%}{% if app.user.type=="DRTS" %} {{ path('compte_directeurtechnique') }} {%else%}#{% endif %}{%endif %}"><i class="icon-user"></i> Mon Compte </a>
@@ -117,7 +118,7 @@
                 <ul id="menu" class="collapse">
                     <li class="panel">
                         <a href="#" style="text-align: center;">
-                            <span style="font-size: 7px;" class="login-box-msg">***Système de Gestion des Requêtes des Usagers***</span> SysGERUC
+                            <span style="font-size: 7px;" class="login-box-msg">***Système de Gestion des Relations avec les Usagers***</span> SysGERUC
                         </a>                   
                     </li>
                      {% if  app.user.type =="DIP" %}
@@ -149,7 +150,7 @@
                         <ul class="collapse" id="membre" >
                             <li ><a href="{{ path("read_profil") }}" style=""><i class="icon-angle-right"></i> Profils des utilisateurs </a></li>
                             <li ><a href="{{ path("read_agent") }}" style=""><i class="icon-angle-right"></i> Liste des membres de la D I P </a></li>      
-                            <li ><a href="{{ path("read_directeurtechnique") }}" style=""><i class="icon-angle-right"></i> Liste des directeurs techniques  </a></li>
+                            <li ><a href="{{ path("read_directeurtechnique") }}" style=""><i class="icon-angle-right"></i> Liste des Correspondants SRU  </a></li>
                         </ul>
                     </li>
                    
@@ -176,8 +177,8 @@
                             </span>
                         </a>
                         <ul class="collapse" id="traitements" >
-                            <li ><a href="{{ path("requetes_encours") }}" style=""><i class="icon-angle-right"></i> Requêtes en cours de traitement </a></li>
-                            <li ><a href="{{ path("requetes_soufrance") }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes non traitées </a></li>
+                            <li ><a href="{{ path("requetes_encours") }}" style=""><i class="icon-angle-right"></i> Traitements en cours </a></li>
+                            <li ><a href="{{ path("requetes_soufrance") }}" style=""><i class="icon-angle-right"></i>  Traitements sans suite </a></li>
                             <li ><a href="{{ path("requetes_resolues") }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes clôturées <span class="label label-default" style="float: right;margin-right: 2%;" id="requetecloturer">0</span></a></li>
 
                         </ul>
@@ -210,7 +211,7 @@
                     <div class="row">
                         <div class="col-lg-12">
 
-                            {% block content_title %} <h4 style="text-align: center;text-shadow: 0px 0.5px 0.5px blue;font-size: 14px;"> BIENVENUE  DANS  *** SysGERUC ***  PLATE-FORME DU SRU  DE LA  DIP  DE  MEEM-BENIN </h4>
+                            {% block content_title %} <h4 style="text-align: center;text-shadow: 0px 0.5px 0.5px blue;font-size: 13px;"> BIENVENUE  DANS  =*=* SysGERUC *=*=  Système de Gestion des Relations avec les Usagers/Clients </h4>
                             {% endblock content_title %}
                             <hr />
                         </div>
@@ -262,7 +263,7 @@
         <!--END MAIN WRAPPER -->
         <!-- FOOTER -->
         <div id="footer">
-            <p>&copy; Developed an design By Emile FADONOUGBO; email: faviem1990@yahoo.fr; Tél: +229 96892625; Copyright MEEM/DIP-BENIN 2016</p>
+            <p>&copy; Conception de Emile FADONOUGBO; email: faviem1990@yahoo.fr; Tél: +229 96892625; Copyright MEEM/DIP-BENIN 2016</p>
         </div>
         <input type="number" class="hide" name="menu_num" value="{% if menu_num is defined %}{{ menu_num }}{% else %}5{% endif %}" id="menu_num"/>
 

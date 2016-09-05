@@ -13,9 +13,7 @@
        {%if element.user.adressecontact is null %}
            <strong> Aucune</strong>
             {% else%}
-           <span> Ville : </span><strong>{%if element.user.adressecontact .ville is null %} pas définie {%else %} {{ element.user.adressecontact.ville.nomville }} {%endif %} </strong><br/>
-           <span> Département : </span><strong>{%if element.user.adressecontact .departement is null %} pas définie {%else %} {{ element.user.adressecontact.departement.nomdepartement }} {%endif %} </strong><br/>
-           <span> Localité : </span><strong>{%if element.user.adressecontact .quartier is null %} pas définie {%else %} {{ element.user.adressecontact.quartier.libelle }} {%endif %} </strong><br/>
+           <span> Zonde de résidence : </span><strong> {% if element.user.adressecontact.quartier is not null %} {{  element.user.adressecontact.quartier.ParentName }} - {{  element.user.adressecontact.quartier.libelle }} {% else  %} Aucune indication {% endif  %} </strong><br/>
            <span> Contact(s) : </span><strong>{%if element.user.adressecontact .telmobile is null %} pas définie {%else %} {{ element.user.adressecontact.telmobile }} {%endif %} </strong><br/>
            <span> e@mail : </span><strong>{%if element.user.email is null %} pas définie {%else %} {{ element.user.email }} {%endif %} </strong><br/>
        {% endif%}<br/>

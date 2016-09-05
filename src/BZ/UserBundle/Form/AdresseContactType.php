@@ -22,37 +22,12 @@ class AdresseContactType extends AbstractType
              'attr' =>array(
             'class' =>'form-control'
             )))
-                
-            ->add('ville','entity', array('label' => 'Ville de résidence', 
-                'class' => 'BZModelBundle:Ville',
-                'property' => 'nomville',
-                'empty_value' => '--Choisissez la ville de résidence--',
-                'multiple' => false,
-                'attr' =>array('class' =>'form-control chzn-select'),
-                'required' => true,
-                'query_builder' => function(EntityRepository $er )  {
-                                return $er->createQueryBuilder('v')
-                                        ->where('v.estdelete = 0')
-                                          ->orderBy('v.nomville', 'ASC');
-                        }))
-                        
-            ->add('departement','entity', array('label' => 'Département', 
-                'class' => 'BZModelBundle:Departement',
-                'property' => 'nomdepartement',
-                'empty_value' => '--Choisissez le département--',
-                'multiple' => false,
-                'attr' =>array('class' =>'form-control chzn-select'),
-                'required' => true,
-                'query_builder' => function(EntityRepository $er )  {
-                                return $er->createQueryBuilder('d')
-                                        ->where('d.estdelete = 0')
-                                          ->orderBy('d.nomdepartement', 'ASC');
-                        }))
-                        
-               ->add('quartier','entity', array('label' => 'Quartier de ville ou village', 
+               
+            ->add('quartier','entity', array('label' => 'Zone de résidence', 
                 'class' => 'BZModelBundle:Quartier',
                 'property' => 'libelle',
                 'empty_value' => '',
+                   'group_by' => 'parentName',
                 'multiple' => false,
                 'attr' =>array('class' =>'form-control chzn-select'),
                 'required' => false,
@@ -60,10 +35,9 @@ class AdresseContactType extends AbstractType
                                 return $er->createQueryBuilder('q')
                                           ->orderBy('q.libelle', 'ASC')
                                           ->where('q.estdelete = 0');
-                        }))   
-                                
+                        }))               
             ->add('details', 'textarea', array(
-            'label' => 'Autres détails adresses',
+            'label' => 'Autres adresses',
              'attr' =>array(
             'class' =>'form-control'
              )))

@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <div id='frm_createVille'>
+    <div id='afficheformulaire'>
 
     </div>
 {% endblock content_body %}
@@ -106,13 +106,13 @@
         // Notifications();    
         $('.createformulaire').click(function (event) {
             var butonsupp = $(this);
-            $('#frm_createVille').html('');
+            $('#afficheformulaire').html('');
             $.ajax({
                 type: 'GET',
                 url: butonsupp.attr('href'),
                 cache: false,
                 success: function (data) {
-                    $('#frm_createVille').html(data);
+                    $('#afficheformulaire').html(data);
                     // $('#frm_createVille').dialog();
                 },
                 error: function () {

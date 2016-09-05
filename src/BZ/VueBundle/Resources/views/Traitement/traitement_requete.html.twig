@@ -10,7 +10,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading" style="text-align: center;font-size: 13px;color: black;">
                     <span > SUIVI DES TRAITEMENTS</span>
-                   <a class="btn btn-success btn-xs btn-rect createformulaire" href="{{ path('enregistre_cloture',{'id': element.id}) }}" data-toggle="modal" data-target="#myModalu"  title="Cloturer la requête" style="float: right;" > <i class="icon-edit"></i></a>
+                   <a class="btn btn-success btn-xs btn-rect createformulaire" href="{{ path('enregistre_cloture',{'id': element.id}) }}"   title="Cloturer la requête" style="float: right;" > <i class="icon-download-alt"> </i> Clôturer</a>
                 </div>
                 <div class="panel-body">
                     <div style="color: black;font-size: 12px;" class="alert alert-success">
@@ -20,17 +20,15 @@
                             <strong> {{  element.particulier.prenom }}   {{  element.particulier.nom }}   </strong><br/>
                             {% if element.particulier.usagerclient is not null %}
                                 Contact(s) : <strong>  {{  element.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
-                                E@mail : <strong>  {{  element.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
-                                Département :  <strong> {{  element.particulier.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                                Ville de résidence :  <strong> {{  element.particulier.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
+                               E@mail :  <strong>{{  element.particulier.usagerclient.adressecontact.email }} </strong><br/>                                              
+                               Zone de résidence :  <strong> {% if element.particulier.usagerclient.adressecontact.quartier is not null %} {{  element.particulier.usagerclient.adressecontact.quartier.ParentName }} - {{  element.particulier.usagerclient.adressecontact.quartier.libelle }} {% else  %} Aucune indication {% endif  %} </strong><br/>                                                    
                                 Profession : <strong>  {{  element.particulier.profession }} </strong>  
                             {% endif %}
                         {% else %}
                             <strong>  {{  element.societeentreprise.nom }} ( {{  element.societeentreprise.raisonsociale }} )</strong><br/>
                             Contact(s) :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
                             E@mail :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
-                            Département : <strong> {{  element.societeentreprise.usagerclient.adressecontact.departement.nomdepartement }}</strong><br/>                                                  
-                            Ville de résidence :  <strong>{{  element.societeentreprise.usagerclient.adressecontact.ville.nomville }}</strong><br/>                                                   
+                            Zone de résidence :  <strong>{% if element.societeentreprise.usagerclient.adressecontact.quartier is not null %} {{  element.societeentreprise.usagerclient.adressecontact.quartier.ParentName }} - {{  element.societeentreprise.usagerclient.adressecontact.quartier.libelle }} {% else  %} Aucune indication {% endif  %}</strong><br/>                                                   
                             Domaine d'activité :  <strong>{{  element.societeentreprise.domaineactivite }} </strong>
                         {% endif %}<hr/>
                         Date d'émission : <strong>{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}</strong><br/>
@@ -61,9 +59,9 @@
                                     </span>
                                         </h5>
                                     <div class="toolbar">
-                                        <a class="btn btn-danger btn-xs btn-rect createformulaire" href="{{ path('supprimer_traitement',{'id': traitement.id,'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"  title="Supprimer le traitement"><i class="icon-trash"></i></a>
-                                        <a class="btn btn-success btn-xs btn-rect createformulaire"  href="{{ path('enregistre_resultat',{'id': traitement.id,'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"  title="Nouveau Résultat du traitement" ><i class="icon-plus"></i></a>
-                                        {% if traitement.reponsetraitementrequete is null %}<a class="btn btn-default btn-xs btn-rect createformulaire"  href="{{ path('enregistre_reponse',{'id': traitement.id,'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"   title="Réponse de l'usager/client "><i class="icon-user"></i></a>{% endif %}
+                                        <a class="btn btn-danger btn-xs btn-rect createformulaire" href="{{ path('supprimer_traitement',{'id': traitement.id,'nbre':nbretraitement}) }}"   title="Supprimer le traitement"><i class="icon-trash"></i></a>
+                                        <a class="btn btn-success btn-xs btn-rect createformulaire"  href="{{ path('enregistre_resultat',{'id': traitement.id,'nbre':nbretraitement}) }}"   title="Nouveau Résultat du traitement" ><i class="icon-plus"></i></a>
+                                        {% if traitement.reponsetraitementrequete is null %}<a class="btn btn-default btn-xs btn-rect createformulaire"  href="{{ path('enregistre_reponse',{'id': traitement.id,'nbre':nbretraitement}) }}"    title="Réponse de l'usager/client "><i class="icon-user"></i></a>{% endif %}
                                         <a class="btn btn-primary btn-xs btn-rect" data-toggle="collapse" data-target="#div{{ nbretraitement }}"><i class="icon-arrow-down"></i></a>
                                     </div>
                                 </header>
@@ -85,7 +83,7 @@
                                                     {% if resultat.estdelete == 0 %} 
                                                         {% set nbreresultat = nbreresultat+1 %}
                                                         <tr>
-                                                            <td><a class="btn btn-danger btn-xs btn-rect createformulaire"  href="{{ path('supprimer_resultat',{'id': resultat.id, 'nbre': nbreresultat}) }}" data-toggle="modal" data-target="#myModalu"   title="Supprimer le résultat"><i class="icon-remove"></i></a></td>
+                                                            <td><a class="btn btn-danger btn-xs btn-rect createformulaire"  href="{{ path('supprimer_resultat',{'id': resultat.id, 'nbre': nbreresultat}) }}"    title="Supprimer le résultat"><i class="icon-remove"></i></a></td>
                                                               <td>{{ nbreresultat }}</td>
                                                             <td style="font-size: 11px;">
                                                                 <span class="tooltip-demo" style="font-size: 11px;">  
@@ -121,8 +119,8 @@
                                                 </a>
                                             </span>
                                                     Appréciation : <strong style="color: green;margin-right: 10px;">{{  traitement.reponsetraitementrequete.mention.libelle }}</strong>
-                                                    <a class="btn btn-danger btn-xs btn-rect createformulaire" href="{{ path('supprimer_reponse',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"  title="Supprimer la réponse de l'usager/client"><i class="icon-trash"></i></a>
-                                                    <a class="btn btn-warning btn-xs btn-rect createformulaire" href="{{ path('modifier_reponse',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}" data-toggle="modal" data-target="#myModalu"  title="Supprimer la réponse de l'usager/client"><i class="icon-edit-sign"></i></a>
+                                                    <a class="btn btn-danger btn-xs btn-rect createformulaire" href="{{ path('supprimer_reponse',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}"   title="Supprimer la réponse de l'usager/client"><i class="icon-trash"></i></a>
+                                                    <a class="btn btn-warning btn-xs btn-rect createformulaire" href="{{ path('modifier_reponse',{'id': traitement.reponsetraitementrequete.id, 'nbre':nbretraitement}) }}"   title="Supprimer la réponse de l'usager/client"><i class="icon-edit-sign"></i></a>
                                         </div>
                                     {% endif %}
                                 </div>

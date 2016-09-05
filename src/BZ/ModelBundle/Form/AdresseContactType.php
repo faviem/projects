@@ -29,7 +29,7 @@ class AdresseContactType extends AbstractType
              'attr' =>array(
             'class' =>'form-control'
               )))     
-              ->add('quartier','entity', array('label' => 'Zone de résidence (Communes/Quartiers de ville ou villages)', 
+              ->add('quartier','entity', array('label' => 'Zone de résidence (Communes - Arrondissements/Quartiers de ville ou villages)', 
                 'class' => 'BZModelBundle:Quartier',
                 'property' => 'libelle',
                 'empty_value' => '',

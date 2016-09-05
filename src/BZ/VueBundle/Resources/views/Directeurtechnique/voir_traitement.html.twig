@@ -4,7 +4,11 @@
             <div class="panel panel-info">
                 <div class="panel-heading" style="text-align: center;font-size: 13px;color: black;">
                     <span > DETAIL DU TRAITEMENT DE LA REQUETE</span>
-                      <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();" style="float: right;" > <i class="icon-remove"></i></a>
+                    <a type="button" class="btn btn-default btn-xs btn-line " style="float: right;" href="#" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('fermer_requete') }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"> <i class="icon-remove"></i></a>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -15,16 +19,14 @@
                                     <strong> {{  element.requete.particulier.prenom }}   {{  element.requete.particulier.nom }}   </strong><br/>
                                     Contact(s) : <strong>  {{  element.requete.particulier.usagerclient.adressecontact.telmobile }}      </strong><br/>                                           
                         E@mail : <strong>  {{  element.requete.particulier.usagerclient.adressecontact.email }} </strong><br/>                                               
-                        Département :  <strong> {{  element.requete.particulier.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                        Ville de résidence :  <strong> {{  element.requete.particulier.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
+                        Zone de résidence :  <strong> {% if element.requete.particulier.usagerclient.adressecontact.quartier is not null %} {{  element.requete.particulier.usagerclient.adressecontact.quartier.ParentName }} - {{  element.requete.particulier.usagerclient.adressecontact.quartier.libelle }} {% else  %} Aucune indication {% endif  %}</strong><br/>
                         Profession : <strong>  {{  element.requete.particulier.profession }} </strong>  
                                 {% else %}
                                    <strong> {{  element.requete.societeentreprise.nom }} ( {{  element.requete.societeentreprise.raisonsociale }} )</strong><br/>
                                    Contact(s) :  <strong>{{  element.requete.societeentreprise.usagerclient.adressecontact.telmobile }} </strong><br/>                                              
                         E@mail :  <strong>{{  element.requete.societeentreprise.usagerclient.adressecontact.email }} </strong><br/>                                              
-                          Département :  <strong> {{  element.requete.societeentreprise.usagerclient.adressecontact.departement.nomdepartement }} </strong><br/>                                                
-                        Ville de résidence :  <strong> {{  element.requete.societeentreprise.usagerclient.adressecontact.ville.nomville }} </strong><br/>                                                    
-                       Domaine d'activité :  <strong>{{  element.requete.societeentreprise.domaineactivite }} </strong>
+                        Zone de résidence :  <strong> {% if element.requete.societeentreprise.usagerclient.adressecontact.quartier is not null %} {{  element.requete.societeentreprise.usagerclient.adressecontact.quartier.ParentName }} - {{  element.requete.societeentreprise.usagerclient.adressecontact.quartier.libelle }} {% else  %} Aucune indication {% endif  %}</strong><br/>
+                        Domaine d'activité :  <strong>{{  element.requete.societeentreprise.domaineactivite }} </strong>
                                 {% endif %}<br/>
                             
                                 <hr/>

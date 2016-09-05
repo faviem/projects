@@ -24,8 +24,12 @@
     </div>
 {% endblock parentContenu %}
 {% block parentBoutons %} 
-    <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick="location.reload();"><i class="icon icon-arrow-left"> </i> Retour</a>
-    <button type="submit" class="btn btn-success btn-xs btn-line" >Cloturer </button>
+      <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('fermer_requete') }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"><i class="icon icon-arrow-left"> </i> Retour</a>
+      <button type="submit" class="btn btn-success btn-xs btn-line" >Cloturer </button>
     <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Cloture en cours ...</span>
     {% endblock parentBoutons %}
     {% block parentScript %}

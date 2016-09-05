@@ -9,8 +9,12 @@
            <p>Confirmez - vous le déverrouillage du compte de <br/> <strong> {{ username }} </strong> ?</p>
         </div>
         <div class="panel-footer">
-            <a type="button" class="btn btn-default btn-xs btn-line" href="#"  onclick="location.reload();"><i class="fa fa-mail-reply"> </i> Annuler</a>
-                  <button type="submit" class="btn btn-success btn-xs btn-line" >Déverrouiller</button>
+            <a type="button" class="btn btn-default btn-xs btn-line " href="#" id="retour" onclick=" $.ajax({type: 'GET', url: '{{ path('fermer_requete') }}', cache: false, success: function (data) {
+                                        $('#afficheformulaire').html(data);
+                                    }, error: function () {
+                                        alert('requête échouée');
+                                    }});"><i class="icon icon-arrow-left"> </i> Retour</a>
+            <button type="submit" class="btn btn-success btn-xs btn-line" >Déverrouiller</button>
                   <span class='tachat_img hide'><img src="{{ asset('/images/712.GIF') }}" alt="Second slide" class='img-circle' style="height: 20px;width: 20px;"> Déverrouillage...</span>
         </div>
     </div>
