@@ -108,6 +108,13 @@ class TchatController extends Controller
         foreach ($requeteprioritaires as $i){
           $classerprioritairereq++;  
         }
+        $classernonprioritaire=0;
+        $requetenonprioritaires= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>false,'estdelete'=>false,'estentraitement'=>false));
+        foreach ($requetenonprioritaires as $i){
+          $classernonprioritaire++;  
+        }
         $requeteavorter=0;
         $requeteavorters= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
@@ -123,7 +130,27 @@ class TchatController extends Controller
            foreach ($cloturerequetes as $i){
           $nbrecloturer++;  
         }
-        $response = new Response(json_encode(array('requetecloturer' => $nbrecloturer,'requeteabandonner' => $requeteavorter,'classerprioritairereq' => $classerprioritairereq,'nonclasser' => $nonclasse,'nbreusers' => $nbreuser, 'nbremsg' => $nbremesg, 'nbretraitements' => $nbretraitement)));
+        $nbrerequeteencours=0;
+        $requeteencours= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true,'estentraitement'=>true,'estResolu'=>false));
+          foreach ($requeteencours as $i){
+          $nbrerequeteencours++;  
+        }
+        
+        $nbrerequetesanssuite=0;
+        $requetesanssuite= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true,'estentraitement'=>true,'estResolu'=>false));
+          foreach ($requetesanssuite as $i){
+              $trouve=0;
+               foreach ($i->getTraitementrequetes() as $j){
+                   foreach ($j->getResultattraitementrequetes() as $k){ $trouve++; }
+               }
+          if($trouve==0) {$nbrerequetesanssuite++; }  
+         }
+        
+        $response = new Response(json_encode(array('requetesanssuite' => $nbrerequetesanssuite,'requeteencours' => $nbrerequeteencours,'classernonprioritaire' => $classernonprioritaire,'requetecloturer' => $nbrecloturer,'requeteabandonner' => $requeteavorter,'classerprioritairereq' => $classerprioritairereq,'nonclasser' => $nonclasse,'nbreusers' => $nbreuser, 'nbremsg' => $nbremesg, 'nbretraitements' => $nbretraitement)));
             $response->headers->set('Content-Type', 'application/json');
             return $response;      
     }

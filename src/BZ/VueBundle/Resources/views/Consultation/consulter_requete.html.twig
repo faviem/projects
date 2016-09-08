@@ -37,7 +37,16 @@
                             Pièce Jointe : {% if element.filerequete is null %} <strong> Aucune</strong>{% else %}<a href="{{ asset( element.filerequete.dowloadPath) }}" target="_blank"><strong> {{ element.filerequete.nameFile }} </strong></a>{% endif %}<br/>
                             Message de l'usager/client : <br/><span style="margin-left: 10px;"> {{  element.commentaireUsagerclient }}</span><br/>
                         </div>
-                        
+                         {% if element.cloturerequete is not null %} 
+                             <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                               <a href="#" class="alert-link">Clôture de la requête effectuée </a> <br/>
+                               Le : {{  element.cloturerequete.dateCloture|date('d-m-Y') }} à {{  element.cloturerequete.dateCloture|date('H:i') }} <br/>
+                               Type d'appréciation : {{  element.cloturerequete.mention.libelle }}<br/>
+                               Commentaire : <br/>
+                                 {{  element.cloturerequete.commentaireCloture }}
+                            </div>
+                         {% endif %}
                     </div>
                       
                    {% set nbretraitement = 0 %}

@@ -1,7 +1,3 @@
-statistiques_requetes:
-    pattern:    /statistiques_requetes
-    defaults: { _controller: BZControllerBundle:Consultation:statistiques_requetes } 
-    
 repertoire_usager:
     pattern:    /repertoire_usager
     defaults: { _controller: BZControllerBundle:Consultation:repertoire_usager } 
@@ -17,15 +13,39 @@ contact_structure:
     defaults: { _controller: BZControllerBundle:Consultation:contact_structure }  
     requirements:
         id: \d+ 
-    
-requete_categorie:
-    pattern:    /requete_categorie/{id}
-    defaults: { _controller: BZControllerBundle:Consultation:requete_categorie } 
-    
-requete_structure:
-    pattern:    /requete_structure/{id}
-    defaults: { _controller: BZControllerBundle:Consultation:requete_structure } 
-    
+     
 consulter_requete:
     pattern:    /consulter_requete/{id}
     defaults: { _controller: BZControllerBundle:Consultation:consulter_requete } 
+    
+#consultation des listes    
+requete_categorie:
+    pattern:    /requete_categorie/{id}/{exercice}
+    defaults: { _controller: BZControllerBundle:Consultation:requete_categorie } 
+    
+requete_structure:
+    pattern:    /requete_structure/{id}/{exercice}
+    defaults: { _controller: BZControllerBundle:Consultation:requete_structure } 
+    
+requete_departement:
+    pattern:    /requete_departement/{id}/{exercice}
+    defaults: { _controller: BZControllerBundle:Consultation:requete_departement } 
+
+#consultation des listes   
+statistique_categorie:
+    pattern:    /statistique_categorie/{exercice}
+    defaults: { _controller: BZControllerBundle:Consultation:statistique_categorie } 
+    
+statistique_structure:
+    pattern:    /statistique_structure/{exercice}
+    defaults: { _controller: BZControllerBundle:Consultation:statistique_structure } 
+    
+statistique_departement:
+    pattern:    /statistique_departement/{exercice}
+    defaults: { _controller: BZControllerBundle:Consultation:statistique_departement } 
+    
+#consultation correspondants
+requetes_resoluescorres:
+    pattern:    /requetes_resoluescorres/{exercice}
+    defaults: { _controller: BZControllerBundle:Consultation:requetes_resoluescorres }
+    

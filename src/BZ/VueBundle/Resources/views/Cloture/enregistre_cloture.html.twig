@@ -1,6 +1,6 @@
 {% extends "BZVueBundle::parent_info.html.twig"%}
 {% block parentAction %} 
-    {{ path('enregistre_cloture',{'id': id})}}
+    {{ path('enregistre_cloture',{'id': id, 'exercice': exercice})}}
 {% endblock parentAction %}
 {% block parentStyle %} style="position: relative; left: 530px; top: 179px;" {% endblock parentStyle %}
 {% block parentTitre %} CLOTURE DE REQUETE {% endblock parentTitre %}

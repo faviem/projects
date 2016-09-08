@@ -10,7 +10,7 @@ use BZ\ModelBundle\Form\ClotureRequeteType;
 class ClotureController extends Controller
 {
     
-    public function enregistre_clotureAction($id)
+    public function enregistre_clotureAction($id, $exercice)
     {
             $requete= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
@@ -25,22 +25,22 @@ class ClotureController extends Controller
                 $form->bind($request);
                 if ($form->isValid()) {
                     $em = $this->getDoctrine()->getManager();
-                    $exercice = $this->getDoctrine()->getManager()->getRepository('BZModelBundle:Exercice')->findOneBy(array('libelle'=>$cloture->getDateCloture()->format('Y')));
-                    $cloture->setExercice($exercice);
+                    $exo= $this->getDoctrine()->getManager()->getRepository('BZModelBundle:Exercice')->findOneBy(array('libelle'=>$cloture->getDateCloture()->format('Y')));
+                    $cloture->setExercice($exo);
                     $em->persist($cloture);
                     $em->flush();
                     $requete->setEstResolu(true);
                     $requete->setClotureRequete($cloture);
                     $requete->setDateCloturer(new \ Datetime());
                     $em->flush();
-                     return $this->redirect( $this->generateUrl('requetes_resolues'));
+                     return $this->redirect( $this->generateUrl('requetes_resolues',  array('exercice' => $exercice)));
                      }
             }
              return $this->render('BZVueBundle:Cloture:enregistre_cloture.html.twig', 
-                     array('menu_num' => 5, 'id' => $id ,  'element' => $requete, 'form'   => $form->createView()));             
+                     array('menu_num' => 5, 'id' => $id ,  'element' => $requete,  'exercice' => $exercice, 'form'   => $form->createView()));             
     }
     
-    public function supprimer_clotureAction($id)
+    public function supprimer_clotureAction($id, $exercice)
     {
             $cloturerequete= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:ClotureRequete')
@@ -57,10 +57,10 @@ class ClotureController extends Controller
                     $em->flush();
                     $em->remove($cloturerequete);
                     $em->flush();
-                    return $this->redirect( $this->generateUrl('requetes_encours'));
+                    return $this->redirect( $this->generateUrl('requetes_encours',  array('exercice' => $exercice)));
             }
              return $this->render('BZVueBundle:Cloture:supprimer_cloture.html.twig', 
-                     array('menu_num' => 5, 'id' => $id, 'element' => $requete));             
+                     array('menu_num' => 5, 'id' => $id, 'element' => $requete, 'exercice' => $exercice));             
     }
     
 }

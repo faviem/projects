@@ -1,9 +1,9 @@
 requetes_encours:
-    pattern:    /requetes_encours_traitement
+    pattern:    /requetes_encours_traitement/{exercice}
     defaults: { _controller: BZControllerBundle:Traitement:requetes_encours }  
     
 requetes_soufrance:
-    pattern:    /requetes_soufrance
+    pattern:    /requetes_soufrance/{exercice}
     defaults: { _controller: BZControllerBundle:Traitement:requetes_soufrance }  
     
 requetes_resolues:
@@ -11,7 +11,7 @@ requetes_resolues:
     defaults: { _controller: BZControllerBundle:Traitement:requetes_resolues }  
     
 traitement_requete:
-    pattern:    /traitement_requete/{id}
+    pattern:    /traitement_requete/{id}/{exercice}
     defaults: { _controller: BZControllerBundle:Traitement:traitement_requete }  
     requirements:
         id: \d+ 

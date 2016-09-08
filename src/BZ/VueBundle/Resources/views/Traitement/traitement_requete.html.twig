@@ -10,7 +10,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading" style="text-align: center;font-size: 13px;color: black;">
                     <span > SUIVI DES TRAITEMENTS</span>
-                   <a class="btn btn-success btn-xs btn-rect createformulaire" href="{{ path('enregistre_cloture',{'id': element.id}) }}"   title="Cloturer la requête" style="float: right;" > <i class="icon-download-alt"> </i> Clôturer</a>
+                   <a class="btn btn-success btn-xs btn-rect createformulaire" href="{{ path('enregistre_cloture',{'id': element.id, 'exercice': exercice}) }}"   title="Cloturer la requête" style="float: right;" > <i class="icon-download-alt"> </i> Clôturer</a>
                 </div>
                 <div class="panel-body">
                     <div style="color: black;font-size: 12px;" class="alert alert-success">
@@ -129,7 +129,7 @@
                     {% endfor %}
                 </div>
                 <div class="panel-footer">
-                    <a type="button" class="btn btn-default btn-xs btn-line " href="{{ path('requetes_encours')}}" ><i class="icon icon-arrow-left"> </i> Retour</a>
+                    <a type="button" class="btn btn-default btn-xs btn-line " href="{{ path('requetes_encours',{ 'exercice': exercice})}}" ><i class="icon icon-arrow-left"> </i> Retour</a>
                     <a type="button" class="btn btn-success btn-xs btn-line " href="#" onclick="location.reload();"><i class="icon icon-refresh"> </i> Actualiser</a>
                 </div>
             </div>

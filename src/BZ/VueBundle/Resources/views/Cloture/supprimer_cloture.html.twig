@@ -1,6 +1,6 @@
 {% extends "BZVueBundle::parent_delete.html.twig"%}
 {% block parentAction %} 
-    {{ path('supprimer_cloture',{'id': id})}}
+    {{ path('supprimer_cloture',{'id': id, 'exercice': exercice})}}
 {% endblock parentAction %}
 {% block parentStyle %} style="position: relative; left: 530px; top: 179px;" {% endblock parentStyle %}
 {% block parentEnctype %}  {% endblock parentEnctype %}

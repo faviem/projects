@@ -69,6 +69,11 @@
                         <!-- SUGGESTIONS SECTION -->
                         {% if  app.user.type !="DIP" %}
                         <li class="chat-panel dropdown">
+                            <a class=""  href="{{ path('requetes_resoluescorres',{'exercice': 0}) }}" title="Consulter liste des requêtes résolues ...">
+                              <i class="icon-folder-open "></i>&nbsp;   <span class="label label-default" id="nbreresoluesstruct">Répertoire des requêtes résolues </span>   
+                            </a>
+                        </li>
+                        <li class="chat-panel dropdown">
                             <a class=""  href="{{ path('read_traitement') }}" title="Consulter liste des traitements en cours ...">
                                 <span class="label label-info" id="nbretraitement">0</span>   <i class="icon-comments "></i>&nbsp; 
                             </a>
@@ -166,7 +171,7 @@
                             <li ><a href="{{ path("enregistre_requete") }}" style=""><i class="icon-angle-right"></i> Formulaires d'Enregistrement</a></li>
                             <li ><a href="{{ path("requetes_attentes") }}" style=""><i class="icon-angle-right"></i> Requêtes non classées <span class="label label-danger" style="float: right;margin-right: 2%;" id="nonclasser">4</span> </a></li>
                            <li ><a href="{{ path("requetes_fondees") }}" style=""><i class="icon-angle-right"></i> Requêtes prioritaires <span class="label label-info" style="float: right;margin-right: 2%;" id="classerprioritairereq">4</span></a></li>
-                            <li ><a href="{{ path("requetes_nonfondees") }}" style=""><i class="icon-angle-right"></i> Requêtes non prioritaires </a></li>
+                            <li ><a href="{{ path("requetes_nonfondees") }}" style=""><i class="icon-angle-right"></i> Requêtes non prioritaires <span class="label label-warning" style="float: right;margin-right: 2%;" id="classernonprioritaire">4</span> </a></li>
                             <li ><a href="{{ path("requetes_avortees") }}" style=""><i class="icon-angle-right"></i> Requêtes abandonnées <span class="label label-success" style="float: right;margin-right: 2%;" id="requeteabandonner">4</span></a> </li>
                         </ul>
                     </li>
@@ -178,9 +183,9 @@
                             </span>
                         </a>
                         <ul class="collapse" id="traitements" >
-                            <li ><a href="{{ path("requetes_encours") }}" style=""><i class="icon-angle-right"></i> Traitements en cours </a></li>
-                            <li ><a href="{{ path("requetes_soufrance") }}" style=""><i class="icon-angle-right"></i>  Traitements sans suite </a></li>
-                            <li ><a href="{{ path("requetes_resolues", {'exercice': 1}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes clôturées <span class="label label-default" style="float: right;margin-right: 2%;" id="requetecloturer">0</span></a></li>
+                            <li ><a href="{{ path("requetes_encours", {'exercice': 1}) }}" style=""><i class="icon-angle-right"></i> Traitements en cours <span class="label label-warning" style="float: right;margin-right: 2%;" id="requeteencours">4</span></a></li>
+                            <li ><a href="{{ path("requetes_soufrance", {'exercice': 1}) }}" style=""><i class="icon-angle-right"></i>  Traitements sans suite <span class="label label-danger" style="float: right;margin-right: 2%;" id="requetesanssuite">4</span></a></a></li>
+                            <li ><a href="{{ path("requetes_resolues", {'exercice': 1}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes résolues <span class="label label-success" style="float: right;margin-right: 2%;" id="requetecloturer">0</span></a></li>
 
                         </ul>
                     </li>
@@ -192,10 +197,14 @@
                             </span>
                         </a>
                         <ul class="collapse" id="consultations">
-                            <li ><a href="{{ path("statistiques_requetes") }}" style=""><i class="icon-angle-right"></i> Statistique des requêtes </a></li>
-                            <li ><a href="{{ path("repertoire_usager",{'type': 1}) }}" style=""><i class="icon-angle-right"></i> Répertoire des usagers/clients </a></li>
-                            <li ><a href="{{ path("requete_categorie",{'id': 0}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes par catégorie </a></li>
-                            <li ><a href="{{ path("requete_structure",{'id': 0}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes par structure </a></li>
+                           <li ><a href="{{ path("repertoire_usager",{'type': 1}) }}" style=""><i class="icon-angle-right"></i> Répertoire des usagers/clients </a></li>
+                            <li ><a href="{{ path("requete_categorie",{'id': 0, 'exercice': 0}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes par catégorie </a></li>
+                            <li ><a href="{{ path("requete_structure",{'id': 0,  'exercice': 0}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes par structure </a></li>
+                            <li ><a href="{{ path("requete_departement",{'id': 0,  'exercice': 0}) }}" style=""><i class="icon-angle-right"></i>  Liste des requêtes par départem.. </a></li>
+                       
+                            <li ><a href="{{ path("statistique_categorie",{'exercice': 0}) }}" style=""><i class="icon-angle-right"></i>  Statistique des catégories </a></li>
+                            <li ><a href="{{ path("statistique_structure",{'exercice': 0}) }}" style=""><i class="icon-angle-right"></i>  Statistique des structures </a></li>
+                            <li ><a href="{{ path("statistique_departement",{'exercice': 0}) }}" style=""><i class="icon-angle-right"></i>  Statistique des départements </a></li>
                         </ul>
                     </li>
 
@@ -264,7 +273,7 @@
         <!--END MAIN WRAPPER -->
         <!-- FOOTER -->
         <div id="footer">
-            <p>&copy; Conception de Emile FADONOUGBO; email: faviem1990@yahoo.fr; Tél: +229 96892625; Copyright MEEM/DIP-BENIN 2016</p>
+            <p style="font-size: 11px;text-align: center;">&copy; Copyright MEEM/DIP-BENIN 2016  - Conception et Développement par  Emile FADONOUGBO; email: faviem1990@yahoo.fr; Tél: +229 96892625 - Edition ITS-BENIN </p>
         </div>
         <input type="number" class="hide" name="menu_num" value="{% if menu_num is defined %}{{ menu_num }}{% else %}5{% endif %}" id="menu_num"/>
 
@@ -313,6 +322,9 @@
                        $('#classerprioritairereq').html(data.classerprioritairereq);
                        $('#requeteabandonner').html(data.requeteabandonner);
                        $('#requetecloturer').html(data.requetecloturer);
+                       $('#classernonprioritaire').html(data.classernonprioritaire);
+                       $('#requeteencours').html(data.requeteencours);
+                       $('#requetesanssuite').html(data.requetesanssuite);
                    },
                    error: function() {alert('coupé');} });
              }

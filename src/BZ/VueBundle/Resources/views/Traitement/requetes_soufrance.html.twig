@@ -6,7 +6,13 @@
     <div class="col-lg-12" style="margin-top: 1%;">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span style="font-size: 12px;"> LISTE  DES REQUETES NON TRAITEES </span> 
+                <span style="font-size: 12px;"> LISTE  DES REQUETES NON RESOLUES DE L'EXERCICE </span>
+                <select style="width: 15%;" id="getExercice" name="getExercices" class="form-control chzn-select">
+                    <option value=""> Choisissez</option>
+                    {% for typ  in  exercices %}
+                        <option value="{{ typ.id }}" {% if typ.id==exercice %} selected="true" {% endif %}>{{ typ.libelle }}</option>
+                    {% endfor %}
+                </select>
                 <a href="#" style="float: right;margin-right: 5px;color: black;" target="_blank" class="btn btn-default  btn-xs btn-rect" > <i class="icon   icon-print"></i></a>                
             </div>
             <div class="panel-body">
@@ -60,7 +66,7 @@
                                         <td class="sorting_1" style="text-align: center;">
                                              <a href="{{ path('fiche_requeteclientadmin',{'id': element.id}) }}" title="Editer la fiche de requête" class="btn btn-default btn-xs btn-rect" target="_blank" style="font-size: 11px;"><i class="icon icon-print"> </i> </a>
                                             <a href="{{ path('avorter_requete',{'id': element.id}) }}" title="Avorter la requête"  class="btn btn-danger btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu" style="font-size: 11px;"><i class="icon icon-trash"> </i> </a>
-                                           <a href="{{ path('traitement_requete',{'id': element.id}) }}" title="Suivi des traitements"  class="btn btn-info btn-xs btn-rect "  style="font-size: 11px;"> {{ nbretraitement }} </a>
+                                           <a href="{{ path('traitement_requete',{'id': element.id, 'exercice': exercice}) }}" title="Suivi des traitements"  class="btn btn-info btn-xs btn-rect "  style="font-size: 11px;"> {{ nbretraitement }} </a>
                                            <a href="{{ path('enregistre_traitement',{'id': element.id}) }}" title="Créer un traitement"  class="btn btn-success btn-xs btn-rect createformulaire" data-toggle="modal" data-target="#myModalu"  style="font-size: 11px;"> <i class="icon icon-plus"> </i> </a>
                                         </td>
                                         <td class="" style="font-size: 12px;">{{  element.dateEmise|date('d-m-Y') }} à {{  element.dateEmise|date('H:i') }}  </td>
@@ -91,6 +97,19 @@
 {% endblock content_body %}
 {% block javascript %} 
     <script>
+        $('#getExercice').change(function () {
+            if ($('#getExercice').val() === "")
+            {
+
+            }
+            else
+            {
+                // alert('route de la liste des estdirecteurtechniques de la structure '+$(this).val());
+                var url = '{{ path("requetes_soufrance",{'exercice':  'exercice' }) }}';
+                url = url.replace("exercice", $(this).val() === "" ? 0 : $(this).val());
+                location.href = "" + url + "";
+            }
+        });
         // Notifications();      
         $('.createformulaire').click(function (event) {
             var buton = $(this);

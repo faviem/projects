@@ -7,19 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ConsultationController extends Controller
 {
        
-    public function statistiques_requetesAction()
-    {
-         $typerequetes= $this->getDoctrine()
-                                      ->getManager()->getRepository('BZModelBundle:TypeRequete')
-                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
-            $structuresoustutelles= $this->getDoctrine()
-                                      ->getManager()->getRepository('BZModelBundle:StructureSoustutelle')
-                                      ->findBy(Array('estdelete'=>false),Array('nom'=>'ASC','raisonsociale'=>'ASC'));
-             return $this->render('BZVueBundle:Consultation:statistiques.html.twig', 
-                     array('menu_num'   => 6, 'structuresoustutelles' => $structuresoustutelles, 'categories' => $typerequetes)); 
-    }
-    
-       
     public function repertoire_usagerAction()
     {
             $particuliers= $this->getDoctrine()
@@ -51,28 +38,105 @@ class ConsultationController extends Controller
                      array('menu_num' => 4, 'element'   => $societeentreprise,'id' => $id ));             
     }
     
-    public function requete_categorieAction($id)
+    public function requete_categorieAction($id, $exercice)
     {
-            $type= $this->getDoctrine()
+            $types= $this->getDoctrine()
                                        ->getManager()->getRepository('BZModelBundle:TypeRequete')
+                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
+            $exercices= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Exercice')
                                       ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('typerequete'=>$id),Array('dateEmise'=>'ASC'));
+                                      ->findBy(Array('typerequete'=>$id, 'exercice' => $exercice),Array('dateEmise'=>'ASC'));
+            
             return $this->render('BZVueBundle:Consultation:requete_categorie.html.twig', 
-                     array('requetes' => $requetes,'id' => $id,'types' => $type,'menu_num'   => 6));             
+                     array('requetes' => $requetes,'id' => $id,'types' => $types,'exercice' => $exercice,'exercices' => $exercices,'menu_num'   => 6));             
     }
     
-    public function requete_structureAction($id)
+    public function requete_structureAction($id, $exercice)
     {
             $structs= $this->getDoctrine()
                                        ->getManager()->getRepository('BZModelBundle:StructureSoustutelle')
                                       ->findBy(Array('estdelete'=>false),Array('nom'=>'ASC'));
+            $exercices= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
+               
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('structuresoustutelle'=>$id),Array('dateEmise'=>'ASC'));
+                                      ->findBy(Array('structuresoustutelle'=>$id, 'exercice' => $exercice),Array('dateEmise'=>'ASC'));
+            
             return $this->render('BZVueBundle:Consultation:requete_structure.html.twig', 
-                     array('requetes' => $requetes,'id' => $id,'structures' => $structs,'menu_num'   => 6));             
+                     array('requetes' => $requetes,'id' => $id,'structures' => $structs,'exercice' => $exercice,'exercices' => $exercices,'menu_num'   => 6));             
+    }
+    
+    public function requete_departementAction($id, $exercice)
+    {
+            $structs= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Departement')
+                                      ->findBy(Array('estdelete'=>false),Array('nomdepartement'=>'ASC'));
+            $exercices= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
+               
+            $requetes= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('exercice' => $exercice),Array('dateEmise'=>'ASC'));
+            
+            return $this->render('BZVueBundle:Consultation:requete_departement.html.twig', 
+                     array('requetes' => $requetes,'id' => $id,'structures' => $structs,'exercice' => $exercice,'exercices' => $exercices,'menu_num'   => 6));             
+    }
+    
+    public function statistique_categorieAction($exercice)
+    {
+            $typerequetes= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:TypeRequete')
+                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
+            $exercices= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
+               
+            $requetes= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('exercice' => $exercice),Array('dateEmise'=>'ASC'));
+            
+            return $this->render('BZVueBundle:Consultation:statistique_categorie.html.twig', 
+                     array('requetes' => $requetes,'elements' => $typerequetes,'exercice' => $exercice,'exercices' => $exercices,'menu_num'   => 6));             
+    }
+    
+    public function statistique_structureAction($exercice)
+    {
+            $structures= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:StructureSoustutelle')
+                                      ->findBy(Array('estdelete'=>false),Array('nom'=>'ASC'));
+            $exercices= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
+               
+            $requetes= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('exercice' => $exercice),Array('dateEmise'=>'ASC'));
+            
+            return $this->render('BZVueBundle:Consultation:statistique_structure.html.twig', 
+                     array('requetes' => $requetes,'elements' => $structures,'exercice' => $exercice,'exercices' => $exercices,'menu_num'   => 6));             
+    }
+    
+    public function statistique_departementAction($exercice)
+    {
+            $departements= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Departement')
+                                      ->findBy(Array('estdelete'=>false),Array('nomdepartement'=>'ASC'));
+            $exercices= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
+               
+            $requetes= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('exercice' => $exercice),Array('dateEmise'=>'ASC'));
+            
+            return $this->render('BZVueBundle:Consultation:statistique_departement.html.twig', 
+                     array('requetes' => $requetes,'elements' => $departements,'exercice' => $exercice,'exercices' => $exercices,'menu_num'   => 6));             
     }
     
     public function consulter_requeteAction($id)
@@ -85,7 +149,21 @@ class ConsultationController extends Controller
                      array('menu_num' => 5, 'element'   => $requete));  
              
     }
-    
+   //consulation correspondants SRU
+     public function requetes_resoluescorresAction($exercice)
+    {
+            
+            $exercices= $this->getDoctrine()
+                                       ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false),Array('libelle'=>'ASC'));
+               
+            $requetes= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Requete')
+                                      ->findBy(Array('structuresoustutelle'=>$this->getUser()->getDirecteurtechnique()->getStructuresoustutelle()->getId(), 'exercice' => $exercice),Array('dateEmise'=>'ASC'));
+            
+            return $this->render('BZVueBundle:Consultation:requetes_resoluescorres.html.twig', 
+                     array('requetes' => $requetes,'exercice' => $exercice,'exercices' => $exercices,'menu_num'   => 6));             
+    }
     
     
 }

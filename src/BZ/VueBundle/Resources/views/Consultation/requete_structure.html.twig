@@ -6,7 +6,14 @@
     <div class="col-lg-12" style="margin-top: 1%;">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span style="font-size: 13px;"> VEUILLEZ SELECTIONNER LA STRUCTURE OU DIRECTION </span>
+                <span style="font-size: 13px;">EXERCICE </span>
+                <select style="width: 15%;" id="getExercice" name="getExercice" class="form-control chzn-select">
+                    <option value="">--Exercice--</option>
+                    {% for typ  in  exercices %}
+                        <option value="{{ typ.id }}" {% if typ.id==exercice %} selected="true" {% endif %}>{{ typ.libelle }}</option>
+                    {% endfor %}
+                </select>
+                <span style="font-size: 13px;"> STRUCTURE OU DIRECTION </span>
                 <select style="width: 50%;" id="getStructure" name="getStructure" class="form-control chzn-select">
                     <option value="">--Choisissez la structure--</option>
                     {% for typ  in  structures %}
@@ -30,6 +37,9 @@
                                         Emetteur
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
+                                        Zone de résidence (com - arr - quart)
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
                                         Catégorie de requête
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="font-size: 13px;text-align: center;">
@@ -39,6 +49,11 @@
                             </thead>
                             <tbody>
                                 {% set nbre = 0 %}
+                                 {% set nbre1 = 0 %}
+                                {% set nbre2 = 0 %}
+                                {% set nbre3 = 0 %}
+                                {% set nbre4 = 0 %}
+                                {% set nbre5 = 0 %}
                                 {% for element in  requetes %}
                                     <tr class="gradeA {% if nbre%2==0 %} odd {% else %} even{% endif%}">
                                         {% set nbre = nbre+1 %}
@@ -54,29 +69,91 @@
                                             {% endif %}
                                            
                                         </td>
+                                        <td class="" style="font-size: 12px;">
+                                            {% if element.typeusagerclient == 'Personne physique' %}
+                                              {% if element.particulier.usagerclient.adressecontact.quartier %}{{  element.particulier.usagerclient.adressecontact.quartier.parentName  }} - {{ element.particulier.usagerclient.adressecontact.quartier.libelle }} {% else %} Non précisé {% endif %}
+                                            {% else %}
+                                               {% if element.societeentreprise.usagerclient.adressecontact.quartier %} {{ element.societeentreprise.usagerclient.adressecontact.quartier.parentName }} - {{ element.societeentreprise.usagerclient.adressecontact.quartier.libelle }}  {% else %} Non précisé {% endif %}
+                                            {% endif %}
+                                        </td>
                                         <td class="" style="font-size: 12px;"> {{  element.typerequete.libelle }}  </td>
                                         <td class="" style="font-size: 12px;">
                                             {% if element.cloturerequete is null %}
                                                  {% if element.estAvorterUsagerclient==0 %}
                                                         {% if element.estFonder==1 %}
                                                              {% if element.estentraitement==1 %}
-                                                                     <span style="color: green;">  en cours de traitement </span>
+                                                                     <span style="color: green;"> traitement en cours </span>
+                                                                      {% set nbre1 = nbre1+1 %}
                                                                 {% else %}
                                                                      <span style="color: blue;">  est Fondée sans traitement</span>
+                                                                      {% set nbre2 = nbre2+1 %}
                                                              {% endif %}
                                                         {% else %}
                                                             <span style="color: red;">  est non Fondée  </span>
+                                                             {% set nbre3 = nbre3+1 %}
                                                         {% endif %}
                                                     {% else %}
                                                         <span style="color: yellow;">  est Abandonnée </span>
+                                                         {% set nbre4 = nbre4+1 %}
                                                  {% endif %}
                                             {% else %}
                                                 <span style="color: green;"> résolue </span>
+                                                 {% set nbre5 = nbre5+1 %}
                                             {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
+                                  <tfoot>
+                                <tr>
+                                    <th colspan="5" style="text-align: right;font-weight: normal;font-size: 11.5px;">
+                                    Nombre total de requêtes émises
+                                </th>
+                                <th style="text-align: center;">
+                                    {{ nbre5+nbre4+nbre3+nbre2+nbre1 }}
+                                </th>
+                                </tr>
+                                <tr>
+                                      <th colspan="5" style="text-align: right;font-weight: normal;font-size: 11.5px;">
+                                    Nombre total de requêtes résolues
+                                </th>
+                                <th style="text-align: center;">
+                                    {{ nbre5 }}
+                                </th>
+                                </tr>
+                                <tr>
+                                 <th colspan="5" style="text-align: right;font-weight: normal;font-size: 11.5px;">
+                                    Nombre total de requêtes en cours de traitement
+                                </th>
+                                <th style="text-align: center;">
+                                    {{ nbre1 }}
+                                </th>
+                                </tr>
+                                <tr>
+                                  <th colspan="5" style="text-align: right;font-weight: normal;font-size: 11.5px;">
+                                    Nombre total de requêtes classées fondées sans traitement
+                                </th>
+                                <th style="text-align: center;">
+                                    {{ nbre2 }}
+                                </th>
+                                </tr>
+                                <tr>
+                                   <th colspan="5" style="text-align: right;font-weight: normal;font-size: 11.5px;">
+                                    Nombre total de requêtes classées non fondées
+                                </th>
+                                <th style="text-align: center;">
+                                    {{ nbre3 }}
+                                </th>
+                                </tr>
+                                <tr>
+                                  <th colspan="5" style="text-align: right;font-weight: normal;font-size: 11.5px;">
+                                    Nombre total de requêtes abandonnées
+                                </th>
+                                <th style="text-align: center;">
+                                    {{ nbre4 }}
+                                </th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -91,15 +168,28 @@
 {% block javascript %} 
     <script>
         $('#getStructure').change(function () {
-            if ($('#getStructure').val() === "")
+            if ($(this).val() === "" || $("#getExercice").val() === "")
             {
 
             }
             else
             {
                 // alert('route de la liste des estdirecteurtechniques de la structure '+$(this).val());
-                var url = '{{ path("requete_structure",{'id':  'id' }) }}';
-                url = url.replace("id", $(this).val() === "" ? 0 : $(this).val());
+                var url = '{{ path("requete_structure",{'id':  'id', 'exercice':  'exo' }) }}';
+                url = url.replace("id", $(this).val() === "" ? 0 : $(this).val()).replace("exo", $("#getExercice").val() === "" ? 0 : $("#getExercice").val());
+                location.href = "" + url + "";
+            }
+        });
+          $('#getExercice').change(function () {
+            if ($(this).val() === "" || $("#getStructure").val() === "")
+            {
+
+            }
+            else
+            {
+                // alert('route de la liste des estdirecteurtechniques de la structure '+$(this).val());
+                var url = '{{ path("requete_categorie",{'id':  'id', 'exercice':  'exo'  }) }}';
+                url = url.replace("exo", $(this).val() === "" ? 0 : $(this).val()).replace("id", $("#getStructure").val() === "" ? 0 : $("#getStructure").val());
                 location.href = "" + url + "";
             }
         });

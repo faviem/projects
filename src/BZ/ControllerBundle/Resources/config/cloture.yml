@@ -1,11 +1,11 @@
 enregistre_cloture:
-    pattern:    /enregistre_cloture/{id}
+    pattern:    /enregistre_cloture/{id}/{exercice}
     defaults: { _controller: BZControllerBundle:Cloture:enregistre_cloture }  
     requirements:
         id: \d+ 
         
 supprimer_cloture:
-    pattern:    /supprimer_cloture/{id}
+    pattern:    /supprimer_cloture/{id}/{exercice}
     defaults: { _controller: BZControllerBundle:Cloture:supprimer_cloture }  
     requirements:
         id: \d+ 

@@ -13,20 +13,26 @@ use BZ\ModelBundle\Form\ClotureRequeteType;
 class TraitementController extends Controller
 {
        
-    public function requetes_encoursAction()
+    public function requetes_encoursAction($exercice)
     {
+        $exercices= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false));
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true,'estentraitement'=>true,'estResolu'=>false),Array('dateEmise'=>'ASC'));
-             return $this->render('BZVueBundle:Traitement:requetes_encours.html.twig', array('requete' => $requetes,'menu_num'   => 5));             
+                                      ->findBy(Array('exercice'=>$exercice,'estAvorterUsagerclient'=>false,'estFonder'=>true,'estentraitement'=>true,'estResolu'=>false),Array('dateEmise'=>'ASC'));
+             return $this->render('BZVueBundle:Traitement:requetes_encours.html.twig', array('requete' => $requetes,'menu_num'   => 5, 'exercice'=>$exercice, 'exercices'=>$exercices));             
     }
     
-    public function requetes_soufranceAction()
+    public function requetes_soufranceAction($exercice)
     {
+        $exercices= $this->getDoctrine()
+                                      ->getManager()->getRepository('BZModelBundle:Exercice')
+                                      ->findBy(Array('estdelete'=>false));
             $requetes= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
-                                      ->findBy(Array('estAvorterUsagerclient'=>false,'estFonder'=>true,'estentraitement'=>true,'estResolu'=>false),Array('dateEmise'=>'ASC'));
-             return $this->render('BZVueBundle:Traitement:requetes_soufrance.html.twig', array('requete' => $requetes,'menu_num'   => 5));             
+                                      ->findBy(Array('exercice'=>$exercice,'estAvorterUsagerclient'=>false,'estFonder'=>true,'estentraitement'=>true,'estResolu'=>false),Array('dateEmise'=>'ASC'));
+             return $this->render('BZVueBundle:Traitement:requetes_soufrance.html.twig', array('requete' => $requetes,'menu_num'   => 5, 'exercice'=>$exercice, 'exercices'=>$exercices));             
     }
     
     public function requetes_resoluesAction($exercice)
@@ -40,14 +46,14 @@ class TraitementController extends Controller
              return $this->render('BZVueBundle:Traitement:requetes_resolues.html.twig', array('cloturerequetes' => $cloturerequetes,'menu_num'   => 5, 'exercice'=>$exercice, 'exercices'=>$exercices));             
     }
     
-    public function traitement_requeteAction($id)
+    public function traitement_requeteAction($id, $exercice)
     {
             $requete= $this->getDoctrine()
                                       ->getManager()->getRepository('BZModelBundle:Requete')
                                       ->find($id);
 
              return $this->render('BZVueBundle:Traitement:traitement_requete.html.twig', 
-                     array('menu_num' => 5, 'element'   => $requete));             
+                     array('menu_num' => 5, 'element'   => $requete, 'exercice'   => $exercice));             
     }
     
     public function supprimer_traitementAction($id)
